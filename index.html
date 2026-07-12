@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Meet&Speak — Inglês com a notícia do dia</title>
 <meta name="description" content="Estude inglês todos os dias com uma notícia real: Reading, Listening, Writing, Speaking e Grammar.">
+<meta name="theme-color" content="#4f46e5">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
 <style>
 :root{
   --bg:#f6f5f1; --card:#ffffff; --ink:#1c2230; --ink-2:#5b6472; --ink-3:#8a92a0;
@@ -92,7 +96,7 @@ section.panel.active{display:block;animation:fade .25s ease}
 .explain{display:none;margin-top:10px;font-size:.86rem;padding:10px 12px;border-radius:10px;background:var(--ok-soft);color:var(--ink)}
 .explain.show{display:block}
 .gap{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px;font-size:.95rem}
-.gap input{font:inherit;padding:6px 10px;border-radius:8px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);width:130px}
+.gap input{font:inherit;padding:6px 10px;border-radius:8px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);width:150px}
 .gap input.ok{border-color:var(--ok);background:var(--ok-soft)}
 .gap input.no{border-color:var(--bad);background:var(--bad-soft)}
 .gap .hint{width:100%;font-size:.8rem;color:var(--ink-3)}
@@ -205,6 +209,11 @@ dialog::backdrop{background:rgba(10,12,20,.5);backdrop-filter:blur(2px)}
   <main class="wrap">
     <!-- READING -->
     <section class="panel active" id="panel-reading">
+      <div class="card hidden" id="reviewCard">
+        <div class="kicker">Revisão espaçada — de aulas anteriores</div>
+        <p class="note" id="reviewIntro" style="margin-top:0">Complete as frases de notícias que você já estudou — a dica é o significado. Reencontrar as palavras em dias espaçados é o que as fixa de verdade.</p>
+        <div id="reviewList"></div>
+      </div>
       <div class="card">
         <div class="kicker">Antes de ler</div>
         <p id="warmup" style="margin:0;font-size:.95rem"></p>
@@ -268,6 +277,7 @@ dialog::backdrop{background:rgba(10,12,20,.5);backdrop-filter:blur(2px)}
         <h3 style="margin-top:16px">Checklist antes de terminar</h3>
         <div id="writingChecklist"></div>
         <details class="model"><summary>Ver um exemplo de resposta (só depois de escrever a sua!)</summary><div class="body" id="modelAnswer"></div><p class="note" id="modelNote"></p></details>
+        <div class="controls" style="margin-top:14px;margin-bottom:0"><button class="btn primary" id="copyCorrection"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copiar prompt de correção</span></button><span class="note">Cole no Claude (projeto Meet&amp;Speak) para receber a correção detalhada do seu texto.</span></div>
         <div class="donebar"><span class="score" id="writingScore"></span><button class="btn small" data-mark="writing">Marcar seção como concluída</button></div>
       </div>
     </section>
@@ -400,16 +410,14 @@ function restoreDone(){
   const p=PROGRESS[LESSON.date]||{};
   Object.keys(p).forEach(s=>{if(p[s]){const t=document.querySelector('.tab[data-panel="'+s+'"]');if(t)t.classList.add("done")}});
 }
+function localISO(d){const x=new Date(d.getTime()-d.getTimezoneOffset()*60000);return x.toISOString().slice(0,10)}
 function updateStreak(){
-  const days=Object.keys(PROGRESS).filter(d=>Object.values(PROGRESS[d]).some(Boolean)).sort();
+  const days=new Set(Object.keys(PROGRESS).filter(d=>Object.values(PROGRESS[d]).some(Boolean)));
   let streak=0;
-  if(days.length){
-    const today=LESSON?LESSON.date:days[days.length-1];
-    let cur=new Date(today+"T12:00:00Z");
-    for(;;){
-      const key=cur.toISOString().slice(0,10);
-      if(days.includes(key)){streak++;cur.setUTCDate(cur.getUTCDate()-1)}else break;
-    }
+  if(days.size){
+    let cur=new Date();
+    if(!days.has(localISO(cur)))cur.setDate(cur.getDate()-1); /* estudou ontem: streak segue valendo até o fim de hoje */
+    while(days.has(localISO(cur))){streak++;cur.setDate(cur.getDate()-1)}
   }
   $("#streakN").textContent=streak;
 }
@@ -419,7 +427,7 @@ document.addEventListener("click",e=>{
 });
 
 /* ============ quiz genérico ============ */
-function renderQuestions(list,mount,sectionKey){
+function renderQuestions(list,mount,sectionKey,onAll){
   const state={answered:0,right:0};
   list.forEach((q,i)=>{
     const box=el("div","q");
@@ -452,13 +460,13 @@ function renderQuestions(list,mount,sectionKey){
   function updateScore(){
     const sc=$("#"+sectionKey+"Score");
     if(sc)sc.innerHTML="Acertos: <b>"+state.right+"</b> / "+list.length+(state.answered<list.length?" ("+(list.length-state.answered)+" restantes)":"");
-    if(state.answered===list.length&&sectionKey!=="listening")markDone(sectionKey,true);
+    if(state.answered===list.length){if(onAll)onAll();else if(sectionKey!=="listening")markDone(sectionKey,true)}
   }
   return state;
 }
 
 /* ============ gap-fill / ditado ============ */
-function renderGaps(list,mount,withAudio){
+function renderGaps(list,mount,withAudio,onSolved){
   list.forEach((g,i)=>{
     const box=el("div","q");
     const row=el("div","gap");
@@ -480,7 +488,7 @@ function renderGaps(list,mount,withAudio){
       const ok=[g.answer,...(g.accept||[])].some(a=>norm(a)===norm(inp.value));
       inp.classList.remove("ok","no");
       inp.classList.add(ok?"ok":"no");
-      if(ok){inp.disabled=true;checkBtn.disabled=true}
+      if(ok){inp.disabled=true;checkBtn.disabled=true;if(onSolved)onSolved()}
     };
     checkBtn.onclick=doCheck;
     inp.addEventListener("keydown",e=>{if(e.key==="Enter")doCheck()});
@@ -501,8 +509,12 @@ function wordDiff(target,saidText){
   const parts=t.map(w=>{const ok=s.has(w);if(ok)hit++;return '<span class="'+(ok?"w-ok":"w-no")+'">'+esc(w)+"</span>"});
   return{html:parts.join(" "),pct:t.length?Math.round(100*hit/t.length):0};
 }
+const canRecord=!SR&&navigator.mediaDevices&&window.MediaRecorder;
 function renderShadow(sentences,mount){
-  if(!SR)$("#srWarn").style.display="block";
+  if(!SR){
+    $("#srWarn").style.display="block";
+    if(canRecord)$("#srWarn").textContent="O reconhecimento de voz não está disponível neste navegador (funciona no Chrome e no Edge). Alternativa: ouça o original, toque em \"Gravar minha voz\", repita a frase e compare as duas gravações de ouvido.";
+  }
   sentences.forEach((sent,i)=>{
     const box=el("div","shadow-item");
     box.appendChild(el("div","sent","“"+esc(sent)+"”"));
@@ -528,6 +540,29 @@ function renderShadow(sentences,mount){
         try{r.start()}catch(e){mic.disabled=false}
       };
       row.appendChild(mic);
+    }else if(canRecord){
+      const lbl0='<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg> Gravar minha voz';
+      const rec=el("button","btn small primary",lbl0);
+      let mr=null;
+      rec.onclick=async()=>{
+        if(mr&&mr.state==="recording"){mr.stop();return}
+        let stream;
+        try{stream=await navigator.mediaDevices.getUserMedia({audio:true})}catch(e){said.innerHTML='<div class="lbl">Permita o acesso ao microfone para gravar.</div>';said.classList.add("show");return}
+        const chunks=[];
+        mr=new MediaRecorder(stream);
+        mr.ondataavailable=ev=>{if(ev.data&&ev.data.size)chunks.push(ev.data)};
+        mr.onstop=()=>{
+          stream.getTracks().forEach(t=>t.stop());
+          const url=URL.createObjectURL(new Blob(chunks,{type:mr.mimeType||"audio/mp4"}));
+          said.innerHTML='<div class="lbl">Sua gravação — ouça o original de novo e compare:</div>';
+          const au=document.createElement("audio");au.controls=true;au.src=url;au.style.width="100%";au.style.marginTop="6px";
+          said.appendChild(au);said.classList.add("show");
+          rec.innerHTML=lbl0;mr=null;
+        };
+        mr.start();
+        rec.innerHTML='<svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="1"/></svg> Parar gravação';
+      };
+      row.appendChild(rec);
     }
     box.appendChild(row);
     box.appendChild(said);
@@ -565,6 +600,15 @@ function initWriting(w){
     };
     cl.appendChild(lab);
   });
+  const cbtn=$("#copyCorrection"),clabel=cbtn.querySelector("span"),clabel0=clabel.textContent;
+  cbtn.onclick=async()=>{
+    const txt=box.value.trim();
+    if(!txt){clabel.textContent="Escreva seu texto primeiro";box.focus();setTimeout(()=>{clabel.textContent=clabel0},2200);return}
+    const pr="Você é meu professor de inglês (nível "+LESSON.level+"). Corrija o texto que escrevi para a tarefa abaixo (aula Meet&Speak de "+LESSON.date+", sobre a notícia \""+LESSON.article.headline+"\").\n\nTAREFA: "+w.prompt_en+"\n\nMEU TEXTO:\n\"\"\"\n"+txt+"\n\"\"\"\n\nPor favor:\n1) Liste cada correção (gramática, vocabulário, naturalidade), explicando em português o porquê de cada uma;\n2) Mostre a versão corrigida completa, mantendo o meu estilo e o nível "+LESSON.level+";\n3) Termine com 2–3 pontos para eu estudar, com base nos meus erros.";
+    try{await navigator.clipboard.writeText(pr)}catch(e){const ta=document.createElement("textarea");ta.value=pr;document.body.appendChild(ta);ta.select();try{document.execCommand("copy")}catch(_){}ta.remove()}
+    clabel.textContent="Copiado ✓ — cole no Claude";
+    setTimeout(()=>{clabel.textContent=clabel0},2600);
+  };
 }
 
 /* ============ render principal ============ */
@@ -597,6 +641,11 @@ function render(lesson){
   lesson.article.paragraphs.forEach(p=>body.appendChild(el("p",null,esc(p))));
   $("#excerptNote").innerHTML=esc(lesson.article.excerpt_note_pt)+' <a href="'+esc(lesson.article.url)+'" target="_blank" rel="noopener">Ler a matéria completa →</a>';
   renderQuestions(lesson.reading.questions,$("#readingQs"),"reading");
+  if(lesson.review&&Array.isArray(lesson.review.items)&&lesson.review.items.length){
+    $("#reviewCard").classList.remove("hidden");
+    if(lesson.review.intro_pt)$("#reviewIntro").textContent=lesson.review.intro_pt;
+    renderGaps(lesson.review.items.map(it=>({before:it.before,answer:it.answer,after:it.after,accept:it.accept,hint_pt:(it.hint_pt||"")+(it.from_date?" · da aula de "+it.from_date:"")})),$("#reviewList"),false);
+  }
 
   /* listening */
   $("#listenIntro").textContent=lesson.listening.intro_pt;
@@ -639,8 +688,10 @@ function render(lesson){
   lesson.grammar.examples.forEach(x=>ge.appendChild(el("div","gramex",x)));
   const gQs=lesson.grammar.exercises.filter(x=>x.type!=="gap");
   const gGaps=lesson.grammar.exercises.filter(x=>x.type==="gap");
-  if(gQs.length)renderQuestions(gQs,$("#grammarQs"),"grammar");
-  if(gGaps.length)renderGaps(gGaps,$("#grammarQs"),false);
+  const gState={mc:gQs.length===0,gaps:0};
+  const gCheck=()=>{if(gState.mc&&gState.gaps>=gGaps.length)markDone("grammar",true)};
+  if(gQs.length)renderQuestions(gQs,$("#grammarQs"),"grammar",()=>{gState.mc=true;gCheck()});
+  if(gGaps.length)renderGaps(gGaps,$("#grammarQs"),false,()=>{gState.gaps++;gCheck()});
 
   restoreDone();
   updateStreak();
@@ -742,6 +793,7 @@ async function boot(){
   }
 }
 boot();
+if("serviceWorker" in navigator){addEventListener("load",()=>{navigator.serviceWorker.register("sw.js").then(()=>navigator.serviceWorker.ready).then(()=>{setTimeout(()=>{try{fetch("lessons/index.json",{cache:"no-store"});if(LESSON)fetch("lessons/"+LESSON.date+".json",{cache:"no-store"})}catch(e){}},3000)}).catch(()=>{})})}
 </script>
 </body>
 </html>
