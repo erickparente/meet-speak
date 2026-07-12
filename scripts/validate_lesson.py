@@ -104,6 +104,20 @@ def main(path: str) -> int:
         if q.get("type") == "gap" and not q.get("answer"):
             errors.append(f"grammar.exercises[{i}]: gap sem answer")
 
+    # review (repetição espaçada) — opcional na 1ª aula; shape-only (as frases vêm de aulas antigas)
+    rev = lesson.get("review")
+    if rev is not None:
+        items = rev.get("items", [])
+        if not 3 <= len(items) <= 8:
+            warns.append(f"review.items: {len(items)} itens (alvo 4–6)")
+        for i, it in enumerate(items):
+            if not it.get("answer") or it.get("before") is None or it.get("after") is None:
+                errors.append(f"review.items[{i}]: precisa de before/answer/after")
+            if not it.get("from_date"):
+                warns.append(f"review.items[{i}] sem from_date")
+            if not it.get("hint_pt"):
+                warns.append(f"review.items[{i}] sem hint_pt")
+
     w = lesson["writing"]
     for k in ["title", "task_pt", "prompt_en", "min_words", "max_words", "checklist_pt", "model_answer"]:
         if not w.get(k):

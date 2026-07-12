@@ -1,4 +1,4 @@
-# Meet&Speak — Especificação da aula diária (LESSON_SPEC v1)
+# Meet&Speak — Especificação da aula diária (LESSON_SPEC v2)
 
 Este documento é o contrato que a automação diária deve seguir para gerar a aula.
 O site (`index.html`) renderiza qualquer JSON que siga este formato.
@@ -23,13 +23,15 @@ O site (`index.html`) renderiza qualquer JSON que siga este formato.
 - `listening.questions`: 3 `mc` focadas em detalhes auditivos (números, datas, nomes); `listening.dictation`: 3 frases verbatim com UMA palavra oculta cada (`accept` para grafias alternativas, ex.: canceled/cancelled).
 - `writing`: tarefa comunicativa ligada à notícia (e-mail, mensagem, opinião), 60–100 palavras, `checklist_pt` com 4 itens acionáveis, `model_answer` original (NUNCA apresentar como parte da notícia) + `model_note_pt`.
 - `speaking.shadow_sentences`: 4 frases verbatim de 8–16 palavras; `speaking.questions`: 3 perguntas abertas (da mais guiada à mais pessoal) com `support_pt`.
-- `grammar`: 1 ponto gramatical que APARECE no texto do dia, explicado em português (`point_pt`, HTML simples com <p>, <b>, <i>), 3–4 `examples` verbatim com o alvo em `<mark>`, e 5 `exercises` (3 `mc` + 2 `gap`). Rotacione os pontos ao longo da semana (tempos verbais, voz passiva, reported speech, relative clauses, comparativos, condicionais, phrasal verbs, artigos, preposições…). Não repita o ponto dos últimos 3 dias (confira as aulas anteriores em `lessons/`).
+- `grammar`: 1 ponto gramatical que APARECE no texto do dia, explicado em português (`point_pt`, HTML simples com <p>, <b>, <i>), 3–4 `examples` verbatim com o alvo em `<mark>`, e 5 `exercises` (3 `mc` + 2 `gap`). Não repita o ponto dos últimos 3 dias — o `lessons/index.json` decriptado traz o campo `grammar` (título do ponto) de cada dia, então dá para checar sem decriptar as aulas. Ao longo das semanas, garanta cobertura ampla de um syllabus B1–B2: tempos verbais (present perfect, past continuous, futuro com will/going to…), voz passiva, reported speech, relative clauses, condicionais (0–3), comparativos/superlativos, modais, gerúndio vs. infinitivo, artigos, preposições, phrasal verbs, conectores — priorize pontos ainda não cobertos.
+- `review` **(obrigatório a partir da 2ª aula; omita apenas quando não existir nenhuma aula anterior)**: 4–6 itens de vocabulário retirados das aulas de **1, 3 e 7 dias atrás** (as que existirem — distribua entre elas; se faltar aula nessas datas, use as mais próximas disponíveis). Cada item reapresenta como lacuna o `example` VERBATIM do vocabulário da aula de origem: `{before, answer, after, hint_pt, accept?, from_date}` — `answer` é o termo exatamente como aparece na frase, `hint_pt` é o significado em português e `from_date` é a data (YYYY-MM-DD) da aula de origem. Não repita itens que já apareceram no `review` dos últimos 2 dias (os JSONs das aulas anteriores mostram o que já foi revisado).
 
 ## Formato do JSON
 
 Use `lessons/2026-07-12.json` como referência canônica de estrutura. Campos:
 
 - Raiz: `schema` (1), `date` (YYYY-MM-DD, data de hoje em GMT-3), `level`, `estimated_minutes`, `topic`, `topic_pt`.
+- `review` (ver dosagem; ausente apenas na 1ª aula): `{intro_pt?, items: [{before, answer, after, hint_pt, accept?, from_date}]}` — o site o renderiza no topo da aba Reading.
 - `article`: `headline`, `source`, `agency`, `published`, `url`, `excerpt_note_pt`, `paragraphs[]`.
 - Questões `mc`: `{type:"mc", q, options[4], answer:<índice 0-based>, explain_pt}`.
 - Questões `tf`: `{type:"tf", q, answer:<true|false>, explain_pt}`.
@@ -54,7 +56,7 @@ pelo proxy do sandbox. Use SEMPRE as ferramentas do conector MCP do GitHub
 
 1. Calcular a data de hoje em GMT-3: `TZ=America/Sao_Paulo date +%F`.
 2. Idempotência (regra 9): `get_file_contents` em `lessons/<data>.json` — se o arquivo EXISTIR, parar (aula já publicada).
-3. Baixar via `get_file_contents`: `LESSON_SPEC.md`, `scripts/lesson_crypto.py`, `scripts/validate_lesson.py`, `lessons/index.json` e as 2–3 aulas mais recentes; salvar localmente. Decriptar as aulas recentes (`lesson_crypto.py decrypt`) para checar temas e pontos de gramática já usados (regra 10).
+3. Baixar via `get_file_contents`: `LESSON_SPEC.md`, `scripts/lesson_crypto.py`, `scripts/validate_lesson.py`, `lessons/index.json`, as 2 aulas mais recentes E as aulas de 1, 3 e 7 dias atrás (para montar o `review`); salvar localmente. O `index.json` decriptado já traz `grammar` e `vocab` de cada dia — use-o para a rotação de temas/gramática; decripte as aulas de 1/3/7 dias (`lesson_crypto.py decrypt`) para copiar verbatim as frases (`example`) dos itens do `review` e ver o que já foi revisado.
 4. Escolher e extrair a notícia (regras 1–7).
 5. Gerar a aula PLAINTEXT em `/tmp/repo/<data>.json` seguindo este spec.
 6. Rodar `python3 scripts/validate_lesson.py /tmp/repo/<data>.json` e corrigir qualquer erro (0 erros obrigatório).
