@@ -67,7 +67,9 @@ def cmd_publish(args):
         idx = decrypt_obj(raw, args.password) if raw.get("enc") else raw
     entry = {"date": date, "headline": lesson["article"]["headline"],
              "topic": lesson.get("topic", ""), "topic_pt": lesson.get("topic_pt", ""),
-             "source": lesson["article"].get("source", "")}
+             "source": lesson["article"].get("source", ""),
+             "grammar": (lesson.get("grammar") or {}).get("title", ""),
+             "vocab": [v.get("term", "") for v in lesson.get("vocabulary", [])]}
     idx["lessons"] = [entry] + [x for x in idx.get("lessons", []) if x.get("date") != date]
     idx["lessons"].sort(key=lambda x: x["date"], reverse=True)
     save(idx_path, encrypt_obj(idx, args.password))

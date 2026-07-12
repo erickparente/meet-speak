@@ -1,0 +1,15 @@
+{
+  "name": "Meet&Speak — Inglês com a notícia do dia",
+  "short_name": "Meet&Speak",
+  "description": "Uma aula de inglês por dia (B1–B2) a partir de uma notícia real: Reading, Listening, Writing, Speaking e Grammar.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f6f5f1",
+  "theme_color": "#4f46e5",
+  "lang": "pt-BR",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icon-maskable.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}
