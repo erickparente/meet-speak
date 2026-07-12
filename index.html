@@ -334,6 +334,15 @@ dialog::backdrop{background:rgba(10,12,20,.5);backdrop-filter:blur(2px)}
   <div class="dlgbody" id="archiveList"></div>
 </dialog>
 
+<dialog id="levelDlg">
+  <div class="dlghead"><span>Nível das aulas</span><button class="iconbtn" id="closeLevelDlg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
+  <div class="dlgbody">
+    <p class="note" style="margin-top:0">O nível define a <b>escolha da notícia do dia</b> e a dificuldade de todos os exercícios. Opções: <b>A2–B1</b> (mais fácil) · <b>B1–B2</b> · <b>B2–C1</b> (mais difícil).</p>
+    <p class="note">Para subir ou baixar: toque no botão abaixo (abre o <b>config.json</b> no editor do GitHub), troque o valor de <b>"level"</b> por uma das opções e salve em <b>Commit changes</b>. Ou peça ao Claude, no projeto Meet&amp;Speak. A mudança vale a partir da próxima aula das 8h.</p>
+    <a class="btn primary" href="https://github.com/erickparente/meet-speak/edit/main/config.json" target="_blank" rel="noopener" style="text-decoration:none;display:inline-flex;margin-top:6px">Mudar nível no GitHub</a>
+  </div>
+</dialog>
+
 <script>
 "use strict";
 /* ============ storage seguro (funciona mesmo sem localStorage) ============ */
@@ -357,6 +366,12 @@ $("#themeBtn").onclick=()=>{
   document.documentElement.dataset.theme=d?"":"dark";
   store.set("ms_theme",d?"light":"dark");
 };
+
+/* ============ nível (config.json) ============ */
+$("#levelTag").style.cursor="pointer";
+$("#levelTag").title="Toque para ver como subir ou baixar o nível";
+$("#levelTag").onclick=()=>$("#levelDlg").showModal();
+$("#closeLevelDlg").onclick=()=>$("#levelDlg").close();
 
 /* ============ estado ============ */
 let LESSON=null, INDEX=[], PROGRESS=store.get("ms_progress",{});
@@ -620,7 +635,7 @@ function render(lesson){
   LESSON=lesson;
   document.title="Meet&Speak — "+lesson.date;
   $("#topicTag").textContent=lesson.topic_pt||lesson.topic;
-  $("#levelTag").textContent="Nível "+lesson.level;
+  $("#levelTag").textContent="Nível "+lesson.level+" ⚙";
   $("#timeTag").textContent="~"+lesson.estimated_minutes+" min";
   $("#dateTag").textContent=fmtDate(lesson.date);
   $("#headline").textContent=lesson.article.headline;
