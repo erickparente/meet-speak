@@ -41,8 +41,15 @@ def main(path: str) -> int:
         errors.append("article.url deve ser um link http(s) real")
 
     words = sum(len(x.split()) for x in art.get("paragraphs", []))
-    if not 250 <= words <= 600:
-        warns.append(f"trecho com {words} palavras (alvo: 300–500)")
+    lv = str(lesson.get("level", ""))
+    if lv.startswith("A2"):
+        wlo, whi = 180, 400
+    elif lv.startswith("B2"):
+        wlo, whi = 350, 700
+    else:
+        wlo, whi = 250, 600
+    if not wlo <= words <= whi:
+        warns.append(f"trecho com {words} palavras (fora do alvo para o nível {lv or 'B1–B2'})")
 
     body = norm(" ".join(art.get("paragraphs", [])))
 
@@ -77,7 +84,7 @@ def main(path: str) -> int:
         n = len(seq)
         if not lo <= n <= hi:
             warns.append(f"{name}: {n} itens (alvo {lo}–{hi})")
-    count("vocabulary", lesson["vocabulary"], 6, 10)
+    count("vocabulary", lesson["vocabulary"], 6, 12)
     count("reading.questions", lesson["reading"]["questions"], 4, 6)
     count("listening.questions", lesson["listening"]["questions"], 2, 4)
     count("listening.dictation", lesson["listening"]["dictation"], 2, 4)

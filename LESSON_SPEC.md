@@ -1,4 +1,4 @@
-# Meet&Speak — Especificação da aula diária (LESSON_SPEC v2)
+# Meet&Speak — Especificação da aula diária (LESSON_SPEC v3)
 
 Este documento é o contrato que a automação diária deve seguir para gerar a aula.
 O site (`index.html`) renderiza qualquer JSON que siga este formato.
@@ -9,14 +9,24 @@ O site (`index.html`) renderiza qualquer JSON que siga este formato.
 2. **Verifique a fidelidade do texto** extraindo a matéria duas vezes (prompts diferentes) e comparando; use apenas parágrafos idênticos nas duas extrações.
 3. **Fontes aceitas (nesta ordem de preferência):** BBC (bbc.com), CNN (cnn.com), Reuters, The Guardian, AP News, PBS NewsHour, NPR, Al Jazeera English, CNBC, ABC News. A matéria deve ter sido publicada nas últimas 24–36 horas.
 4. **Se uma fonte bloquear o acesso, tente a próxima.** Nunca reconstrua a notícia "de memória" a partir de manchetes ou resultados de busca.
-5. **Tamanho do trecho:** 300–500 palavras, cortadas apenas em fim de parágrafo (a aula é de ~20 min). Sempre inclua `article.url` para a matéria completa e o aviso em `excerpt_note_pt`.
+5. **Tamanho do trecho:** conforme o nível configurado (ver seção "Nível"), cortado apenas em fim de parágrafo (a aula é de ~20 min). Sempre inclua `article.url` para a matéria completa e o aviso em `excerpt_note_pt`.
 6. **Atribuição completa:** `headline` exata, `source`, `agency` (se for matéria de agência, ex.: AP/Reuters), `published` e `url`.
 7. **Todo exercício deve ser respondível apenas com o trecho incluído.** Não use fatos das partes não incluídas da matéria nem conhecimento externo.
 8. **Ditado e shadowing usam frases VERBATIM do trecho.** O validador confere isso automaticamente.
 9. **Idempotência:** se `lessons/<data-de-hoje>.json` já existir no repositório, não faça nada (a aula do dia já foi publicada).
-10. **Rotação de temas** (preferências do aluno: Mundo & política, Tecnologia & ciência, Negócios & economia, Cultura & esportes): evite repetir o tema do dia anterior quando houver boa alternativa. Escolha sempre uma matéria adequada ao nível B1–B2 (evite textos muito técnicos ou jurídicos) e evite conteúdo gráfico/violento em excesso.
+10. **Rotação de temas** (preferências do aluno: Mundo & política, Tecnologia & ciência, Negócios & economia, Cultura & esportes): evite repetir o tema do dia anterior quando houver boa alternativa. Escolha sempre uma matéria adequada ao **nível configurado em `config.json`** (ver seção "Nível" abaixo) e evite conteúdo gráfico/violento em excesso.
 
-## Nível e dosagem (B1–B2, ~20 minutos)
+## Nível (config.json)
+
+O nível-alvo NÃO é fixo: leia **`config.json`** (raiz do repositório) no início de cada geração — campo `level`, valores possíveis `"A2–B1"`, `"B1–B2"` e `"B2–C1"`. O campo `level` da aula recebe exatamente esse valor (o site o exibe automaticamente). O aluno pode editar o arquivo a qualquer momento; a mudança vale para a geração seguinte. A ESCOLHA DA NOTÍCIA e TODOS os exercícios devem ser calibrados para o nível configurado (a dosagem da seção seguinte é a linha de base B1–B2):
+
+- **A2–B1**: matérias curtas e concretas (human interest, esportes, cotidiano, ciência leve), com frases diretas; trecho de **200–350 palavras**; `vocabulary` com **10–12** itens básicos e de alta frequência; questões literais (a resposta está explícita no texto); ditado com palavras comuns; `writing` de **40–70 palavras** (mensagem simples); shadowing com frases de **6–10 palavras**; gramática elementar (present simple/continuous, past simple, going to, artigos, plurais, preposições de tempo/lugar, comparativos simples); explicações em português mais detalhadas e passo a passo.
+- **B1–B2**: exatamente a dosagem da seção seguinte (linha de base atual).
+- **B2–C1**: matérias mais densas são bem-vindas (análise, economia, ciência, tecnologia, opinião); trecho de **450–600 palavras**; `vocabulary` com **8** itens idiomáticos, collocations e phrasal verbs menos comuns; inclua **1–2 questões de inferência/atitude do autor**; ditado com palavras menos previsíveis; `writing` de **100–150 palavras** (argumentação, e-mail formal, resenha); shadowing com frases de **12–18 palavras**; gramática avançada (inversão, condicionais mistas, passiva avançada, reported speech complexo, cleft sentences, modais de dedução no passado, discurso formal); explicações podem discutir nuance e registro.
+
+Independentemente do nível, as regras inegociáveis (texto verbatim, fontes aceitas, atribuição, exercícios respondíveis só com o trecho) não mudam.
+
+## Dosagem — linha de base B1–B2 (~20 minutos)
 
 - `vocabulary`: 8 itens úteis e reutilizáveis (não nomes próprios), cada um com exemplo VERBATIM da matéria.
 - `reading.questions`: 5 (mistura de `mc` com 4 opções e `tf`), com `explain_pt` que ensina, citando o trecho relevante.
@@ -30,7 +40,7 @@ O site (`index.html`) renderiza qualquer JSON que siga este formato.
 
 Use `lessons/2026-07-12.json` como referência canônica de estrutura. Campos:
 
-- Raiz: `schema` (1), `date` (YYYY-MM-DD, data de hoje em GMT-3), `level`, `estimated_minutes`, `topic`, `topic_pt`.
+- Raiz: `schema` (1), `date` (YYYY-MM-DD, data de hoje em GMT-3), `level` (= valor de `config.json`), `estimated_minutes`, `topic`, `topic_pt`.
 - `review` (ver dosagem; ausente apenas na 1ª aula): `{intro_pt?, items: [{before, answer, after, hint_pt, accept?, from_date}]}` — o site o renderiza no topo da aba Reading.
 - `article`: `headline`, `source`, `agency`, `published`, `url`, `excerpt_note_pt`, `paragraphs[]`.
 - Questões `mc`: `{type:"mc", q, options[4], answer:<índice 0-based>, explain_pt}`.
@@ -56,8 +66,8 @@ pelo proxy do sandbox. Use SEMPRE as ferramentas do conector MCP do GitHub
 
 1. Calcular a data de hoje em GMT-3: `TZ=America/Sao_Paulo date +%F`.
 2. Idempotência (regra 9): `get_file_contents` em `lessons/<data>.json` — se o arquivo EXISTIR, parar (aula já publicada).
-3. Baixar via `get_file_contents`: `LESSON_SPEC.md`, `scripts/lesson_crypto.py`, `scripts/validate_lesson.py`, `lessons/index.json`, as 2 aulas mais recentes E as aulas de 1, 3 e 7 dias atrás (para montar o `review`); salvar localmente. O `index.json` decriptado já traz `grammar` e `vocab` de cada dia — use-o para a rotação de temas/gramática; decripte as aulas de 1/3/7 dias (`lesson_crypto.py decrypt`) para copiar verbatim as frases (`example`) dos itens do `review` e ver o que já foi revisado.
-4. Escolher e extrair a notícia (regras 1–7).
+3. Baixar via `get_file_contents`: `LESSON_SPEC.md`, `config.json` (nível-alvo), `scripts/lesson_crypto.py`, `scripts/validate_lesson.py`, `lessons/index.json`, as 2 aulas mais recentes E as aulas de 1, 3 e 7 dias atrás (para montar o `review`); salvar localmente. O `index.json` decriptado já traz `grammar` e `vocab` de cada dia — use-o para a rotação de temas/gramática; decripte as aulas de 1/3/7 dias (`lesson_crypto.py decrypt`) para copiar verbatim as frases (`example`) dos itens do `review` e ver o que já foi revisado.
+4. Escolher e extrair a notícia (regras 1–7, no nível do `config.json`).
 5. Gerar a aula PLAINTEXT em `/tmp/repo/<data>.json` seguindo este spec.
 6. Rodar `python3 scripts/validate_lesson.py /tmp/repo/<data>.json` e corrigir qualquer erro (0 erros obrigatório).
 7. Rodar `lesson_crypto.py publish` (acima) — gera `lessons/<data>.json` criptografada e atualiza `lessons/index.json` localmente.
