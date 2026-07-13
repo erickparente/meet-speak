@@ -138,6 +138,14 @@ dialog{border:none;border-radius:16px;box-shadow:var(--shadow);background:var(--
 dialog::backdrop{background:rgba(10,12,20,.5);backdrop-filter:blur(2px)}
 .dlghead{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid var(--line);font-weight:800}
 .dlgbody{padding:10px 18px 18px;max-height:60vh;overflow:auto}
+.levelopts{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+.levelopt{display:flex;align-items:center;gap:12px;padding:11px 14px;border:1px solid var(--line);border-radius:12px;text-decoration:none;color:var(--ink);background:var(--card)}
+.levelopt:hover{border-color:var(--brand)}
+.levelopt .lcode{flex:0 0 auto;min-width:30px;font-weight:800;font-size:.95rem;color:var(--brand-ink)}
+.levelopt .ldesc{font-size:.83rem;color:var(--ink-2);line-height:1.35}
+.levelopt .ldesc b{color:var(--ink);font-weight:700}
+.levelopt.current{border-color:var(--brand);background:var(--brand-soft)}
+.levelopt .now{margin-left:auto;flex:0 0 auto;font-size:.66rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--brand-ink);background:color-mix(in srgb,var(--brand) 16%,transparent);padding:3px 8px;border-radius:999px}
 .lesson-link{display:block;padding:12px 10px;border-bottom:1px dashed var(--line);text-decoration:none;color:var(--ink);border-radius:8px}
 .lesson-link:hover{background:var(--brand-soft)}
 .lesson-link .d{font-size:.78rem;font-weight:700;color:var(--brand)}
@@ -337,9 +345,8 @@ dialog::backdrop{background:rgba(10,12,20,.5);backdrop-filter:blur(2px)}
 <dialog id="levelDlg">
   <div class="dlghead"><span>Nível das aulas</span><button class="iconbtn" id="closeLevelDlg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
   <div class="dlgbody">
-    <p class="note" style="margin-top:0">O nível define a <b>escolha da notícia do dia</b> e a dificuldade de todos os exercícios. Opções, do iniciante ao proficiente: <b>A1</b> · <b>A2</b> · <b>B1</b> · <b>B2</b> · <b>C1</b> · <b>C2</b>.</p>
-    <p class="note">Para subir ou baixar: toque no botão abaixo (abre o <b>config.json</b> no editor do GitHub), troque o valor de <b>"level"</b> por uma das opções e salve em <b>Commit changes</b>. Ou peça ao Claude, no projeto Meet&amp;Speak. A mudança vale a partir da próxima aula das 8h.</p>
-    <a class="btn primary" href="https://github.com/erickparente/meet-speak/edit/main/config.json" target="_blank" rel="noopener" style="text-decoration:none;display:inline-flex;margin-top:6px">Mudar nível no GitHub</a>
+    <p class="note" style="margin-top:0">O nível define a <b>escolha da notícia do dia</b> e a dificuldade de todos os exercícios. Toque no seu nível: abre o GitHub <b>já preenchido</b> — basta confirmar em <b>Commit changes</b>. Vale a partir da próxima aula das 8h. (Ou peça ao Claude, no projeto Meet&amp;Speak.)</p>
+    <div id="levelOptions" class="levelopts"></div>
   </div>
 </dialog>
 
@@ -368,9 +375,37 @@ $("#themeBtn").onclick=()=>{
 };
 
 /* ============ nível (config.json) ============ */
+const LEVELS=[
+  ["A1","Iniciante","primeiras palavras e frases do dia a dia"],
+  ["A2","Básico","situações simples e rotineiras"],
+  ["B1","Intermediário","acompanho conversas e textos do cotidiano"],
+  ["B2","Intermediário avançado","discuto temas variados com fluidez"],
+  ["C1","Avançado","uso o inglês com naturalidade em contextos complexos"],
+  ["C2","Proficiente","domínio próximo ao de um falante nativo"]
+];
+function levelEditUrl(code){
+  const cfg={
+    level:code,
+    _opcoes:["A1","A2","B1","B2","C1","C2"],
+    _como_mudar:"Troque o valor de 'level' por uma das opções acima e salve (Commit changes). A mudança vale a partir da próxima aula das 8h (horário de Brasília). A notícia do dia e todos os exercícios passam a ser escolhidos nesse nível."
+  };
+  const value=encodeURIComponent(JSON.stringify(cfg,null,2)+"\n");
+  const msg=encodeURIComponent("Nível das aulas: "+code);
+  return "https://github.com/erickparente/meet-speak/new/main?filename=config.json&value="+value+"&message="+msg;
+}
+function buildLevelOptions(){
+  const cur=(LESSON&&LESSON.level)||"";
+  const box=$("#levelOptions");box.innerHTML="";
+  LEVELS.forEach(([code,name,desc])=>{
+    const a=el("a","levelopt"+(code===cur?" current":""));
+    a.href=levelEditUrl(code);a.target="_blank";a.rel="noopener";
+    a.innerHTML='<span class="lcode">'+code+'</span><span class="ldesc"><b>'+esc(name)+'</b> — '+esc(desc)+'</span>'+(code===cur?'<span class="now">atual</span>':'');
+    box.appendChild(a);
+  });
+}
 $("#levelTag").style.cursor="pointer";
-$("#levelTag").title="Toque para ver como subir ou baixar o nível";
-$("#levelTag").onclick=()=>$("#levelDlg").showModal();
+$("#levelTag").title="Toque para escolher o nível das aulas";
+$("#levelTag").onclick=()=>{buildLevelOptions();$("#levelDlg").showModal()};
 $("#closeLevelDlg").onclick=()=>$("#levelDlg").close();
 
 /* ============ estado ============ */
