@@ -1,6 +1,6 @@
 # Meet&Speak
 
-Plataforma pessoal de estudo de inglês (nível B1–B2): todos os dias às 8h (horário de Brasília),
+Plataforma pessoal de estudo de inglês (nível configurável de A1 a C2 via `config.json`): todos os dias às 8h (horário de Brasília),
 uma automação busca uma notícia real recém-publicada em um grande veículo de língua inglesa
 (BBC, CNN, Reuters, Guardian, AP…) e constrói sobre ela a aula do dia com
 **Reading, Listening, Writing, Speaking e Grammar** (~20 minutos).
