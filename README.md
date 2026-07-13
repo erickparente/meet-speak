@@ -14,7 +14,7 @@ uma automação busca uma notícia real recém-publicada em um grande veículo d
 - `lessons/index.json` — índice das aulas, criptografado (mais recente primeiro).
 - `lessons/YYYY-MM-DD.json` — uma aula por dia, criptografada.
 - `LESSON_SPEC.md` — o contrato que a automação diária segue.
-- `config.json` — **nível-alvo das aulas** (A2–B1 · B1–B2 · B2–C1): edite este arquivo para subir ou baixar o nível; a notícia e os exercícios do dia seguinte já vêm no nível novo.
+- `config.json` — **nível-alvo das aulas** (A1 · A2 · B1 · B2 · C1 · C2): edite este arquivo para subir ou baixar o nível; a notícia e os exercícios do dia seguinte já vêm no nível novo.
 - `scripts/validate_lesson.py` — valida uma aula antes da publicação.
 - `scripts/lesson_crypto.py` — criptografa/publica aulas e atualiza o índice (com tema, gramática e vocabulário do dia).
 - `manifest.json`, `sw.js`, `icon.svg`, `icon-maskable.svg` — PWA (instalação + offline).

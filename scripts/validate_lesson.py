@@ -41,15 +41,12 @@ def main(path: str) -> int:
         errors.append("article.url deve ser um link http(s) real")
 
     words = sum(len(x.split()) for x in art.get("paragraphs", []))
-    lv = str(lesson.get("level", ""))
-    if lv.startswith("A2"):
-        wlo, whi = 180, 400
-    elif lv.startswith("B2"):
-        wlo, whi = 350, 700
-    else:
-        wlo, whi = 250, 600
+    lv = str(lesson.get("level", "")).strip()
+    bounds = {"A1": (70, 220), "A2": (110, 300), "B1": (200, 450), "B2": (300, 550),
+              "C1": (400, 650), "C2": (450, 750)}
+    wlo, whi = bounds.get(lv, (250, 600))  # faixas legadas (ex.: "B1–B2") caem no padrão
     if not wlo <= words <= whi:
-        warns.append(f"trecho com {words} palavras (fora do alvo para o nível {lv or 'B1–B2'})")
+        warns.append(f"trecho com {words} palavras (fora do alvo para o nível {lv or 'B1/B2'})")
 
     body = norm(" ".join(art.get("paragraphs", [])))
 
