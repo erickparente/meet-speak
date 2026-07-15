@@ -100,6 +100,8 @@ section.panel.active{display:block;animation:fade .25s ease}
 .gap input.ok{border-color:var(--ok);background:var(--ok-soft)}
 .gap input.no{border-color:var(--bad);background:var(--bad-soft)}
 .gap .hint{width:100%;font-size:.8rem;color:var(--ink-3)}
+.gap .gapAnswer{display:none;color:var(--bad)}
+.gap .gapAnswer.show{display:block}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-weight:600;font-size:.9rem}
 .btn:hover{border-color:var(--brand)}
 .btn.primary{background:var(--brand);border-color:var(--brand);color:#fff}
@@ -532,13 +534,22 @@ function renderGaps(list,mount,withAudio,onSolved){
     row.appendChild(inp);
     row.appendChild(el("span",null," "+esc(g.after||"")));
     if(g.hint_pt)row.appendChild(el("div","hint","Dica: "+esc(g.hint_pt)));
+    const answerReveal=el("div","hint gapAnswer");
+    row.appendChild(answerReveal);
     const checkBtn=el("button","btn small","Verificar");
     const doCheck=()=>{
       const norm=s=>s.toLowerCase().trim().replace(/[.,!?;:'"()]/g,"");
       const ok=[g.answer,...(g.accept||[])].some(a=>norm(a)===norm(inp.value));
       inp.classList.remove("ok","no");
       inp.classList.add(ok?"ok":"no");
-      if(ok){inp.disabled=true;checkBtn.disabled=true;if(onSolved)onSolved()}
+      if(ok){
+        inp.disabled=true;checkBtn.disabled=true;
+        answerReveal.classList.remove("show");
+        if(onSolved)onSolved();
+      }else{
+        answerReveal.innerHTML="Resposta correta: <b>"+esc(g.answer)+"</b>";
+        answerReveal.classList.add("show");
+      }
     };
     checkBtn.onclick=doCheck;
     inp.addEventListener("keydown",e=>{if(e.key==="Enter")doCheck()});
