@@ -169,6 +169,11 @@ dialog::backdrop{background:rgba(10,12,20,.5);backdrop-filter:blur(2px)}
 #gate .remember{display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--ink-2);cursor:pointer}
 #gate .gerr{display:none;color:var(--bad);font-size:.85rem;margin-top:10px;font-weight:600}
 #gate .gerr.show{display:block}
+#loginGate{max-width:400px;margin:70px auto;padding:0 20px}
+#loginGate .card{padding:28px}
+#loginGate h2{margin:0 0 6px;font-size:1.25rem}
+#loginGate p{color:var(--ink-2);font-size:.9rem;margin:0 0 16px}
+.linklike{display:block;background:none;border:none;color:var(--ink-3);font-size:.82rem;text-decoration:underline;padding:0;cursor:pointer}
 #gate.shake .card{animation:shake .4s}
 @keyframes shake{0%,100%{transform:none}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
 .hidden{display:none!important}
@@ -199,6 +204,16 @@ dialog::backdrop{background:rgba(10,12,20,.5);backdrop-filter:blur(2px)}
       </div>
       <div class="gerr" id="gateErr">Senha incorreta — tente de novo.</div>
     </form>
+  </div>
+</div>
+
+<div id="loginGate" class="hidden">
+  <div class="card">
+    <h2>Entre no Meet&amp;Speak</h2>
+    <p>Faça login com o Google para acessar suas aulas. Seu progresso fica salvo na sua conta e acompanha você em qualquer aparelho.</p>
+    <button class="btn primary" id="loginGoogleBtn" style="width:100%;justify-content:center">Continuar com Google</button>
+    <p class="note" id="loginMsg" style="display:none;margin-top:12px"></p>
+    <button class="linklike" id="usePwLink" style="margin-top:16px">Prefiro entrar com a senha</button>
   </div>
 </div>
 
@@ -889,16 +904,19 @@ async function boot(){
     else{$("#errBox").classList.remove("hidden");$("#errMsg").textContent="Detalhe técnico: "+err.message}
   }
 }
-boot();
 if("serviceWorker" in navigator){addEventListener("load",()=>{navigator.serviceWorker.register("sw.js").then(()=>navigator.serviceWorker.ready).then(()=>{setTimeout(()=>{try{fetch("lessons/index.json",{cache:"no-store"});if(LESSON)fetch("lessons/"+LESSON.date+".json",{cache:"no-store"})}catch(e){}},3000)}).catch(()=>{})})}
 
-/* ============ conta / sincronização (Supabase) — login opcional ============ */
+/* ============ conta / login / sincronização (Supabase) ============ */
 (function(){
   const SUPA_URL="https://cdhmpnpfxgymlkjxrwhf.supabase.co";
   const SUPA_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNkaG1wbnBmeGd5bWxranhyd2hmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQxNTA5NDAsImV4cCI6MjA5OTcyNjk0MH0.dCSTG3h_GIkACuHLzS6NgXuAMCSn0LSxUPnkCk7QDxI";
   const SB=(window.supabase&&window.supabase.createClient)?window.supabase.createClient(SUPA_URL,SUPA_KEY):null;
   const btn=$("#authBtn");
-  if(!SB){return}          /* offline ou lib indisponível: mantém o botão oculto */
+  const redir=()=>location.origin+location.pathname;   /* endereço limpo p/ o OAuth */
+  let started=false;
+  function startApp(){ if(started)return; started=true; boot(); }
+
+  if(!SB){ startApp(); return; }   /* sem Supabase (offline/CDN falhou): abre no modo senha */
   btn.style.display="";
   let USER=null;
   const setMsg=(t,ok)=>{const m=$("#authMsg");if(!m)return;m.textContent=t||"";m.style.display=t?"block":"none";m.style.color=ok===true?"var(--ok)":ok===false?"var(--bad)":"var(--ink-2)"};
@@ -948,22 +966,43 @@ if("serviceWorker" in navigator){addEventListener("load",()=>{navigator.serviceW
   $("#syncNowBtn").onclick=async()=>{setMsg("Sincronizando…");await pull();};
   addEventListener("visibilitychange",()=>{if(document.visibilityState==="hidden"&&pending)doPush()});
   addEventListener("pagehide",()=>{if(pending)doPush()});
-  $("#googleBtn").onclick=()=>{
-    $("#authMsg").textContent="Redirecionando para o Google…";$("#authMsg").style.display="block";
-    SB.auth.signInWithOAuth({provider:"google",options:{redirectTo:location.href.split("#")[0].split("?")[0]}})
-      .then(({error})=>{if(error){$("#authMsg").textContent="Não foi possível iniciar o login: "+error.message}});
+  const doGoogle=(msgEl)=>{
+    if(msgEl){msgEl.textContent="Redirecionando para o Google…";msgEl.style.display="block"}
+    SB.auth.signInWithOAuth({provider:"google",options:{redirectTo:redir()}})
+      .then(({error})=>{if(error&&msgEl){msgEl.textContent="Não foi possível iniciar o login: "+error.message}});
   };
-  $("#logoutBtn").onclick=()=>{SB.auth.signOut().then(()=>$("#authDlg").close())};
+  $("#googleBtn").onclick=()=>doGoogle($("#authMsg"));
+  $("#loginGoogleBtn").onclick=()=>doGoogle($("#loginMsg"));
+  $("#usePwLink").onclick=()=>{ $("#loginGate").classList.add("hidden"); startApp(); };
+  $("#logoutBtn").onclick=()=>{SB.auth.signOut().then(()=>location.reload())};
+
+  /* ---- senha das aulas: buscada da conta após o login (Opção A) ---- */
+  async function ensurePassword(){
+    if(PASSWORD)return;
+    const cached=store.get("ms_pass",null);
+    if(cached){PASSWORD=cached;return;}
+    try{
+      const {data,error}=await SB.from("app_config").select("lesson_password").eq("id",1).maybeSingle();
+      if(!error&&data&&data.lesson_password){PASSWORD=data.lesson_password;store.set("ms_pass",PASSWORD);}
+    }catch(e){}
+  }
+  async function enterApp(){
+    await ensurePassword();
+    $("#loginGate").classList.add("hidden");
+    startApp();        /* boot() usa PASSWORD p/ decriptar; se faltar, cai no gate de senha */
+    pull();
+  }
 
   SB.auth.getSession().then(({data})=>{
     USER=data&&data.session?data.session.user:null;
     renderUI();
-    if(USER)pull();
+    if(USER){enterApp()}
+    else{$("#loginGate").classList.remove("hidden")}
   });
   SB.auth.onAuthStateChange((_ev,session)=>{
     USER=session?session.user:null;
     renderUI();
-    if(USER)pull();
+    if(USER){enterApp()}
   });
 })();
 </script>
