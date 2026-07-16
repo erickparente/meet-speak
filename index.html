@@ -997,7 +997,7 @@ if("serviceWorker" in navigator){addEventListener("load",()=>{navigator.serviceW
     $("#authDlg").showModal();
   };
   $("#closeAuthDlg").onclick=()=>$("#authDlg").close();
-  $("#syncNowBtn").onclick=async()=>{setMsg("Sincronizando…");await pull();};
+  $("#syncNowBtn").onclick=async()=>{setMsg("Sincronizando…");await pull();setMsg("Sincronizado ✓ — atualizando a tela…",true);setTimeout(()=>location.reload(),900);};
   addEventListener("visibilitychange",()=>{if(document.visibilityState==="hidden"&&pending)doPush()});
   addEventListener("pagehide",()=>{if(pending)doPush()});
   const doGoogle=(msgEl)=>{
@@ -1022,9 +1022,9 @@ if("serviceWorker" in navigator){addEventListener("load",()=>{navigator.serviceW
   }
   async function enterApp(){
     await ensurePassword();
+    if(!started){try{await pull()}catch(e){}}   /* baixa/mescla ANTES de montar a tela */
     $("#loginGate").classList.add("hidden");
     startApp();        /* boot() usa PASSWORD p/ decriptar; se faltar, cai no gate de senha */
-    pull();
   }
 
   SB.auth.getSession().then(({data})=>{
