@@ -453,6 +453,15 @@ $("#closeLevelDlg").onclick=()=>$("#levelDlg").close();
 
 /* ============ estado ============ */
 let LESSON=null, INDEX=[], PROGRESS=store.get("ms_progress",{});
+/* respostas preenchidas (por data → escopo → índice da questão) — permite continuar de onde parou */
+let ANSWERS=store.get("ms_answers",{});
+function saveAns(scope,i,val){
+  const d=LESSON?LESSON.date:"_";
+  ANSWERS[d]=ANSWERS[d]||{};ANSWERS[d][scope]=ANSWERS[d][scope]||{};ANSWERS[d][scope][i]=val;
+  store.set("ms_answers",ANSWERS);
+  if(window.__syncPush)window.__syncPush();
+}
+function getAns(scope){const d=LESSON?LESSON.date:"_";return (ANSWERS[d]&&ANSWERS[d][scope])||{}}
 
 /* ============ voz (TTS) ============ */
 const TTS={
@@ -523,33 +532,37 @@ document.addEventListener("click",e=>{
 /* ============ quiz genérico ============ */
 function renderQuestions(list,mount,sectionKey,onAll){
   const state={answered:0,right:0};
+  const saved=getAns("q:"+sectionKey);
   list.forEach((q,i)=>{
     const box=el("div","q");
     box.appendChild(el("div","qt",'<span class="qnum">'+(i+1)+'.</span>'+esc(q.q)));
     const opts=el("div","opts");
     const options=q.type==="tf"?["True","False"]:q.options;
     const answerIdx=q.type==="tf"?(q.answer?0:1):q.answer;
+    function apply(oi,restore){
+      if(box.dataset.done)return;
+      box.dataset.done="1";state.answered++;
+      [...opts.children].forEach((b,bi)=>{
+        b.disabled=true;
+        if(bi===answerIdx)b.classList.add("correct");
+        else if(bi===oi)b.classList.add("wrong");
+        else b.classList.add("dim");
+      });
+      if(oi===answerIdx)state.right++;
+      const ex=box.querySelector(".explain");
+      if(ex){ex.classList.add("show");if(oi!==answerIdx){ex.style.background="var(--bad-soft)"}}
+      if(!restore)saveAns("q:"+sectionKey,i,oi);
+      updateScore();
+    }
     options.forEach((opt,oi)=>{
       const btn=el("button","opt",'<span class="letter">'+String.fromCharCode(65+oi)+'</span><span>'+esc(opt)+'</span>');
-      btn.onclick=()=>{
-        if(box.dataset.done)return;
-        box.dataset.done="1";state.answered++;
-        [...opts.children].forEach((b,bi)=>{
-          b.disabled=true;
-          if(bi===answerIdx)b.classList.add("correct");
-          else if(bi===oi)b.classList.add("wrong");
-          else b.classList.add("dim");
-        });
-        if(oi===answerIdx)state.right++;
-        const ex=box.querySelector(".explain");
-        if(ex){ex.classList.add("show");if(oi!==answerIdx){ex.style.background="var(--bad-soft)"}}
-        updateScore();
-      };
+      btn.onclick=()=>apply(oi,false);
       opts.appendChild(btn);
     });
     box.appendChild(opts);
     if(q.explain_pt)box.appendChild(el("div","explain",esc(q.explain_pt)));
     mount.appendChild(box);
+    if(saved[i]!=null)apply(saved[i],true);
   });
   function updateScore(){
     const sc=$("#"+sectionKey+"Score");
@@ -560,7 +573,8 @@ function renderQuestions(list,mount,sectionKey,onAll){
 }
 
 /* ============ gap-fill / ditado ============ */
-function renderGaps(list,mount,withAudio,onSolved){
+function renderGaps(list,mount,withAudio,onSolved,gapKey){
+  const saved=gapKey?getAns("g:"+gapKey):{};
   list.forEach((g,i)=>{
     const box=el("div","q");
     const row=el("div","gap");
@@ -579,7 +593,7 @@ function renderGaps(list,mount,withAudio,onSolved){
     const answerReveal=el("div","hint gapAnswer");
     row.appendChild(answerReveal);
     const checkBtn=el("button","btn small","Verificar");
-    const doCheck=()=>{
+    const doCheck=(restore)=>{
       const norm=s=>s.toLowerCase().trim().replace(/[.,!?;:'"()]/g,"");
       const ok=[g.answer,...(g.accept||[])].some(a=>norm(a)===norm(inp.value));
       inp.classList.remove("ok","no");
@@ -592,14 +606,16 @@ function renderGaps(list,mount,withAudio,onSolved){
         answerReveal.innerHTML="Resposta correta: <b>"+esc(g.answer)+"</b>";
         answerReveal.classList.add("show");
       }
+      if(!restore&&gapKey)saveAns("g:"+gapKey,i,inp.value);
     };
-    checkBtn.onclick=doCheck;
-    inp.addEventListener("keydown",e=>{if(e.key==="Enter")doCheck()});
+    checkBtn.onclick=()=>doCheck(false);
+    inp.addEventListener("keydown",e=>{if(e.key==="Enter")doCheck(false)});
     box.appendChild(row);
     const bar=el("div",null,"");bar.style.marginTop="10px";
     bar.appendChild(checkBtn);
     box.appendChild(bar);
     mount.appendChild(box);
+    if(saved[i]!=null&&String(saved[i]).length){inp.value=saved[i];doCheck(true);}
   });
 }
 
@@ -747,7 +763,7 @@ function render(lesson){
   if(lesson.review&&Array.isArray(lesson.review.items)&&lesson.review.items.length){
     $("#reviewCard").classList.remove("hidden");
     if(lesson.review.intro_pt)$("#reviewIntro").textContent=lesson.review.intro_pt;
-    renderGaps(lesson.review.items.map(it=>({before:it.before,answer:it.answer,after:it.after,accept:it.accept,hint_pt:(it.hint_pt||"")+(it.from_date?" · da aula de "+it.from_date:"")})),$("#reviewList"),false);
+    renderGaps(lesson.review.items.map(it=>({before:it.before,answer:it.answer,after:it.after,accept:it.accept,hint_pt:(it.hint_pt||"")+(it.from_date?" · da aula de "+it.from_date:"")})),$("#reviewList"),false,null,"review");
   }
 
   /* listening */
@@ -768,7 +784,7 @@ function render(lesson){
   };
   $("#stopBtn").onclick=()=>TTS.stop();
   const lState=renderQuestions(lesson.listening.questions,$("#listeningQs"),"listening");
-  renderGaps(lesson.listening.dictation,$("#dictation"),true);
+  renderGaps(lesson.listening.dictation,$("#dictation"),true,null,"dictation");
 
   /* writing */
   initWriting(lesson.writing);
@@ -794,7 +810,7 @@ function render(lesson){
   const gState={mc:gQs.length===0,gaps:0};
   const gCheck=()=>{if(gState.mc&&gState.gaps>=gGaps.length)markDone("grammar",true)};
   if(gQs.length)renderQuestions(gQs,$("#grammarQs"),"grammar",()=>{gState.mc=true;gCheck()});
-  if(gGaps.length)renderGaps(gGaps,$("#grammarQs"),false,()=>{gState.gaps++;gCheck()});
+  if(gGaps.length)renderGaps(gGaps,$("#grammarQs"),false,()=>{gState.gaps++;gCheck()},"grammar");
 
   restoreDone();
   updateStreak();
@@ -930,13 +946,24 @@ if("serviceWorker" in navigator){addEventListener("load",()=>{navigator.serviceW
     });
     store.set("ms_progress",PROGRESS);
   }
+  function unionAns(remote){
+    remote=remote||{};
+    Object.keys(remote).forEach(d=>{
+      ANSWERS[d]=ANSWERS[d]||{};
+      Object.keys(remote[d]||{}).forEach(scope=>{
+        ANSWERS[d][scope]=ANSWERS[d][scope]||{};
+        Object.keys(remote[d][scope]||{}).forEach(i=>{if(ANSWERS[d][scope][i]==null)ANSWERS[d][scope][i]=remote[d][scope][i]});
+      });
+    });
+    store.set("ms_answers",ANSWERS);
+  }
   let pushT=null, pending=false;
   async function doPush(){
     if(!USER)return false;
     pending=false;
-    const {error}=await SB.from("user_state").upsert({user_id:USER.id,data:{progress:PROGRESS},updated_at:new Date().toISOString()},{onConflict:"user_id"});
+    const {error}=await SB.from("user_state").upsert({user_id:USER.id,data:{progress:PROGRESS,answers:ANSWERS},updated_at:new Date().toISOString()},{onConflict:"user_id"});
     if(error){setMsg("Erro ao sincronizar: "+(error.message||error.code||"desconhecido"),false);console.warn("[sync] push",error);return false;}
-    setMsg("Progresso sincronizado ✓",true);return true;
+    return true;
   }
   window.__syncPush=function(){
     if(!USER)return;
@@ -946,10 +973,17 @@ if("serviceWorker" in navigator){addEventListener("load",()=>{navigator.serviceW
     if(!USER)return;
     const {data,error}=await SB.from("user_state").select("data").eq("user_id",USER.id).maybeSingle();
     if(error){setMsg("Erro ao ler sua conta: "+(error.message||error.code||"desconhecido"),false);console.warn("[sync] pull",error);return;}
-    if(data&&data.data&&data.data.progress)unionInto(data.data.progress);
+    let doneCount=0,days=0;
+    if(data&&data.data){
+      const rp=data.data.progress||{};
+      unionInto(rp);
+      if(data.data.answers)unionAns(data.data.answers);
+      Object.keys(rp).forEach(d=>{const n=Object.values(rp[d]||{}).filter(Boolean).length;if(n){days++;doneCount+=n}});
+    }
     if(typeof LESSON!=="undefined"&&LESSON&&typeof restoreDone==="function")restoreDone();
     if(typeof updateStreak==="function")updateStreak();
-    await doPush();   /* devolve a união ao servidor e reporta ✓ */
+    await doPush();
+    setMsg("Conta: "+(USER.email||"?")+" — na nuvem: "+doneCount+" seção(ões) em "+days+" dia(s) ✓",true);
   }
   function renderUI(){
     if(USER){btn.classList.add("linked");btn.title="Conta: "+(USER.email||"conectado")}
