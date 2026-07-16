@@ -261,7 +261,7 @@ dialog::backdrop{background:rgba(10,12,20,.5);backdrop-filter:blur(2px)}
         <div class="controls">
           <button class="btn primary" id="playBtn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg><span>Ouvir a notícia</span></button>
           <button class="btn" id="stopBtn"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="1"/></svg>Parar</button>
-          <select id="rateSel" title="Velocidade"><option value="0.75">Velocidade: lenta (0.75x)</option><option value="0.9" selected>Velocidade: natural (0.9x)</option><option value="1">Velocidade: normal (1x)</option><option value="1.1">Velocidade: rápida (1.1x)</option></select>
+          <select id="rateSel" title="Velocidade"><option value="0.75">Velocidade: lenta (0.75x)</option><option value="0.9">Velocidade: natural (0.9x)</option><option value="1" selected>Velocidade: normal (1x)</option><option value="1.1">Velocidade: rápida (1.1x)</option></select>
           <select id="voiceSel" title="Voz"></select>
         </div>
         <div class="callout warn" id="ttsWarn" style="display:none">Seu navegador não oferece voz em inglês para leitura em voz alta. Tente o Chrome ou Edge, ou ouça a reportagem na fonte original.</div>
@@ -359,8 +359,11 @@ dialog::backdrop{background:rgba(10,12,20,.5);backdrop-filter:blur(2px)}
     </div>
     <div id="authOut" style="display:none">
       <p class="note" style="margin-top:0" id="authWho"></p>
-      <p class="note">Seu progresso está sendo <b>sincronizado</b> nesta conta — ele acompanha você em qualquer aparelho.</p>
-      <button class="btn" id="logoutBtn" style="margin-top:6px">Sair</button>
+      <p class="note">Seu progresso é <b>sincronizado</b> nesta conta — ele acompanha você em qualquer aparelho.</p>
+      <div style="display:flex;gap:8px;margin-top:6px;flex-wrap:wrap">
+        <button class="btn small primary" id="syncNowBtn">Sincronizar agora</button>
+        <button class="btn small" id="logoutBtn">Sair</button>
+      </div>
     </div>
     <p class="note" id="authMsg" style="display:none;margin-top:12px"></p>
   </div>
@@ -463,7 +466,7 @@ const TTS={
     const u=new SpeechSynthesisUtterance(text);
     if(this.chosen)u.voice=this.chosen;
     u.lang=this.chosen?this.chosen.lang:"en-US";
-    u.rate=parseFloat($("#rateSel").value||"0.9");
+    u.rate=parseFloat($("#rateSel").value||"1");
     if(onend)u.onend=onend;
     speechSynthesis.speak(u);
   },
@@ -898,6 +901,7 @@ if("serviceWorker" in navigator){addEventListener("load",()=>{navigator.serviceW
   if(!SB){return}          /* offline ou lib indisponível: mantém o botão oculto */
   btn.style.display="";
   let USER=null;
+  const setMsg=(t,ok)=>{const m=$("#authMsg");if(!m)return;m.textContent=t||"";m.style.display=t?"block":"none";m.style.color=ok===true?"var(--ok)":ok===false?"var(--bad)":"var(--ink-2)"};
 
   function unionInto(remote){
     remote=remote||{};
@@ -908,23 +912,26 @@ if("serviceWorker" in navigator){addEventListener("load",()=>{navigator.serviceW
     });
     store.set("ms_progress",PROGRESS);
   }
-  let pushT=null;
+  let pushT=null, pending=false;
+  async function doPush(){
+    if(!USER)return false;
+    pending=false;
+    const {error}=await SB.from("user_state").upsert({user_id:USER.id,data:{progress:PROGRESS},updated_at:new Date().toISOString()},{onConflict:"user_id"});
+    if(error){setMsg("Erro ao sincronizar: "+(error.message||error.code||"desconhecido"),false);console.warn("[sync] push",error);return false;}
+    setMsg("Progresso sincronizado ✓",true);return true;
+  }
   window.__syncPush=function(){
     if(!USER)return;
-    clearTimeout(pushT);
-    pushT=setTimeout(()=>{
-      SB.from("user_state").upsert({user_id:USER.id,data:{progress:PROGRESS},updated_at:new Date().toISOString()}).then(()=>{},()=>{});
-    },800);
+    pending=true;clearTimeout(pushT);pushT=setTimeout(doPush,800);
   };
   async function pull(){
     if(!USER)return;
-    try{
-      const {data,error}=await SB.from("user_state").select("data").eq("user_id",USER.id).maybeSingle();
-      if(!error&&data&&data.data&&data.data.progress)unionInto(data.data.progress);
-    }catch(e){}
+    const {data,error}=await SB.from("user_state").select("data").eq("user_id",USER.id).maybeSingle();
+    if(error){setMsg("Erro ao ler sua conta: "+(error.message||error.code||"desconhecido"),false);console.warn("[sync] pull",error);return;}
+    if(data&&data.data&&data.data.progress)unionInto(data.data.progress);
     if(typeof LESSON!=="undefined"&&LESSON&&typeof restoreDone==="function")restoreDone();
     if(typeof updateStreak==="function")updateStreak();
-    window.__syncPush();   /* devolve a união ao servidor */
+    await doPush();   /* devolve a união ao servidor e reporta ✓ */
   }
   function renderUI(){
     if(USER){btn.classList.add("linked");btn.title="Conta: "+(USER.email||"conectado")}
@@ -934,10 +941,13 @@ if("serviceWorker" in navigator){addEventListener("load",()=>{navigator.serviceW
     $("#authWho").textContent=USER?("Conectado como "+(USER.email||"")):"";
     $("#authIn").style.display=USER?"none":"block";
     $("#authOut").style.display=USER?"block":"none";
-    $("#authMsg").style.display="none";
+    setMsg("");
     $("#authDlg").showModal();
   };
   $("#closeAuthDlg").onclick=()=>$("#authDlg").close();
+  $("#syncNowBtn").onclick=async()=>{setMsg("Sincronizando…");await pull();};
+  addEventListener("visibilitychange",()=>{if(document.visibilityState==="hidden"&&pending)doPush()});
+  addEventListener("pagehide",()=>{if(pending)doPush()});
   $("#googleBtn").onclick=()=>{
     $("#authMsg").textContent="Redirecionando para o Google…";$("#authMsg").style.display="block";
     SB.auth.signInWithOAuth({provider:"google",options:{redirectTo:location.href.split("#")[0].split("?")[0]}})
