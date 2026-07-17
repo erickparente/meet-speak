@@ -230,11 +230,6 @@ dialog::backdrop{background:rgba(10,12,20,.5);backdrop-filter:blur(2px)}
   <main class="wrap">
     <!-- READING -->
     <section class="panel active" id="panel-reading">
-      <div class="card hidden" id="reviewCard">
-        <div class="kicker">Revisão espaçada — de aulas anteriores</div>
-        <p class="note" id="reviewIntro" style="margin-top:0">Complete as frases de notícias que você já estudou — a dica é o significado. Reencontrar as palavras em dias espaçados é o que as fixa de verdade.</p>
-        <div id="reviewList"></div>
-      </div>
       <div class="card">
         <div class="kicker">Antes de ler</div>
         <p id="warmup" style="margin:0;font-size:.95rem"></p>
@@ -460,9 +455,12 @@ const TTS={
     const u=new SpeechSynthesisUtterance(text);
     if(this.chosen)u.voice=this.chosen;
     u.lang=this.chosen?this.chosen.lang:"en-US";
-    u.rate=parseFloat($("#rateSel").value||"1");
+    const rs=$("#rateSel");
+    u.rate=parseFloat((rs&&rs.value)||"1")||1;
     if(onend)u.onend=onend;
-    speechSynthesis.speak(u);
+    /* Chrome às vezes ignora speak() logo após cancel(): cancela, espera um tique e fala; resume() tira do estado pausado */
+    try{speechSynthesis.cancel()}catch(e){}
+    setTimeout(()=>{try{speechSynthesis.speak(u);speechSynthesis.resume()}catch(e){}},60);
   },
   stop(){if("speechSynthesis" in window)speechSynthesis.cancel();document.querySelectorAll(".speaking-now").forEach(p=>p.classList.remove("speaking-now"))}
 };
@@ -730,11 +728,6 @@ function render(lesson){
   lesson.article.paragraphs.forEach(p=>body.appendChild(el("p",null,esc(p))));
   $("#excerptNote").innerHTML=esc(lesson.article.excerpt_note_pt)+' <a href="'+esc(lesson.article.url)+'" target="_blank" rel="noopener">Ler a matéria completa →</a>';
   renderQuestions(lesson.reading.questions,$("#readingQs"),"reading");
-  if(lesson.review&&Array.isArray(lesson.review.items)&&lesson.review.items.length){
-    $("#reviewCard").classList.remove("hidden");
-    if(lesson.review.intro_pt)$("#reviewIntro").textContent=lesson.review.intro_pt;
-    renderGaps(lesson.review.items.map(it=>({before:it.before,answer:it.answer,after:it.after,accept:it.accept,hint_pt:(it.hint_pt||"")+(it.from_date?" · da aula de "+it.from_date:"")})),$("#reviewList"),false,null,"review");
-  }
 
   /* listening */
   $("#listenIntro").textContent=lesson.listening.intro_pt;
