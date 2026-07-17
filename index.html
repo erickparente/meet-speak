@@ -50,6 +50,8 @@ header.top{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--b
 .hero h1{font-size:1.6rem;line-height:1.25;margin:.1em 0 .3em;letter-spacing:-.02em}
 .hero .sub{color:var(--ink-2);font-size:.95rem;margin:0 0 6px}
 .hero .src a{font-weight:600}
+#requestBar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line)}
+#requestBar #lastLessonInfo{font-size:.85rem}
 nav.tabs{position:sticky;top:57px;z-index:30;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .tabrow{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;padding:6px 0}
 .tabrow::-webkit-scrollbar{display:none}
@@ -227,6 +229,10 @@ dialog::backdrop{background:rgba(10,12,20,.5);backdrop-filter:blur(2px)}
     </div>
     <h1 id="headline"></h1>
     <p class="sub src" id="sourceLine"></p>
+    <div id="requestBar">
+      <span id="lastLessonInfo" class="note"></span>
+      <button class="btn small" id="requestLessonBtn">Pedir a aula de hoje</button>
+    </div>
   </div>
 
   <nav class="tabs"><div class="wrap tabrow" role="tablist">
@@ -814,8 +820,29 @@ function render(lesson){
 
   restoreDone();
   updateStreak();
+  updateRequestBar();
   $("#app").classList.remove("hidden");
 }
+function todayGMT3(){return new Date().toLocaleDateString("en-CA",{timeZone:"America/Sao_Paulo"})}
+function updateRequestBar(){
+  const info=$("#lastLessonInfo"),btn=$("#requestLessonBtn");
+  if(!info||!btn)return;
+  const latest=INDEX.length?INDEX[0].date:null;
+  if(latest===todayGMT3()){
+    info.innerHTML="✓ A aula de <b>hoje</b> já está aqui.";
+    btn.style.display="none";
+  }else{
+    info.innerHTML="Última aula: <b>"+(latest?fmtDate(latest):"—")+"</b>. Vai estudar hoje?";
+    btn.style.display="";
+  }
+}
+$("#requestLessonBtn").onclick=async()=>{
+  const msg="Cria a aula de hoje ("+todayGMT3()+") no Meet&Speak, por favor.";
+  try{await navigator.clipboard.writeText(msg)}catch(e){const ta=document.createElement("textarea");ta.value=msg;document.body.appendChild(ta);ta.select();try{document.execCommand("copy")}catch(_){}ta.remove()}
+  const b=$("#requestLessonBtn"),t="Pedir a aula de hoje";
+  b.textContent="Copiado ✓ — cole na conversa com o Claude";
+  setTimeout(()=>{b.textContent=t},2800);
+};
 
 /* ============ tabs ============ */
 document.querySelectorAll(".tab").forEach(t=>{
