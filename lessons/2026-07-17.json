@@ -1,0 +1,360 @@
+{
+  "schema": 1,
+  "date": "2026-07-17",
+  "level": "B1",
+  "estimated_minutes": 20,
+  "topic": "Business",
+  "topic_pt": "Negócios",
+  "review": {
+    "intro_pt": "Antes de começar: relembre palavras das últimas aulas completando as lacunas.",
+    "items": [
+      {
+        "before": "After race leader Tadej Pogacar",
+        "answer": "shattered",
+        "after": "the record for the fastest climb of the Col du Tourmalet",
+        "hint_pt": "quebrou/despedaçou (aqui: bateu um recorde)",
+        "from_date": "2026-07-15"
+      },
+      {
+        "before": "Norwegian sprinter Søren Wærenskjold won the fastest-ever road stage, in a",
+        "answer": "frenzied",
+        "after": "sprint into Nevers.",
+        "hint_pt": "frenético, alucinado",
+        "from_date": "2026-07-15"
+      },
+      {
+        "before": "his teammate Torsten Træen",
+        "answer": "crashed out",
+        "after": "of the Tour in the yellow jersey",
+        "hint_pt": "saiu da competição por causa de uma queda",
+        "from_date": "2026-07-15"
+      },
+      {
+        "before": "is to be",
+        "answer": "auctioned",
+        "after": "by Sotheby’s in New York",
+        "hint_pt": "leiloado (vendido em leilão)",
+        "from_date": "2026-07-14"
+      },
+      {
+        "before": "at vast prices by auction houses is very",
+        "answer": "concerning",
+        "after": ", as is the idea of buying dinosaur fossils as a status symbol",
+        "hint_pt": "preocupante",
+        "from_date": "2026-07-14"
+      }
+    ]
+  },
+  "article": {
+    "headline": "Uber to buy Germany’s Delivery Hero in $14.8bn global deal",
+    "source": "The Guardian",
+    "agency": "",
+    "published": "16 Jul 2026",
+    "url": "https://www.theguardian.com/technology/2026/jul/16/uber-buy-germany-delivery-hero-148bn-global-deal",
+    "excerpt_note_pt": "Este é o trecho inicial da matéria, reproduzido palavra por palavra, sem modificações. A matéria completa está no link da fonte.",
+    "paragraphs": [
+      "Uber has reached an agreement to take over the German takeaway company Delivery Hero in a $14.8bn (£11bn, or €12.9bn) deal that would create a global food delivery giant.",
+      "The US tech firm said it had offered to pay €41.50 a share to Delivery Hero’s shareholders, valuing the business at $14.8bn. Uber will pay $13.7bn after accounting for its previous purchases of a quarter of Delivery Hero’s shares, most recently in May.",
+      "The deal would combine Uber Eats with Delivery Hero’s brands across 99 countries, including Asia’s foodpanda, Latin America’s PedidosYa, and talabat in the Middle East. The combined company booked $236bn in orders in 2025.",
+      "Under the deal, the San Francisco-based Uber will not acquire Delivery Hero’s operations in 14 countries where it already has a strong presence, including the Glovo app that serves countries such as Portugal and Spain, foodora in countries such as Norway and Sweden, and Yemeksepeti in Turkey. They will instead be bought for $1.6bn by SSW Partners, a New York-based private equity firm.",
+      "Splitting the deal with SSW will help to prevent Uber dominating those markets, an important consideration for competition regulators.",
+      "Delivery Hero does not operate in the UK, where Uber Eats is among the biggest players in food delivery.",
+      "The takeaway delivery industry has grown in popularity in the past two decades, with a huge array of apps opening across the world and a boom in deliveries during coronavirus lockdowns. However, since the pandemic bubble burst, delivery companies have focused on trying to be big enough to cover significant operating costs – and putting pressure on delivery workers’ pay and conditions.",
+      "That has led to a wave of takeovers as businesses chase greater scale. The US’s DoorDash last year took over Britain’s Deliveroo for £2.9bn, while the South African-owned investment group Prosus bought JustEat Takeaway for €4bn (£3.4bn).",
+      "Delivery Hero’s board and executives unanimously supported the takeover, and said they intended to recommend it to shareholders. Prosus said it had committed to sell its 17% shareholding in Delivery Hero to Uber."
+    ]
+  },
+  "vocabulary": [
+    {
+      "term": "take over",
+      "ipa": "/teɪk ˈəʊvə/",
+      "pos": "phrasal verb",
+      "meaning_en": "to gain control of a company by buying it",
+      "meaning_pt": "assumir o controle de (comprar uma empresa)",
+      "example": "Uber has reached an agreement to take over the German takeaway company Delivery Hero in a $14.8bn (£11bn, or €12.9bn) deal that would create a global food delivery giant."
+    },
+    {
+      "term": "takeaway",
+      "ipa": "/ˈteɪkəweɪ/",
+      "pos": "noun/adj",
+      "meaning_en": "food you buy to eat somewhere else; a food-delivery business",
+      "meaning_pt": "comida para viagem; empresa de entrega de comida",
+      "example": "take over the German takeaway company Delivery Hero in a $14.8bn"
+    },
+    {
+      "term": "deal",
+      "ipa": "/diːl/",
+      "pos": "noun",
+      "meaning_en": "a business agreement",
+      "meaning_pt": "acordo, negócio",
+      "example": "in a $14.8bn (£11bn, or €12.9bn) deal that would create a global food delivery giant."
+    },
+    {
+      "term": "shareholders",
+      "ipa": "/ˈʃeəhəʊldəz/",
+      "pos": "noun",
+      "meaning_en": "people who own shares (parts) of a company",
+      "meaning_pt": "acionistas",
+      "example": "The US tech firm said it had offered to pay €41.50 a share to Delivery Hero’s shareholders, valuing the business at $14.8bn."
+    },
+    {
+      "term": "valuing",
+      "ipa": "/ˈvæljuːɪŋ/",
+      "pos": "verb",
+      "meaning_en": "estimating how much something is worth",
+      "meaning_pt": "avaliando (quanto vale)",
+      "example": "valuing the business at $14.8bn."
+    },
+    {
+      "term": "combine",
+      "ipa": "/kəmˈbaɪn/",
+      "pos": "verb",
+      "meaning_en": "to join two things together",
+      "meaning_pt": "combinar, unir",
+      "example": "The deal would combine Uber Eats with Delivery Hero’s brands across 99 countries, including Asia’s foodpanda, Latin America’s PedidosYa, and talabat in the Middle East. The combined company"
+    },
+    {
+      "term": "acquire",
+      "ipa": "/əˈkwaɪə/",
+      "pos": "verb",
+      "meaning_en": "to buy or obtain something (esp. a company)",
+      "meaning_pt": "adquirir",
+      "example": "the San Francisco-based Uber will not acquire Delivery Hero’s operations in 14 countries where it already has a strong presence"
+    },
+    {
+      "term": "wave of takeovers",
+      "ipa": "/weɪv əv ˈteɪkəʊvəz/",
+      "pos": "noun phrase",
+      "meaning_en": "many company buy-outs happening in a short time",
+      "meaning_pt": "uma onda de aquisições (compras de empresas)",
+      "example": "That has led to a wave of takeovers as businesses chase greater scale."
+    },
+    {
+      "term": "scale",
+      "ipa": "/skeɪl/",
+      "pos": "noun",
+      "meaning_en": "the size of an operation; being big",
+      "meaning_pt": "escala (tamanho da operação)",
+      "example": "as businesses chase greater scale."
+    }
+  ],
+  "reading": {
+    "warmup_pt": "Antes de ler: você usa aplicativos de entrega de comida? Enquanto lê, repare em quem está comprando quem, e por quanto.",
+    "questions": [
+      {
+        "type": "mc",
+        "q": "What is Uber planning to do?",
+        "options": [
+          "Sell Uber Eats to Delivery Hero",
+          "Take over Delivery Hero for $14.8bn",
+          "Close its food-delivery business",
+          "Merge with DoorDash"
+        ],
+        "answer": 1,
+        "explain_pt": "O 1º parágrafo: “Uber has reached an agreement to take over the German takeaway company Delivery Hero in a $14.8bn … deal”."
+      },
+      {
+        "type": "tf",
+        "q": "Delivery Hero is a German company.",
+        "answer": true,
+        "explain_pt": "Verdadeiro: “the German takeaway company Delivery Hero”."
+      },
+      {
+        "type": "mc",
+        "q": "Why will Uber NOT buy Delivery Hero’s operations in 14 countries?",
+        "options": [
+          "Because those countries are too small",
+          "Because Uber already has a strong presence there",
+          "Because Delivery Hero refused to sell them",
+          "Because they are not profitable"
+        ],
+        "answer": 1,
+        "explain_pt": "Parágrafo 4: Uber não vai adquirir as operações “in 14 countries where it already has a strong presence”. Essas serão compradas pela SSW Partners."
+      },
+      {
+        "type": "mc",
+        "q": "According to the text, who bought Britain’s Deliveroo last year?",
+        "options": [
+          "Uber",
+          "Prosus",
+          "DoorDash",
+          "SSW Partners"
+        ],
+        "answer": 2,
+        "explain_pt": "“The US’s DoorDash last year took over Britain’s Deliveroo for £2.9bn”."
+      },
+      {
+        "type": "tf",
+        "q": "Delivery Hero operates in the UK.",
+        "answer": false,
+        "explain_pt": "Falso: “Delivery Hero does not operate in the UK, where Uber Eats is among the biggest players”."
+      }
+    ]
+  },
+  "listening": {
+    "intro_pt": "Ouça a notícia inteira SEM ler o texto (use 0.75x se precisar). Depois responda às perguntas e faça o ditado.",
+    "questions": [
+      {
+        "type": "mc",
+        "q": "How much is the whole deal worth?",
+        "options": [
+          "$1.6bn",
+          "$2.9bn",
+          "$14.8bn",
+          "$236bn"
+        ],
+        "answer": 2,
+        "explain_pt": "“…in a $14.8bn … deal”. ($1.6bn é o que a SSW paga; $236bn foram os pedidos de 2025.)"
+      },
+      {
+        "type": "mc",
+        "q": "Which firm will buy Delivery Hero’s operations in those 14 countries?",
+        "options": [
+          "DoorDash",
+          "SSW Partners",
+          "Prosus",
+          "foodpanda"
+        ],
+        "answer": 1,
+        "explain_pt": "“They will instead be bought for $1.6bn by SSW Partners, a New York-based private equity firm.”"
+      },
+      {
+        "type": "mc",
+        "q": "In how many countries would the combined company operate its brands?",
+        "options": [
+          "14",
+          "58",
+          "99",
+          "2025"
+        ],
+        "answer": 2,
+        "explain_pt": "“combine Uber Eats with Delivery Hero’s brands across 99 countries”."
+      }
+    ],
+    "dictation": [
+      {
+        "before": "Delivery Hero does not",
+        "answer": "operate",
+        "after": "in the UK, where Uber Eats is among the biggest players in food delivery.",
+        "hint_pt": "verbo: funcionar/atuar (num lugar)"
+      },
+      {
+        "before": "The combined company",
+        "answer": "booked",
+        "after": "$236bn in orders in 2025.",
+        "hint_pt": "verbo (passado): registrou/contabilizou"
+      },
+      {
+        "before": "Splitting the deal with SSW will",
+        "answer": "help",
+        "after": "to prevent Uber dominating those markets, an important consideration for competition regulators.",
+        "hint_pt": "verbo: ajudar"
+      }
+    ]
+  },
+  "writing": {
+    "title": "Contando a novidade para um amigo",
+    "task_pt": "Imagine que um amigo usa muito apps de entrega de comida. Escreva uma mensagem em inglês contando a notícia da compra da Delivery Hero pela Uber. Use pelo menos DUAS informações reais da matéria e tente usar o futuro com “will” pelo menos uma vez.",
+    "prompt_en": "A friend uses food-delivery apps a lot. Write a short message telling them the news that Uber is buying Delivery Hero. Use at least two facts from the article, and try to use the future with “will”.",
+    "min_words": 50,
+    "max_words": 80,
+    "checklist_pt": [
+      "Usei pelo menos duas informações reais (o valor do acordo, os países, ou quem compra o quê).",
+      "Contei a notícia numa ordem clara.",
+      "Usei o futuro com “will” pelo menos uma vez (ex.: “Uber will…”).",
+      "Revisei os verbos e a pontuação antes de enviar."
+    ],
+    "model_answer": "Hey! Did you see the news? Uber has agreed to buy Delivery Hero, a big German food company, in a deal worth $14.8bn. Together they will operate in dozens of countries around the world. Uber says it will keep Delivery Hero’s office in Berlin. I think food delivery is going to change a lot. Crazy, right?",
+    "model_note_pt": "Resposta-modelo escrita por nós (NÃO faz parte da notícia). Use como referência; não copie."
+  },
+  "speaking": {
+    "shadow_sentences": [
+      "Uber has reached an agreement to take over the German takeaway company",
+      "Delivery Hero does not operate in the UK",
+      "The combined company booked $236bn in orders in 2025",
+      "That has led to a wave of takeovers as businesses chase greater scale"
+    ],
+    "questions": [
+      {
+        "q_en": "What is the news about Uber and Delivery Hero? Summarize it in your own words.",
+        "support_pt": "Estruture: Who is buying whom? → For how much? → What will change? Fale por 40–60 segundos."
+      },
+      {
+        "q_en": "Do you use food-delivery apps? What do you like or dislike about them?",
+        "support_pt": "Dê sua opinião: “I usually… because…”."
+      },
+      {
+        "q_en": "Do you think it is good or bad when one big company buys many smaller ones? Why?",
+        "support_pt": "Use “I think… because…” e tente uma frase com “will” (ex.: “Prices will…”)."
+      }
+    ],
+    "tip_pt": "Grave suas respostas no celular e ouça depois. Tente usar o futuro com “will” ao menos uma vez."
+  },
+  "grammar": {
+    "title": "O futuro com “will” nas notícias",
+    "point_pt": "<p>Nas notícias, o futuro costuma aparecer com <b>will + verbo</b> (na forma base): <i>“Uber <b>will</b> pay $13.7bn”</i>. Usamos <b>will</b> para <b>previsões</b> e <b>fatos futuros já decididos</b>. A negativa é <i>will not</i> (ou <i>won’t</i>): <i>“Uber <b>will not</b> acquire…”</i>.</p><p>Compare com <b>going to</b>, usado para <b>planos</b> e para o que já dá para prever pelas evidências: <i>“Food delivery <b>is going to</b> change.”</i> Nos dois casos, o verbo principal fica na forma base (sem -s, sem -ed).</p>",
+    "examples": [
+      "Uber <mark>will pay</mark> $13.7bn after accounting for its previous purchases of a quarter of Delivery Hero’s shares, most recently in May.",
+      "the San Francisco-based Uber <mark>will not acquire</mark> Delivery Hero’s operations in 14 countries where it already has a strong presence",
+      "They <mark>will</mark> instead be bought for $1.6bn by SSW Partners, a New York-based private equity firm.",
+      "Splitting the deal with SSW <mark>will help</mark> to prevent Uber dominating those markets, an important consideration for competition regulators."
+    ],
+    "exercises": [
+      {
+        "type": "mc",
+        "q": "Which sentence talks about the future correctly?",
+        "options": [
+          "Uber will pays $13.7bn.",
+          "Uber will pay $13.7bn.",
+          "Uber will paid $13.7bn.",
+          "Uber will to pay $13.7bn."
+        ],
+        "answer": 1,
+        "explain_pt": "Depois de “will”, o verbo fica na forma base: “will pay” (sem -s, sem -ed, sem “to”)."
+      },
+      {
+        "type": "mc",
+        "q": "How do you make “Uber will acquire it” negative?",
+        "options": [
+          "Uber will not acquire it.",
+          "Uber not will acquire it.",
+          "Uber will acquire not it.",
+          "Uber don’t will acquire it."
+        ],
+        "answer": 0,
+        "explain_pt": "A negativa é will + not + verbo base: “will not acquire” (ou “won’t acquire”), como no texto."
+      },
+      {
+        "type": "mc",
+        "q": "Which one is best for a plan/prediction based on evidence?",
+        "options": [
+          "Food delivery will to change.",
+          "Food delivery is going to change.",
+          "Food delivery going to change.",
+          "Food delivery will changing."
+        ],
+        "answer": 1,
+        "explain_pt": "“is going to + verbo base” = plano/previsão com base em evidências: “is going to change”."
+      },
+      {
+        "type": "gap",
+        "q": "Complete com o futuro: “Uber ___ maintain Delivery Hero’s headquarters in Berlin.” (usar will)",
+        "before": "Uber",
+        "answer": "will",
+        "after": "maintain Delivery Hero’s headquarters in Berlin.",
+        "hint_pt": "futuro/decisão: will + verbo base."
+      },
+      {
+        "type": "gap",
+        "q": "Complete a negativa: “Uber ___ acquire operations in 14 countries.” (will + not, contraído)",
+        "before": "Uber",
+        "answer": "won’t",
+        "after": "acquire operations in 14 countries.",
+        "hint_pt": "forma contraída de “will not”.",
+        "accept": [
+          "will not"
+        ]
+      }
+    ]
+  }
+}
