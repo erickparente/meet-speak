@@ -171,11 +171,6 @@ dialog::backdrop{background:rgba(10,12,20,.5);backdrop-filter:blur(2px)}
 #gate .remember{display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--ink-2);cursor:pointer}
 #gate .gerr{display:none;color:var(--bad);font-size:.85rem;margin-top:10px;font-weight:600}
 #gate .gerr.show{display:block}
-#loginGate{max-width:400px;margin:70px auto;padding:0 20px}
-#loginGate .card{padding:28px}
-#loginGate h2{margin:0 0 6px;font-size:1.25rem}
-#loginGate p{color:var(--ink-2);font-size:.9rem;margin:0 0 16px}
-.linklike{display:block;background:none;border:none;color:var(--ink-3);font-size:.82rem;text-decoration:underline;padding:0;cursor:pointer}
 #gate.shake .card{animation:shake .4s}
 @keyframes shake{0%,100%{transform:none}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
 .hidden{display:none!important}
@@ -189,7 +184,6 @@ dialog::backdrop{background:rgba(10,12,20,.5);backdrop-filter:blur(2px)}
     <div class="spacer"></div>
     <span class="chip" id="streakChip" title="Dias seguidos de estudo"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5.7s.8 2.9-1.4 5.9c-1.9 2.6-4.8 3.7-5.6 7.1-.6 2.6.4 5.3 2.4 7.1.2-1.3 1-2.5 2.1-3.2.9-.6 1.6-1.5 1.9-2.6 2.4 1.7 3.9 4.4 3.3 6.9 2.8-1.4 4.8-4.3 4.8-7.6 0-6.5-7.5-8.4-7.5-13.6z"/></svg><span id="streakN">0</span></span>
     <button class="iconbtn" id="archiveBtn" title="Aulas anteriores"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></button>
-    <button class="iconbtn" id="authBtn" title="Entrar para sincronizar" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></button>
     <button class="iconbtn" id="themeBtn" title="Tema claro/escuro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg></button>
   </div>
 </header>
@@ -206,16 +200,6 @@ dialog::backdrop{background:rgba(10,12,20,.5);backdrop-filter:blur(2px)}
       </div>
       <div class="gerr" id="gateErr">Senha incorreta — tente de novo.</div>
     </form>
-  </div>
-</div>
-
-<div id="loginGate" class="hidden">
-  <div class="card">
-    <h2>Entre no Meet&amp;Speak</h2>
-    <p>Faça login com o Google para acessar suas aulas. Seu progresso fica salvo na sua conta e acompanha você em qualquer aparelho.</p>
-    <button class="btn primary" id="loginGoogleBtn" style="width:100%;justify-content:center">Continuar com Google</button>
-    <p class="note" id="loginMsg" style="display:none;margin-top:12px"></p>
-    <button class="linklike" id="usePwLink" style="margin-top:16px">Prefiro entrar com a senha</button>
   </div>
 </div>
 
@@ -371,25 +355,6 @@ dialog::backdrop{background:rgba(10,12,20,.5);backdrop-filter:blur(2px)}
   <div class="dlgbody" id="archiveList"></div>
 </dialog>
 
-<dialog id="authDlg">
-  <div class="dlghead"><span>Conta</span><button class="iconbtn" id="closeAuthDlg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
-  <div class="dlgbody">
-    <div id="authIn">
-      <p class="note" style="margin-top:0">Entre com o Google para <b>sincronizar seu progresso</b> entre o celular e o computador. É opcional — o app funciona sem login.</p>
-      <button class="btn primary" id="googleBtn" style="text-decoration:none;display:inline-flex;margin-top:6px">Continuar com Google</button>
-    </div>
-    <div id="authOut" style="display:none">
-      <p class="note" style="margin-top:0" id="authWho"></p>
-      <p class="note">Seu progresso é <b>sincronizado</b> nesta conta — ele acompanha você em qualquer aparelho.</p>
-      <div style="display:flex;gap:8px;margin-top:6px;flex-wrap:wrap">
-        <button class="btn small primary" id="syncNowBtn">Sincronizar agora</button>
-        <button class="btn small" id="logoutBtn">Sair</button>
-      </div>
-    </div>
-    <p class="note" id="authMsg" style="display:none;margin-top:12px"></p>
-  </div>
-</dialog>
-
 <dialog id="levelDlg">
   <div class="dlghead"><span>Nível das aulas</span><button class="iconbtn" id="closeLevelDlg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
   <div class="dlgbody">
@@ -398,7 +363,6 @@ dialog::backdrop{background:rgba(10,12,20,.5);backdrop-filter:blur(2px)}
   </div>
 </dialog>
 
-<script src="supabase.js"></script>
 <script>
 "use strict";
 /* ============ storage seguro (funciona mesmo sem localStorage) ============ */
@@ -949,123 +913,7 @@ async function boot(){
 }
 if("serviceWorker" in navigator){addEventListener("load",()=>{navigator.serviceWorker.register("sw.js").then(()=>navigator.serviceWorker.ready).then(()=>{setTimeout(()=>{try{fetch("lessons/index.json",{cache:"no-store"});if(LESSON)fetch("lessons/"+LESSON.date+".json",{cache:"no-store"})}catch(e){}},3000)}).catch(()=>{})})}
 
-/* ============ conta / login / sincronização (Supabase) ============ */
-(function(){
-  const SUPA_URL="https://cdhmpnpfxgymlkjxrwhf.supabase.co";
-  const SUPA_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNkaG1wbnBmeGd5bWxranhyd2hmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQxNTA5NDAsImV4cCI6MjA5OTcyNjk0MH0.dCSTG3h_GIkACuHLzS6NgXuAMCSn0LSxUPnkCk7QDxI";
-  const SB=(window.supabase&&window.supabase.createClient)?window.supabase.createClient(SUPA_URL,SUPA_KEY):null;
-  const btn=$("#authBtn");
-  const redir=()=>location.origin+location.pathname;   /* endereço limpo p/ o OAuth */
-  let started=false;
-  function startApp(){ if(started)return; started=true; boot(); }
-
-  if(!SB){ startApp(); return; }   /* sem Supabase (offline/CDN falhou): abre no modo senha */
-  btn.style.display="";
-  let USER=null;
-  const setMsg=(t,ok)=>{const m=$("#authMsg");if(!m)return;m.textContent=t||"";m.style.display=t?"block":"none";m.style.color=ok===true?"var(--ok)":ok===false?"var(--bad)":"var(--ink-2)"};
-
-  function unionInto(remote){
-    remote=remote||{};
-    Object.keys(remote).forEach(date=>{
-      PROGRESS[date]=PROGRESS[date]||{};
-      const r=remote[date]||{};
-      Object.keys(r).forEach(s=>{if(r[s])PROGRESS[date][s]=true});
-    });
-    store.set("ms_progress",PROGRESS);
-  }
-  function unionAns(remote){
-    remote=remote||{};
-    Object.keys(remote).forEach(d=>{
-      ANSWERS[d]=ANSWERS[d]||{};
-      Object.keys(remote[d]||{}).forEach(scope=>{
-        ANSWERS[d][scope]=ANSWERS[d][scope]||{};
-        Object.keys(remote[d][scope]||{}).forEach(i=>{if(ANSWERS[d][scope][i]==null)ANSWERS[d][scope][i]=remote[d][scope][i]});
-      });
-    });
-    store.set("ms_answers",ANSWERS);
-  }
-  let pushT=null, pending=false;
-  async function doPush(){
-    if(!USER)return false;
-    pending=false;
-    const {error}=await SB.from("user_state").upsert({user_id:USER.id,data:{progress:PROGRESS,answers:ANSWERS},updated_at:new Date().toISOString()},{onConflict:"user_id"});
-    if(error){setMsg("Erro ao sincronizar: "+(error.message||error.code||"desconhecido"),false);console.warn("[sync] push",error);return false;}
-    return true;
-  }
-  window.__syncPush=function(){
-    if(!USER)return;
-    pending=true;clearTimeout(pushT);pushT=setTimeout(doPush,800);
-  };
-  async function pull(){
-    if(!USER)return;
-    const {data,error}=await SB.from("user_state").select("data").eq("user_id",USER.id).maybeSingle();
-    if(error){setMsg("Erro ao ler sua conta: "+(error.message||error.code||"desconhecido"),false);console.warn("[sync] pull",error);return;}
-    let doneCount=0,days=0;
-    if(data&&data.data){
-      const rp=data.data.progress||{};
-      unionInto(rp);
-      if(data.data.answers)unionAns(data.data.answers);
-      Object.keys(rp).forEach(d=>{const n=Object.values(rp[d]||{}).filter(Boolean).length;if(n){days++;doneCount+=n}});
-    }
-    if(typeof LESSON!=="undefined"&&LESSON&&typeof restoreDone==="function")restoreDone();
-    if(typeof updateStreak==="function")updateStreak();
-    await doPush();
-    setMsg("Conta: "+(USER.email||"?")+" — na nuvem: "+doneCount+" seção(ões) em "+days+" dia(s) ✓",true);
-  }
-  function renderUI(){
-    if(USER){btn.classList.add("linked");btn.title="Conta: "+(USER.email||"conectado")}
-    else{btn.classList.remove("linked");btn.title="Entrar para sincronizar"}
-  }
-  btn.onclick=()=>{
-    $("#authWho").textContent=USER?("Conectado como "+(USER.email||"")):"";
-    $("#authIn").style.display=USER?"none":"block";
-    $("#authOut").style.display=USER?"block":"none";
-    setMsg("");
-    $("#authDlg").showModal();
-  };
-  $("#closeAuthDlg").onclick=()=>$("#authDlg").close();
-  $("#syncNowBtn").onclick=async()=>{setMsg("Sincronizando…");await pull();setMsg("Sincronizado ✓ — atualizando a tela…",true);setTimeout(()=>location.reload(),900);};
-  addEventListener("visibilitychange",()=>{if(document.visibilityState==="hidden"&&pending)doPush()});
-  addEventListener("pagehide",()=>{if(pending)doPush()});
-  const doGoogle=(msgEl)=>{
-    if(msgEl){msgEl.textContent="Redirecionando para o Google…";msgEl.style.display="block"}
-    SB.auth.signInWithOAuth({provider:"google",options:{redirectTo:redir()}})
-      .then(({error})=>{if(error&&msgEl){msgEl.textContent="Não foi possível iniciar o login: "+error.message}});
-  };
-  $("#googleBtn").onclick=()=>doGoogle($("#authMsg"));
-  $("#loginGoogleBtn").onclick=()=>doGoogle($("#loginMsg"));
-  $("#usePwLink").onclick=()=>{ $("#loginGate").classList.add("hidden"); startApp(); };
-  $("#logoutBtn").onclick=()=>{SB.auth.signOut().then(()=>location.reload())};
-
-  /* ---- senha das aulas: buscada da conta após o login (Opção A) ---- */
-  async function ensurePassword(){
-    if(PASSWORD)return;
-    const cached=store.get("ms_pass",null);
-    if(cached){PASSWORD=cached;return;}
-    try{
-      const {data,error}=await SB.from("app_config").select("lesson_password").eq("id",1).maybeSingle();
-      if(!error&&data&&data.lesson_password){PASSWORD=data.lesson_password;store.set("ms_pass",PASSWORD);}
-    }catch(e){}
-  }
-  async function enterApp(){
-    await ensurePassword();
-    if(!started){try{await pull()}catch(e){}}   /* baixa/mescla ANTES de montar a tela */
-    $("#loginGate").classList.add("hidden");
-    startApp();        /* boot() usa PASSWORD p/ decriptar; se faltar, cai no gate de senha */
-  }
-
-  SB.auth.getSession().then(({data})=>{
-    USER=data&&data.session?data.session.user:null;
-    renderUI();
-    if(USER){enterApp()}
-    else{$("#loginGate").classList.remove("hidden")}
-  });
-  SB.auth.onAuthStateChange((_ev,session)=>{
-    USER=session?session.user:null;
-    renderUI();
-    if(USER){enterApp()}
-  });
-})();
+boot();
 </script>
 </body>
 </html>

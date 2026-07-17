@@ -1,1 +1,358 @@
-{"enc":1,"kdf":"PBKDF2-SHA256","iter":310000,"salt":"+XCt3V32lFBIjUP2nb6/Qw==","iv":"+1Sid6wXl7xyqtUK","data":"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"}
+{
+  "schema": 1,
+  "date": "2026-07-14",
+  "level": "B1",
+  "estimated_minutes": 20,
+  "topic": "Science",
+  "topic_pt": "Ciência",
+  "review": {
+    "intro_pt": "Antes de começar: relembre o vocabulário da aula de ontem completando as lacunas.",
+    "items": [
+      {
+        "before": "Chinese authorities have",
+        "answer": "evacuated",
+        "after": "more than 1.7 million people as of Saturday.",
+        "hint_pt": "retirar pessoas de uma área de risco",
+        "from_date": "2026-07-12"
+      },
+      {
+        "before": "Typhoon Bavi made",
+        "answer": "landfall",
+        "after": "in China's eastern province of Zhejiang late on Saturday night.",
+        "hint_pt": "chegar à terra firme (falando de tempestade)",
+        "from_date": "2026-07-12"
+      },
+      {
+        "before": "Authorities in Fujian province placed over 17,000 emergency rescue workers",
+        "answer": "on standby",
+        "after": ".",
+        "hint_pt": "de prontidão, à espera para agir",
+        "from_date": "2026-07-12"
+      },
+      {
+        "before": "…mostly due to",
+        "answer": "landslides",
+        "after": "that were set off by seasonal monsoon rains.",
+        "hint_pt": "deslizamentos de terra",
+        "from_date": "2026-07-12"
+      },
+      {
+        "before": "…40 million yuan ($5.9 million) in central natural disaster",
+        "answer": "relief funds",
+        "after": ".",
+        "hint_pt": "verbas de auxílio/socorro",
+        "from_date": "2026-07-12"
+      }
+    ]
+  },
+  "article": {
+    "headline": "Sale of multimillion-dollar T rex skeleton is big headache for scientists",
+    "source": "The Guardian",
+    "agency": "",
+    "published": "14 Jul 2026",
+    "url": "https://www.theguardian.com/science/2026/jul/14/t-rex-skeleton-sothebys-auction-new-york-scientists",
+    "excerpt_note_pt": "Este é o trecho inicial da matéria, reproduzido palavra por palavra, sem modificações. A matéria completa está no link da fonte.",
+    "paragraphs": [
+      "With its dagger-like teeth, bone-crushing bite and behemothic size, the fearsome Tyrannosaurus rex ruled western North America during the late Cretaceous period. Now its fossilised remains are about to dominate the auction house, with a price tag to terrify punters.",
+      "On Tuesday, one of the largest and most complete T rex skeletons discovered to date is to be auctioned by Sotheby’s in New York with an estimated sale price of $20m-$30m (£15m-£22.4m).",
+      "It could even fetch more: a stegosaurus called Apex currently holds the record, selling at a Sotheby’s auction in 2024 for $44.6m – 11 times its listing price.",
+      "Nicknamed “Gus”, the T rex is thought to be about 67m years old, and stands – ready mounted in a predatory pose – at about 3.8 metres (12.5ft) tall. “The huge teeth are displayed within the gaping jaws,” the auction listing notes.",
+      "Thought to be the remains of a large, robust adult, it was discovered – and excavated over a three-year period from 2021 – on a ranch in Harding County, South Dakota, by the commercial outfit Theropoda Expeditions, with permission from the owner of the land, Gary “Gus” Licking.",
+      "Cole Jacobs, a field prospector for the company, said in a promotional video from Sotheby’s: “I straddled the road, walked up, and it was the very first thing I laid eyes on on the first day. I saw the metatarsal poking out of the ground.”",
+      "The cheery name of the T rex is a nod to Licking, who died before the excavation was finished.",
+      "While Gus is undoubtedly a huge find, he also represents a big problem – at least for scientists.",
+      "“The current trend towards dinosaur fossils being marketed and sold like rare artworks at vast prices by auction houses is very concerning, as is the idea of buying dinosaur fossils as a status symbol or a commodity,” said Prof Richard Butler, a vertebrate palaeontologist at the University of Birmingham.",
+      "“A fossil not in a recognised museum collection cannot be studied and is therefore lost to research. Fossils have been bought and sold for hundreds of years, but prices are increasingly out of the reach of museums, much to the detriment of science.”"
+    ]
+  },
+  "vocabulary": [
+    {
+      "term": "fearsome",
+      "ipa": "/ˈfɪəsəm/",
+      "pos": "adj",
+      "meaning_en": "frightening; likely to cause fear",
+      "meaning_pt": "assustador, temível",
+      "example": "the fearsome Tyrannosaurus rex ruled western North America during the late Cretaceous period."
+    },
+    {
+      "term": "remains",
+      "ipa": "/rɪˈmeɪnz/",
+      "pos": "noun (pl.)",
+      "meaning_en": "the parts of something that are left, here a dead body",
+      "meaning_pt": "restos (mortais)",
+      "example": "Now its fossilised remains are about to dominate the auction house, with a price tag to terrify punters."
+    },
+    {
+      "term": "auction",
+      "ipa": "/ˈɔːkʃən/",
+      "pos": "noun/verb",
+      "meaning_en": "a public sale where things go to the highest bidder",
+      "meaning_pt": "leilão",
+      "example": "is to be auctioned by Sotheby’s in New York"
+    },
+    {
+      "term": "estimated",
+      "ipa": "/ˈestɪmeɪtɪd/",
+      "pos": "adj",
+      "meaning_en": "calculated approximately, not exactly",
+      "meaning_pt": "estimado",
+      "example": "with an estimated sale price of $20m-$30m (£15m-£22.4m)."
+    },
+    {
+      "term": "fetch",
+      "ipa": "/fetʃ/",
+      "pos": "verb",
+      "meaning_en": "to be sold for a particular price",
+      "meaning_pt": "alcançar (um preço)",
+      "example": "It could even fetch more: a stegosaurus called Apex currently holds the record"
+    },
+    {
+      "term": "mounted",
+      "ipa": "/ˈmaʊntɪd/",
+      "pos": "adj",
+      "meaning_en": "fixed in place for display",
+      "meaning_pt": "montado (para exposição)",
+      "example": "ready mounted in a predatory pose – at about 3.8 metres (12.5ft) tall."
+    },
+    {
+      "term": "excavated",
+      "ipa": "/ˈekskəveɪtɪd/",
+      "pos": "verb",
+      "meaning_en": "dug out of the ground carefully",
+      "meaning_pt": "escavado, desenterrado",
+      "example": "it was discovered – and excavated over a three-year period from 2021 – on a ranch in Harding County, South Dakota"
+    },
+    {
+      "term": "concerning",
+      "ipa": "/kənˈsɜːnɪŋ/",
+      "pos": "adj",
+      "meaning_en": "worrying",
+      "meaning_pt": "preocupante",
+      "example": "at vast prices by auction houses is very concerning, as is the idea of buying dinosaur fossils as a status symbol or a commodity"
+    },
+    {
+      "term": "detriment",
+      "ipa": "/ˈdetrɪmənt/",
+      "pos": "noun",
+      "meaning_en": "harm or damage",
+      "meaning_pt": "prejuízo, dano",
+      "example": "much to the detriment of science."
+    }
+  ],
+  "reading": {
+    "warmup_pt": "Antes de ler: você iria a um museu para ver um esqueleto de dinossauro? Enquanto lê, repare em quem vai vender o fóssil e por que alguns cientistas estão preocupados.",
+    "questions": [
+      {
+        "type": "mc",
+        "q": "Who is going to sell the T rex skeleton nicknamed “Gus”?",
+        "options": [
+          "The Field Museum in Chicago",
+          "Sotheby's in New York",
+          "The University of Birmingham",
+          "Theropoda Expeditions"
+        ],
+        "answer": 1,
+        "explain_pt": "O 2º parágrafo diz que o esqueleto “is to be auctioned by Sotheby's in New York”. Theropoda Expeditions foi quem escavou, não quem vende."
+      },
+      {
+        "type": "mc",
+        "q": "What is the estimated sale price of the T rex?",
+        "options": [
+          "$8m",
+          "$44.6m",
+          "$20m–$30m",
+          "$5.9 million"
+        ],
+        "answer": 2,
+        "explain_pt": "“…with an estimated sale price of $20m-$30m”. O valor de $44.6m foi o do estegossauro Apex, em 2024."
+      },
+      {
+        "type": "tf",
+        "q": "The T rex skeleton is thought to be about 67 million years old.",
+        "answer": true,
+        "explain_pt": "Verdadeiro: “the T rex is thought to be about 67m years old” (67m = 67 milhões)."
+      },
+      {
+        "type": "mc",
+        "q": "Where was the skeleton found?",
+        "options": [
+          "In New York",
+          "On a ranch in Harding County, South Dakota",
+          "In Edinburgh",
+          "In Chicago"
+        ],
+        "answer": 1,
+        "explain_pt": "“it was discovered … on a ranch in Harding County, South Dakota”."
+      },
+      {
+        "type": "tf",
+        "q": "Prof Richard Butler believes selling fossils at auction is good for science.",
+        "answer": false,
+        "explain_pt": "Falso. Butler chama a tendência de “very concerning” e explica que um fóssil fora de um museu “cannot be studied and is therefore lost to research”."
+      }
+    ]
+  },
+  "listening": {
+    "intro_pt": "Ouça a notícia inteira SEM ler o texto (use 0.75x se precisar). Depois responda às perguntas e faça o ditado.",
+    "questions": [
+      {
+        "type": "mc",
+        "q": "On which day is the skeleton going to be auctioned?",
+        "options": [
+          "Monday",
+          "Tuesday",
+          "Saturday",
+          "Sunday"
+        ],
+        "answer": 1,
+        "explain_pt": "“On Tuesday, one of the largest … T rex skeletons … is to be auctioned”."
+      },
+      {
+        "type": "mc",
+        "q": "How tall does the mounted T rex stand?",
+        "options": [
+          "about 3.8 metres",
+          "about 12 metres",
+          "about 67 metres",
+          "about 4 metres"
+        ],
+        "answer": 0,
+        "explain_pt": "“stands … at about 3.8 metres (12.5ft) tall”."
+      },
+      {
+        "type": "mc",
+        "q": "In what year did the stegosaurus Apex sell for a record price?",
+        "options": [
+          "2021",
+          "2024",
+          "1997",
+          "2026"
+        ],
+        "answer": 1,
+        "explain_pt": "“selling at a Sotheby's auction in 2024 for $44.6m”."
+      }
+    ],
+    "dictation": [
+      {
+        "before": "The cheery name of the T rex is a nod to Licking, who",
+        "answer": "died",
+        "after": "before the excavation was finished.",
+        "hint_pt": "verbo (passado de 'die'): faleceu"
+      },
+      {
+        "before": "While Gus is undoubtedly a huge find, he also represents a big",
+        "answer": "problem",
+        "after": "– at least for scientists.",
+        "hint_pt": "substantivo: algo difícil de resolver"
+      },
+      {
+        "before": "Now its fossilised remains are about to dominate the",
+        "answer": "auction",
+        "after": "house, with a price tag to terrify punters.",
+        "hint_pt": "substantivo: venda pública ao maior lance"
+      }
+    ]
+  },
+  "writing": {
+    "title": "Uma notícia curiosa para um amigo",
+    "task_pt": "Imagine que você acabou de ler esta notícia sobre o leilão do T. rex “Gus”. Escreva uma mensagem (e-mail ou WhatsApp) em inglês para um amigo contando a notícia e dizendo o que você acha de vender fósseis em leilão. Use pelo menos DUAS informações reais da matéria e tente usar a voz passiva uma vez.",
+    "prompt_en": "You have just read this news about the auction of a T rex skeleton nicknamed “Gus”. Write a short message to a friend: tell them the news and say what you think about selling fossils at auction. Use at least two facts from the article.",
+    "min_words": 50,
+    "max_words": 80,
+    "checklist_pt": [
+      "Usei pelo menos duas informações reais da notícia (preço, idade, local ou quem vende).",
+      "Dei a minha opinião sobre vender fósseis em leilão.",
+      "Usei a voz passiva pelo menos uma vez (ex.: “is being sold”, “was found”).",
+      "Revisei os verbos e a pontuação antes de enviar."
+    ],
+    "model_answer": "Hi! I just read something amazing. A huge T rex skeleton called Gus is going to be sold at an auction in New York for about 20 to 30 million dollars. It was found on a ranch in South Dakota. Honestly, I think fossils like this should be kept in museums, because they can be studied there. What do you think?",
+    "model_note_pt": "Resposta-modelo escrita por nós (NÃO faz parte da notícia). Use como referência de estrutura e tom; não copie."
+  },
+  "speaking": {
+    "shadow_sentences": [
+      "Now its fossilised remains are about to dominate the auction house",
+      "It could even fetch more: a stegosaurus called Apex currently holds the record",
+      "The cheery name of the T rex is a nod to Licking",
+      "While Gus is undoubtedly a huge find, he also represents a big problem"
+    ],
+    "questions": [
+      {
+        "q_en": "What is being sold at auction, and for how much? Summarize the news.",
+        "support_pt": "Estruture: What is it? → Who is selling it? → What is the price? Fale por 40–60 segundos."
+      },
+      {
+        "q_en": "Some scientists are worried about this sale. Why? Explain in your own words.",
+        "support_pt": "Use as ideias dos parágrafos finais: um fóssil fora de um museu “cannot be studied”."
+      },
+      {
+        "q_en": "Do you think dinosaur fossils should be sold to private buyers? Why or why not?",
+        "support_pt": "Dê sua opinião: “I think… because…” / “In my opinion…”."
+      }
+    ],
+    "tip_pt": "Grave suas respostas no celular e ouça depois. Tente usar a voz passiva ao menos uma vez (ex.: “the skeleton is being sold”)."
+  },
+  "grammar": {
+    "title": "A voz passiva nas notícias — “is to be auctioned”, “was discovered”",
+    "point_pt": "<p>Nas notícias, muitas frases estão na <b>voz passiva</b>: <i>be + particípio passado</i> (ex.: <i>is auctioned</i>, <i>was discovered</i>, <i>can be studied</i>). Usamos a passiva quando <b>a ação importa mais do que quem a faz</b>, ou quando não sabemos/não interessa quem fez.</p><p>Compare: <i>Sotheby's <b>will sell</b> the skeleton</i> (ativa) → <i>The skeleton <b>will be sold</b> by Sotheby's</i> (passiva). O tempo verbal aparece no verbo <i>be</i>: <i>is/are</i> (presente), <i>was/were</i> (passado), <i>can be</i> (modal).</p>",
+    "examples": [
+      "one of the largest and most complete T rex skeletons discovered to date <mark>is to be auctioned</mark> by Sotheby’s in New York",
+      "it <mark>was discovered</mark> – and excavated over a three-year period from 2021 – on a ranch in Harding County, South Dakota",
+      "The huge teeth <mark>are displayed</mark> within the gaping jaws",
+      "A fossil not in a recognised museum collection <mark>cannot be studied</mark> and is therefore lost to research."
+    ],
+    "exercises": [
+      {
+        "type": "mc",
+        "q": "Which sentence is in the passive voice?",
+        "options": [
+          "Sotheby's will sell the skeleton.",
+          "The skeleton is to be auctioned by Sotheby's.",
+          "Scientists study fossils.",
+          "The T rex ruled North America."
+        ],
+        "answer": 1,
+        "explain_pt": "Passiva = be + particípio. “is to be auctioned” tem o verbo be (is/be) + o particípio “auctioned”. As outras são ativas."
+      },
+      {
+        "type": "mc",
+        "q": "Complete in the passive: “The fossil ___ on a ranch in South Dakota.”",
+        "options": [
+          "was discovered",
+          "discovered",
+          "has discover",
+          "is discovering"
+        ],
+        "answer": 0,
+        "explain_pt": "Passado passivo = was/were + particípio: “was discovered”. “discovered” sozinho seria ativo; “has discover” é incorreto."
+      },
+      {
+        "type": "mc",
+        "q": "Make it passive: “Scientists cannot study the fossil.” → “The fossil ___.”",
+        "options": [
+          "cannot study",
+          "cannot be studied",
+          "is not studying",
+          "does not study"
+        ],
+        "answer": 1,
+        "explain_pt": "Com modal, a passiva é modal + be + particípio: “cannot be studied” (como no texto)."
+      },
+      {
+        "type": "gap",
+        "q": "Complete com o verbo be no presente: “The huge teeth ___ displayed within the gaping jaws.”",
+        "before": "The huge teeth",
+        "answer": "are",
+        "after": "displayed within the gaping jaws.",
+        "hint_pt": "“teeth” é plural → are + particípio (passiva no presente)."
+      },
+      {
+        "type": "gap",
+        "q": "Complete o particípio: “The skeleton was ___ over a three-year period from 2021.”",
+        "before": "The skeleton was",
+        "answer": "excavated",
+        "after": "over a three-year period from 2021.",
+        "hint_pt": "particípio passado de “excavate”, com sentido de “escavado”."
+      }
+    ]
+  }
+}

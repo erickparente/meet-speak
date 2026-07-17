@@ -1,1 +1,59 @@
-{"enc":1,"kdf":"PBKDF2-SHA256","iter":310000,"salt":"DBDT8W9itSKm6axsLhiXZw==","iv":"n61VDi6SLOKcBVne","data":"TQEf56/hn89NP1wf6RE3SvN+YTgFdIR7nZ+OLoBr+RI6E6ZO+SVfv9qwdAryK/0AB440EjkgNLBPmsnBfIfEydR4nl9nKxXUHZopf4gFBBDP4m10jz3yednB9MgciEwbNz/qR/FAvdgZF3Lie1m1yV3Yk5b1MrU4xu5cxzuDpQrFdII6EgoWn1rVvFbqNq37bEHP1IknE4rgipiZDUudBQNiH83Rm9+cYRvHeAHzgemvcmgA0RPAqbgTZWJUwk4ZwzMBEpa1Fte1FHNqGFk97N0n93yPjOunhBAyQrgsrY+zeSS/BG/f0LlbCEKkeedewr8BGj7hvSEVUeeDzv8B95BwQInJC4PXH8STCeXRSykGWJuy3lLVBKiexyATRabyTQ6orQyGMV8CV2qdwdO09tlRp8hKsp5Lo0x4SrqQVYZ7PZTIzybrXxaTGfJfQ6a7d7Qi8oSao1UVisZPFBRsFc3OUWF8lBPc/DcimGs4MCojTU7xLNQiHz4JCmVCLu/FqwYrYwY1EzGp68/wvoKzB9xHrfbaQJHAibRjT4dc9TlHkiZtdCbenQlDUEhk6xR8mMhQw6GU/zhYp0m0UleDkZhkZJujwwBUxSNgbKFoSWJG6zVK5LaznKXILEdj4uWk07PxM1Xxojy+V+cDIJuU7QwIZfHJ6BSiEv2tsY5FbRTTduywDy2ALAFy6hh4Rf9j+rXE3g6aGnz0gT0Q7Fee69E1j2av1Uj5hBjKyKeLcukuicSEMry3LB7vp7odIXiStE5QEmLKYV+C51fz8vUiSSFf/9PcaFawIvdsfMf0197aBYRdZaHRdvlYz6K8MKXiRf8760cmjzTt2YheU5lL09Cv1zz+wXtX310lggls+JIm/pAWLg3LMB83hEi7qAgUTC7CjB1A47FueW3CqJoUn6wr8gekxPPDW7zk8LXBEHEIO61WozKZVnMclPA3YgoSYPSKISYOsu1zuvNNJZuSRzziIpVoKGD+lJPufj4RSiaQdtmH19SiM75v8XO6ujEMYYAs3Ai7Qgqo2gRNEV/V0Y7y4Rt0DHeoba7jpOjUqtvUtmVBkHzu0kRfzFs5i8m9CKZhZjyFHbEDUkQyDNPGtosGIc1p3Y6TzneWwG2HA4Du/7R1qLvuEWykBDT3M3+vZUsiBjkjw+fhVVcCloeFDD8wxK+kiBNK0Mg2PqDqSB1W+Q6XTJRX/qeNyzVY404ja+6lkCoDBMVgJ+YzfnIUm2V/AyEvat/JK17hjUgL8D5+irnp2RYfKTWoLZ850SXhZDvmKXigATF/VObj1Qi4kuETntMH4uF8nKnz7ZDkliTzpc426NgiKyFIL7BjXGPhzO/Lsguyf3bBCJjpOEOI9ZDlF69KmaIgklM80KGuPiCqFaEQOtuYNEFGgSHw0iLCHuv9lv+cYa5PIg+qjqWyokeNsfdBJu2Feu+2Pi7vhZfLCTnBu84ZKSA63CrAUmyKK0RuVZIiaKadhyjpdic+K0J4fsyUoDkQzHnjSS0iGCuz15hziJ7e/IRPcUPdyOhKYFmQqQbhD7EZXmgWftndIOWQUzYWu3LRFhSpXgnfC3IadZaYWUiY3LQgJNT3FX9y"}
+{
+  "lessons": [
+    {
+      "date": "2026-07-15",
+      "headline": "Wærenskjold wins fastest ever Tour de France stage in frenzied sprint to Nevers",
+      "topic": "Sport",
+      "topic_pt": "Esportes",
+      "source": "The Guardian",
+      "grammar": "Orações relativas básicas — “who” e “that”",
+      "vocab": [
+        "tumbling",
+        "shattered",
+        "frenzied",
+        "straightforward",
+        "crashed out",
+        "breakaway",
+        "dropped",
+        "hurrah"
+      ]
+    },
+    {
+      "date": "2026-07-14",
+      "headline": "Sale of multimillion-dollar T rex skeleton is big headache for scientists",
+      "topic": "Science",
+      "topic_pt": "Ciência",
+      "source": "The Guardian",
+      "grammar": "A voz passiva nas notícias — “is to be auctioned”, “was discovered”",
+      "vocab": [
+        "fearsome",
+        "remains",
+        "auction",
+        "estimated",
+        "fetch",
+        "mounted",
+        "excavated",
+        "concerning",
+        "detriment"
+      ]
+    },
+    {
+      "date": "2026-07-12",
+      "headline": "Typhoon Bavi makes landfall in eastern China as more than 1 million are evacuated",
+      "topic": "World",
+      "topic_pt": "Mundo",
+      "source": "PBS NewsHour",
+      "grammar": "Present perfect nas notícias — \"have evacuated\", \"have been canceled\"",
+      "vocab": [
+        "make landfall",
+        "evacuate",
+        "brace for",
+        "sustained winds",
+        "landslide",
+        "set off",
+        "on standby",
+        "relief funds"
+      ]
+    }
+  ]
+}
