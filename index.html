@@ -438,14 +438,25 @@ const TTS={
       const sel=$("#voiceSel");sel.innerHTML="";
       if(!this.voices.length){$("#ttsWarn").style.display="block";return}
       $("#ttsWarn").style.display="none";
-      const pref=["Google US English","Google UK English Female","Microsoft Aria","Microsoft Jenny","Samantha","Daniel"];
-      this.voices.sort((a,b)=>{
-        const pa=pref.findIndex(p=>a.name.includes(p)),pb=pref.findIndex(p=>b.name.includes(p));
-        return (pa<0?99:pa)-(pb<0?99:pb);
-      });
+      const score=v=>{
+        const n=(v.name||"").toLowerCase(),lang=(v.lang||"").toLowerCase();
+        let s=0;
+        if(/natural|neural|online|enhanced|premium/.test(n))s+=100;   /* vozes de alta qualidade */
+        if(n.includes("google"))s+=85;
+        if(n.includes("siri"))s+=75;
+        if(/aria|jenny|ava|samantha|serena|zoe|allison|joanna|libby|sonia|ryan/.test(n))s+=45;
+        if(lang==="en-us")s+=15; else if(lang==="en-gb")s+=12; else s+=4;
+        if(v.localService===false)s+=12;                              /* vozes online tendem a ser mais naturais */
+        if(/espeak|compact|david|zira|mark|hazel|eloquence|pico|festival/.test(n))s-=60; /* robóticas conhecidas */
+        return s;
+      };
+      this.voices.sort((a,b)=>score(b)-score(a));
       this.voices.forEach((v,i)=>{const o=el("option",null,esc(v.name+" ("+v.lang+")"));o.value=i;sel.appendChild(o)});
-      this.chosen=this.voices[0];
-      sel.onchange=()=>{this.chosen=this.voices[+sel.value]};
+      const savedName=store.get("ms_voice",null);
+      const savedIdx=savedName?this.voices.findIndex(v=>v.name===savedName):-1;
+      const idx=savedIdx>=0?savedIdx:0;
+      this.chosen=this.voices[idx];sel.value=idx;
+      sel.onchange=()=>{this.chosen=this.voices[+sel.value];store.set("ms_voice",this.chosen.name)};
     };
     load();
     speechSynthesis.onvoiceschanged=load;
