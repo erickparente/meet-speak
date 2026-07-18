@@ -1,0 +1,319 @@
+{
+  "schema": 1,
+  "date": "2026-07-18",
+  "level": "B1",
+  "estimated_minutes": 20,
+  "topic": "Science",
+  "topic_pt": "Ciência",
+  "article": {
+    "headline": "Brain implant helps paralysed man to feed himself and drink from cup",
+    "source": "The Guardian",
+    "agency": "",
+    "published": "16 Jul 2026",
+    "url": "https://www.theguardian.com/science/2026/jul/16/neural-bypass-brain-implant-paralysed-man-feed-himself-drink-from-cup",
+    "excerpt_note_pt": "Este é o trecho inicial da matéria, reproduzido palavra por palavra, sem modificações. A matéria completa está no link da fonte.",
+    "paragraphs": [
+      "A man who was paralysed from the chest down in a swimming accident six years ago has been able to feed himself and drink from a cup thanks to a brain implant that bypasses his spinal cord injury.",
+      "Keith Thomas of Massapequa, New York, could not lift his arms off his wheelchair when he agreed to trial the technology in 2021, but after surgery to implant electrodes in his brain and many months of training, he was able to move the limbs again.",
+      "Researchers fitted Thomas with a brain-computer interface that not only helped him move his arms and hands, but also sent signals back to his brain to recreate the sensation of touch. He has since been able to feel his sister’s hand and the fur on his pet dog.",
+      "Remarkably, the technology appears to have partly rewired Thomas’s nervous system, helping to restore some hand functions and sensations that remain even when the system is switched off.",
+      "“For me this is an incredible moment,” said Prof Chad Bouton, whose team developed the technology at the Feinstein Institutes for Medical Research, the research arm of the New York healthcare provider Northwell Health.",
+      "“For years, we have been wanting to really tackle the restoration of movement and the sense of touch and bring those together and we’ve also wanted to create lasting effects,” Bouton added. “I think we’re going to continue to see progress and I think it’ll be applicable to the millions of folks around the world who really need this technology.”",
+      "Thomas was 42 when he broke his neck diving into a swimming pool in July 2020. He blacked out and regained consciousness to see a helicopter on the front lawn. He was immediately taken to hospital. “The next day I couldn’t even move,” he said."
+    ]
+  },
+  "vocabulary": [
+    {
+      "term": "paralysed",
+      "ipa": "/ˈpærəlaɪzd/",
+      "pos": "adj",
+      "meaning_en": "unable to move part of the body",
+      "meaning_pt": "paralisado",
+      "example": "A man who was paralysed from the chest down in a swimming accident six years ago has been able to feed himself and drink from a cup thanks to a brain implant"
+    },
+    {
+      "term": "spinal cord",
+      "ipa": "/ˈspaɪnl kɔːd/",
+      "pos": "noun",
+      "meaning_en": "the bundle of nerves inside the spine",
+      "meaning_pt": "medula espinhal",
+      "example": "a brain implant that bypasses his spinal cord injury."
+    },
+    {
+      "term": "wheelchair",
+      "ipa": "/ˈwiːltʃeə/",
+      "pos": "noun",
+      "meaning_en": "a chair on wheels for someone who cannot walk",
+      "meaning_pt": "cadeira de rodas",
+      "example": "could not lift his arms off his wheelchair when he agreed to trial the technology in 2021"
+    },
+    {
+      "term": "surgery",
+      "ipa": "/ˈsɜːdʒəri/",
+      "pos": "noun",
+      "meaning_en": "a medical operation",
+      "meaning_pt": "cirurgia",
+      "example": "after surgery to implant electrodes in his brain and many months of training"
+    },
+    {
+      "term": "limbs",
+      "ipa": "/lɪmz/",
+      "pos": "noun",
+      "meaning_en": "arms and legs",
+      "meaning_pt": "membros (braços e pernas)",
+      "example": "he was able to move the limbs again."
+    },
+    {
+      "term": "sensation",
+      "ipa": "/senˈseɪʃn/",
+      "pos": "noun",
+      "meaning_en": "a physical feeling",
+      "meaning_pt": "sensação",
+      "example": "sent signals back to his brain to recreate the sensation of touch."
+    },
+    {
+      "term": "rewired",
+      "ipa": "/ˌriːˈwaɪəd/",
+      "pos": "verb",
+      "meaning_en": "changed the connections (here, of the nervous system)",
+      "meaning_pt": "religou / refez as conexões",
+      "example": "the technology appears to have partly rewired Thomas’s nervous system, helping to restore some hand functions"
+    },
+    {
+      "term": "restore",
+      "ipa": "/rɪˈstɔː/",
+      "pos": "verb",
+      "meaning_en": "to bring something back to how it was",
+      "meaning_pt": "restaurar, recuperar",
+      "example": "helping to restore some hand functions and sensations that remain even when the system is switched off."
+    },
+    {
+      "term": "blacked out",
+      "ipa": "/blækt aʊt/",
+      "pos": "phrasal verb",
+      "meaning_en": "lost consciousness",
+      "meaning_pt": "desmaiou",
+      "example": "He blacked out and regained consciousness to see a helicopter on the front lawn."
+    }
+  ],
+  "reading": {
+    "warmup_pt": "Antes de ler: você já ouviu falar de implantes que ligam o cérebro a um computador? Enquanto lê, repare no que o Keith consegue fazer agora que antes não conseguia.",
+    "questions": [
+      {
+        "type": "mc",
+        "q": "What can Keith Thomas now do, thanks to the brain implant?",
+        "options": [
+          "Walk without help",
+          "Feed himself and drink from a cup",
+          "See again",
+          "Speak for the first time"
+        ],
+        "answer": 1,
+        "explain_pt": "O 1º parágrafo: “has been able to feed himself and drink from a cup thanks to a brain implant”."
+      },
+      {
+        "type": "tf",
+        "q": "Keith Thomas was paralysed in a car accident.",
+        "answer": false,
+        "explain_pt": "Falso: foi num acidente de natação — “paralysed … in a swimming accident” e “diving into a swimming pool”."
+      },
+      {
+        "type": "mc",
+        "q": "Besides helping him move his arms, what else did the interface do?",
+        "options": [
+          "It recorded videos of his brain",
+          "It sent signals back to recreate the sensation of touch",
+          "It cured him completely",
+          "It drove his wheelchair"
+        ],
+        "answer": 1,
+        "explain_pt": "Parágrafo 3: “also sent signals back to his brain to recreate the sensation of touch”."
+      },
+      {
+        "type": "tf",
+        "q": "Some hand functions remained even when the system was switched off.",
+        "answer": true,
+        "explain_pt": "Verdadeiro: “…some hand functions and sensations that remain even when the system is switched off”."
+      },
+      {
+        "type": "mc",
+        "q": "How did Keith Thomas break his neck?",
+        "options": [
+          "Diving into a swimming pool",
+          "Falling from a wheelchair",
+          "In a car crash",
+          "Playing football"
+        ],
+        "answer": 0,
+        "explain_pt": "“Thomas was 42 when he broke his neck diving into a swimming pool in July 2020.”"
+      }
+    ]
+  },
+  "listening": {
+    "intro_pt": "Ouça a notícia inteira SEM ler o texto (use 0.75x se precisar). Depois responda às perguntas e faça o ditado.",
+    "questions": [
+      {
+        "type": "mc",
+        "q": "Where is Keith Thomas from?",
+        "options": [
+          "Massapequa, New York",
+          "Los Angeles",
+          "London",
+          "Boston"
+        ],
+        "answer": 0,
+        "explain_pt": "“Keith Thomas of Massapequa, New York…”"
+      },
+      {
+        "type": "mc",
+        "q": "How old was Thomas when he broke his neck?",
+        "options": [
+          "35",
+          "42",
+          "6",
+          "52"
+        ],
+        "answer": 1,
+        "explain_pt": "“Thomas was 42 when he broke his neck…”"
+      },
+      {
+        "type": "mc",
+        "q": "What did Thomas see when he regained consciousness?",
+        "options": [
+          "His pet dog",
+          "A helicopter on the front lawn",
+          "A swimming pool",
+          "His sister"
+        ],
+        "answer": 1,
+        "explain_pt": "“…regained consciousness to see a helicopter on the front lawn.”"
+      }
+    ],
+    "dictation": [
+      {
+        "before": "He was immediately taken to",
+        "answer": "hospital",
+        "after": ".",
+        "hint_pt": "substantivo: lugar onde se trata doentes"
+      },
+      {
+        "before": "He blacked out and regained consciousness to see a",
+        "answer": "helicopter",
+        "after": "on the front lawn.",
+        "hint_pt": "substantivo: aeronave com hélice no topo"
+      },
+      {
+        "before": "he was able to move the",
+        "answer": "limbs",
+        "after": "again.",
+        "hint_pt": "substantivo (plural): braços e pernas"
+      }
+    ]
+  },
+  "writing": {
+    "title": "Uma notícia incrível para um amigo",
+    "task_pt": "Você leu esta notícia sobre um implante cerebral que ajudou um homem paralisado a mover os braços de novo. Escreva uma mensagem em inglês para um amigo contando a notícia e o que você acha desse tipo de tecnologia. Use pelo menos DUAS informações reais e tente usar “can”, “could” ou “be able to”.",
+    "prompt_en": "You read this news about a brain implant that helped a paralysed man move his arms again. Write a short message to a friend: tell them the news and say what you think about this kind of technology. Use at least two facts from the article.",
+    "min_words": 50,
+    "max_words": 80,
+    "checklist_pt": [
+      "Usei pelo menos duas informações reais (o que ele consegue fazer, onde mora, ou o que causou a lesão).",
+      "Dei minha opinião sobre esse tipo de tecnologia.",
+      "Usei “can”, “could” ou “be able to” pelo menos uma vez.",
+      "Revisei os verbos e a pontuação antes de enviar."
+    ],
+    "model_answer": "Hey! I just read amazing news. A man called Keith Thomas was paralysed after a swimming accident and could not move his arms. But doctors put a brain implant in his head, and now he can feed himself and even feel touch again! He was able to feel his dog’s fur. I think this technology will help millions of people. Incredible, right?",
+    "model_note_pt": "Resposta-modelo escrita por nós (NÃO faz parte da notícia). Use como referência; não copie."
+  },
+  "speaking": {
+    "shadow_sentences": [
+      "A man who was paralysed from the chest down in a swimming accident",
+      "he was able to move the limbs again",
+      "He has since been able to feel his sister’s hand",
+      "He blacked out and regained consciousness to see a helicopter"
+    ],
+    "questions": [
+      {
+        "q_en": "What is the news about Keith Thomas? Summarize it in your own words.",
+        "support_pt": "Estruture: What happened to him? → What did doctors do? → What can he do now? Fale por 40–60 segundos."
+      },
+      {
+        "q_en": "How do you think Keith felt when he could move his arms and feel touch again?",
+        "support_pt": "Use “I think he felt… because…”."
+      },
+      {
+        "q_en": "Would you like technology like this to be available to everyone? Why?",
+        "support_pt": "Dê sua opinião: “I think… because…”, e tente usar “can” ou “be able to”."
+      }
+    ],
+    "tip_pt": "Grave suas respostas no celular e ouça depois. Tente usar “can”, “could” ou “be able to” ao menos uma vez."
+  },
+  "grammar": {
+    "title": "Habilidade: can, could e be able to",
+    "point_pt": "<p>Para falar de <b>habilidade</b>, usamos <b>can</b> (presente) e <b>could</b> (passado): <i>“he <b>can</b> feel his hand”</i>, <i>“he <b>could not</b> move”</i>. Depois deles, o verbo fica na <b>forma base</b> (sem “to”, sem -s).</p><p>Usamos <b>be able to</b> (am/is/are/was/were able to) quando “can/could” não cabem — em outros tempos verbais, e para um <b>sucesso específico no passado</b>: <i>“after training, he <b>was able to</b> move his arms”</i> (ele conseguiu, numa ocasião). A negativa: <i>can’t / couldn’t / wasn’t able to</i>.</p>",
+    "examples": [
+      "has <mark>been able to</mark> feed himself and drink from a cup",
+      "<mark>could not</mark> lift his arms off his wheelchair",
+      "he <mark>was able to</mark> move the limbs again.",
+      "The next day I <mark>couldn’t</mark> even move"
+    ],
+    "exercises": [
+      {
+        "type": "mc",
+        "q": "Before the surgery, Keith ___ lift his arms. (past, negative)",
+        "options": [
+          "can’t",
+          "couldn’t",
+          "won’t",
+          "doesn’t"
+        ],
+        "answer": 1,
+        "explain_pt": "Passado negativo de ability: “couldn’t” (could not). “can’t” é presente."
+      },
+      {
+        "type": "mc",
+        "q": "After training, he ___ move his arms again. (a specific success in the past)",
+        "options": [
+          "can",
+          "could",
+          "was able to",
+          "is able"
+        ],
+        "answer": 2,
+        "explain_pt": "Para um sucesso específico no passado, usa-se “was able to” (conseguiu), como no texto. “could” serve mais para habilidade geral."
+      },
+      {
+        "type": "mc",
+        "q": "Which sentence is correct in the present?",
+        "options": [
+          "He can feels his hand.",
+          "He can feel his hand.",
+          "He cans feel his hand.",
+          "He is can feel his hand."
+        ],
+        "answer": 1,
+        "explain_pt": "Depois de “can”, o verbo fica na forma base: “can feel” (sem -s, sem “to”)."
+      },
+      {
+        "type": "gap",
+        "q": "Complete (presente, habilidade): “Now, thanks to the implant, he ___ feed himself.”",
+        "before": "Now, thanks to the implant, he",
+        "answer": "can",
+        "after": "feed himself.",
+        "hint_pt": "habilidade no presente: can + verbo base."
+      },
+      {
+        "type": "gap",
+        "q": "Complete (passado negativo, contraído): “The next day he ___ even move.”",
+        "before": "The next day he",
+        "answer": "couldn’t",
+        "after": "even move.",
+        "hint_pt": "forma contraída de “could not”.",
+        "accept": [
+          "couldn't",
+          "could not"
+        ]
+      }
+    ]
+  }
+}
