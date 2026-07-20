@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>inteligêncIA — Produtos criados com IA para aprender e viver melhor</title>
-<meta name="description" content="O grupo inteligêncIA cria cursos de idiomas que se renovam todos os dias e aplicativos de produtividade e saúde — tudo com inteligência artificial, direto no navegador.">
+<title>grupo inteligêncIA — Produtos digitais criados com inteligência artificial</title>
+<meta name="description" content="O grupo inteligêncIA desenvolve e comercializa produtos digitais das mais variadas áreas, todos criados com inteligência artificial — e constrói o produto que você precisar.">
 <meta name="theme-color" content="#0b0d14">
-<meta property="og:title" content="inteligêncIA — produtos criados com IA">
-<meta property="og:description" content="Cursos de idiomas que se renovam todos os dias e apps para o seu dia a dia. Direto no navegador, de graça.">
+<meta property="og:title" content="grupo inteligêncIA — produtos criados com IA">
+<meta property="og:description" content="Produtos digitais das mais variadas áreas, criados com inteligência artificial. E se o que você precisa ainda não existe, o grupo cria.">
 <link rel="icon" href="../hub/icon.svg" type="image/svg+xml">
 <style>
 :root{
@@ -80,16 +80,14 @@ section{position:relative;padding:72px 0}
 h2{font-size:clamp(1.7rem,3.4vw,2.4rem);letter-spacing:-.03em;line-height:1.15;margin:0 0 10px;font-weight:800}
 .lead{color:var(--ink-2);max-width:38em;margin:0 0 36px}
 
-/* produtos */
-.prodgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px}
-.prod{position:relative;display:flex;flex-direction:column;gap:12px;background:linear-gradient(165deg,var(--panel-2),var(--panel) 70%);border:1px solid var(--line);border-radius:var(--radius);padding:24px;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
+/* portfólio */
+.prodgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
+.prod{position:relative;display:flex;flex-direction:column;gap:14px;background:linear-gradient(165deg,var(--panel-2),var(--panel) 70%);border:1px solid var(--line);border-radius:var(--radius);padding:24px;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
 .prod:hover{transform:translateY(-4px);border-color:var(--brand-2);box-shadow:0 24px 50px -24px rgba(129,140,248,.35)}
-.prod .top{display:flex;align-items:center;gap:14px}
-.prod .em{width:52px;height:52px;flex:none;display:flex;align-items:center;justify-content:center;font-size:1.7rem;border-radius:14px;background:rgba(99,102,241,.16);border:1px solid var(--line)}
-.prod h3{margin:0;font-size:1.12rem;letter-spacing:-.015em}
-.prod .src{font-size:.75rem;color:var(--ink-3)}
-.prod p{margin:0;font-size:.92rem;color:var(--ink-2);flex:1}
-.prod .go{display:inline-flex;align-items:center;gap:7px;font-weight:700;font-size:.9rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.prod .em{width:56px;height:56px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;border-radius:15px;background:rgba(99,102,241,.16);border:1px solid var(--line)}
+.prod h3{margin:0;font-size:1.14rem;letter-spacing:-.015em}
+.prod .area{align-self:flex-start;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--line-2);border-radius:999px;padding:3px 11px}
+.prod .go{margin-top:auto;display:inline-flex;align-items:center;gap:7px;font-weight:700;font-size:.9rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .prod .go svg{width:15px;height:15px;color:var(--brand-2);transition:transform .18s}
 .prod:hover .go svg{transform:translateX(4px)}
 .soonwrap{margin-top:42px}
@@ -99,14 +97,21 @@ h2{font-size:clamp(1.7rem,3.4vw,2.4rem);letter-spacing:-.03em;line-height:1.15;m
 .soonchip{display:inline-flex;align-items:center;gap:9px;padding:10px 18px;border-radius:999px;border:1px dashed var(--line-2);color:var(--ink-2);font-size:.9rem;font-weight:600;background:rgba(21,25,41,.5)}
 .prodmsg{color:var(--ink-3);border:1px dashed var(--line-2);border-radius:var(--radius);padding:26px;text-align:center}
 
-/* como funciona */
-#como{background:linear-gradient(180deg,transparent,rgba(21,25,41,.55) 18%,rgba(21,25,41,.55) 82%,transparent)}
+/* o que fazemos */
+#fazemos{background:linear-gradient(180deg,transparent,rgba(21,25,41,.55) 18%,rgba(21,25,41,.55) 82%,transparent)}
 .feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
 .feat{background:rgba(11,13,20,.5);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
 .feat .fic{width:46px;height:46px;display:flex;align-items:center;justify-content:center;border-radius:13px;background:rgba(99,102,241,.16);margin-bottom:16px}
 .feat .fic svg{width:22px;height:22px;color:var(--brand-2)}
 .feat h3{margin:0 0 8px;font-size:1.05rem;letter-spacing:-.01em}
 .feat p{margin:0;font-size:.9rem;color:var(--ink-2)}
+
+/* sob medida */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;counter-reset:passo}
+.step{position:relative;background:linear-gradient(165deg,var(--panel-2),var(--panel) 70%);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+.step .num{font-size:2rem;font-weight:800;letter-spacing:-.03em;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.step h3{margin:10px 0 8px;font-size:1.05rem;letter-spacing:-.01em}
+.step p{margin:0;font-size:.9rem;color:var(--ink-2)}
 
 /* manifesto */
 .quote{max-width:760px;margin:0 auto;text-align:center}
@@ -144,8 +149,8 @@ footer{border-top:1px solid var(--line);padding:34px 0 46px;font-size:.85rem;col
     <a class="mark" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>inteligênc<span class="ia">IA</span></span></a>
     <div class="navlinks">
       <a href="#produtos">Produtos</a>
-      <a href="#como">Como funciona</a>
-      <a href="#grupo">O grupo</a>
+      <a href="#fazemos">O que fazemos</a>
+      <a href="#sobmedida">Sob medida</a>
     </div>
     <a class="btn primary sm navcta" href="../hub/">Abrir a plataforma</a>
   </div>
@@ -156,34 +161,34 @@ footer{border-top:1px solid var(--line);padding:34px 0 46px;font-size:.85rem;col
   <div class="wrap herogrid">
     <div>
       <span class="chip"><span class="dotp"></span>grupo inteligêncIA</span>
-      <h1>Produtos com <span class="g">inteligência artificial</span> para aprender e viver melhor.</h1>
-      <p class="sub">Cursos de idiomas que se renovam todos os dias com notícias reais, apps de produtividade e saúde — tudo criado com IA, aberto direto no navegador, sem instalar nada.</p>
+      <h1>Criamos <span class="g">qualquer produto</span> que você imaginar. Com inteligência artificial.</h1>
+      <p class="sub">O grupo inteligêncIA desenvolve e comercializa produtos digitais das mais variadas áreas — idiomas, saúde, produtividade e o que vier. E se o produto que você precisa ainda não existe, o grupo cria.</p>
       <div class="ctarow">
-        <a class="btn primary" href="#produtos">Conhecer os produtos</a>
-        <a class="btn" href="../hub/">Abrir a plataforma</a>
+        <a class="btn primary" href="#produtos">Ver os produtos</a>
+        <a class="btn" href="#sobmedida">Encomendar um produto</a>
       </div>
       <div class="stats">
-        <div class="stat"><b>1 aula nova</b><span>por dia, com notícia real</span></div>
-        <div class="stat"><b>A1 → C2</b><span>todos os níveis de idioma</span></div>
-        <div class="stat"><b>R$ 0</b><span>de graça, sem cadastro</span></div>
-        <div class="stat"><b>Offline</b><span>instala como app no celular</span></div>
+        <div class="stat"><b>Variados</b><span>idiomas, saúde, produtividade…</span></div>
+        <div class="stat"><b>Com IA</b><span>da ideia ao produto final</span></div>
+        <div class="stat"><b>No navegador</b><span>sem instalar nada</span></div>
+        <div class="stat"><b>Sob demanda</b><span>criamos o que você precisar</span></div>
       </div>
     </div>
     <div class="float" aria-hidden="true">
-      <div class="fcard"><div class="fem">🇬🇧</div><div><b>Meet&amp;Speak — Inglês</b><span>a aula de hoje já está pronta</span></div></div>
-      <div class="fcard"><div class="fem">🏃</div><div><b>Treinos de Corrida</b><span>sua planilha da semana</span></div></div>
-      <div class="fcard"><div class="fem">🇮🇹</div><div><b>Italiano</b><span>em breve na plataforma</span></div></div>
+      <div class="fcard"><div class="fem">🇬🇧</div><div><b>Meet&amp;Speak — Inglês</b><span>idiomas · disponível</span></div></div>
+      <div class="fcard"><div class="fem">🏃</div><div><b>Treinos de Corrida</b><span>saúde &amp; esporte · em breve</span></div></div>
+      <div class="fcard"><div class="fem">🎉</div><div><b>Planejador de Eventos</b><span>produtividade · em breve</span></div></div>
     </div>
   </div>
 </header>
 
 <section id="produtos">
   <div class="wrap">
-    <p class="eyebrow rv">Produtos</p>
-    <h2 class="rv">Um ecossistema que cresce toda semana.</h2>
-    <p class="lead rv">Cada produto nasce de uma necessidade real e é construído com IA — do primeiro rascunho à aula que chega pronta às 8h da manhã.</p>
+    <p class="eyebrow rv">Portfólio</p>
+    <h2 class="rv">Os produtos do grupo.</h2>
+    <p class="lead rv">Estes são os produtos que o grupo inteligêncIA produz e comercializa hoje. Cada um nasceu de uma necessidade real — clique para conhecer.</p>
     <div class="prodgrid" id="prodGrid"></div>
-    <div class="prodmsg rv" id="prodMsg" hidden>Não foi possível carregar a vitrine agora — conheça tudo direto na <a href="../hub/" style="color:var(--brand-2);font-weight:700">plataforma</a>.</div>
+    <div class="prodmsg rv" id="prodMsg" hidden>Não foi possível carregar o portfólio agora — conheça tudo direto na <a href="../hub/" style="color:var(--brand-2);font-weight:700">plataforma</a>.</div>
     <div class="soonwrap rv" id="soonWrap" hidden>
       <h3><span class="pulse"></span>Chegando em breve</h3>
       <div class="soonrow" id="soonRow"></div>
@@ -191,27 +196,40 @@ footer{border-top:1px solid var(--line);padding:34px 0 46px;font-size:.85rem;col
   </div>
 </section>
 
-<section id="como">
+<section id="fazemos">
   <div class="wrap">
-    <p class="eyebrow rv">Como funciona</p>
-    <h2 class="rv">Sem instalação. Sem mensalidade. Sem enrolação.</h2>
-    <p class="lead rv">Você abre, usa e volta amanhã — e o produto já evoluiu.</p>
+    <p class="eyebrow rv">O que fazemos</p>
+    <h2 class="rv">Um grupo. Produtos sem limite.</h2>
+    <p class="lead rv">A especialidade do grupo não é um assunto — é transformar qualquer assunto em produto.</p>
     <div class="feats">
       <div class="feat rv">
+        <div class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div>
+        <h3>Produtos próprios</h3>
+        <p>Criamos, mantemos e evoluímos um portfólio de produtos digitais em áreas variadas — todos reunidos na plataforma do grupo, prontos para usar.</p>
+      </div>
+      <div class="feat rv">
         <div class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 1 7 7c0 2.4-1.2 4.1-2.6 5.4-.8.8-1.4 1.9-1.4 3.1V18a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-.5c0-1.2-.6-2.3-1.4-3.1C6.2 13.1 5 11.4 5 9a7 7 0 0 1 7-7z"/><line x1="9" y1="22" x2="15" y2="22"/></svg></div>
-        <h3>Feito com IA, todos os dias</h3>
-        <p>As aulas de idiomas são geradas diariamente a partir de notícias reais de grandes veículos — leitura, escuta, escrita, fala e gramática sempre novas, no seu nível.</p>
+        <h3>Inteligência artificial em tudo</h3>
+        <p>A IA participa do processo inteiro, do primeiro rascunho à entrega. É assim que o grupo lança produtos novos em dias — não em meses.</p>
       </div>
       <div class="feat rv">
-        <div class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2.5"/><line x1="11" y1="18.5" x2="13" y2="18.5"/></svg></div>
-        <h3>No navegador e no bolso</h3>
-        <p>Todos os produtos abrem em qualquer navegador e podem ser instalados como aplicativo no celular, com a última versão funcionando até offline.</p>
+        <div class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+        <h3>Sob medida para clientes</h3>
+        <p>Precisa de um produto que ainda não existe? O grupo desenvolve sob demanda, do tamanho e do jeito que o seu problema pede.</p>
       </div>
-      <div class="feat rv">
-        <div class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
-        <h3>Sempre evoluindo</h3>
-        <p>Novos idiomas e novos aplicativos entram na plataforma o tempo todo — e aparecem aqui automaticamente, no dia em que ficam prontos.</p>
-      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sobmedida">
+  <div class="wrap">
+    <p class="eyebrow rv">Sob demanda</p>
+    <h2 class="rv">O produto que você precisar, criado para você.</h2>
+    <p class="lead rv">Qualquer necessidade pode virar um produto digital. Funciona assim:</p>
+    <div class="steps">
+      <div class="step rv"><div class="num">01</div><h3>Você conta a necessidade</h3><p>Uma conversa basta para entender o problema e desenhar a solução certa — sem tecniquês.</p></div>
+      <div class="step rv"><div class="num">02</div><h3>A IA constrói com o grupo</h3><p>Protótipo rápido, ajustes com você acompanhando e acabamento profissional.</p></div>
+      <div class="step rv"><div class="num">03</div><h3>Você recebe pronto</h3><p>Direto no navegador, instalável no celular e com evolução contínua depois da entrega.</p></div>
     </div>
   </div>
 </section>
@@ -219,7 +237,7 @@ footer{border-top:1px solid var(--line);padding:34px 0 46px;font-size:.85rem;col
 <section id="grupo">
   <div class="wrap">
     <figure class="quote rv">
-      <blockquote>“A inteligência artificial deixou de ser promessa: virou <span class="g">ferramenta de todo dia</span>. O grupo inteligêncIA existe para transformar essa ferramenta em produtos simples, úteis e bonitos.”</blockquote>
+      <blockquote>“Qualquer produto que dê para imaginar, dá para construir com <span class="g">inteligência artificial</span>. O grupo inteligêncIA existe para provar isso — um produto de cada vez.”</blockquote>
       <figcaption>grupo inteligêncIA</figcaption>
     </figure>
   </div>
@@ -228,9 +246,9 @@ footer{border-top:1px solid var(--line);padding:34px 0 46px;font-size:.85rem;col
 <section>
   <div class="wrap">
     <div class="bigcta rv">
-      <h2>Comece agora. Leva um minuto.</h2>
-      <p>Abra a plataforma, escolha um produto e experimente — de graça, sem cadastro.</p>
-      <div class="ctarow"><a class="btn primary" href="../hub/">Abrir a plataforma</a><a class="btn" href="../">Experimentar o curso de inglês</a></div>
+      <h2>Vamos criar o próximo?</h2>
+      <p>Explore o que o grupo já produz — ou encomende o produto que a sua rotina está pedindo.</p>
+      <div class="ctarow"><a class="btn primary" href="#produtos">Ver os produtos</a><a class="btn" href="../hub/">Abrir a plataforma</a></div>
     </div>
   </div>
 </section>
@@ -239,9 +257,9 @@ footer{border-top:1px solid var(--line);padding:34px 0 46px;font-size:.85rem;col
   <div class="wrap footrow">
     <span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;color:var(--brand)"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>inteligênc<span class="ia">IA</span></span></span>
     <div class="links">
-      <a href="../hub/">Plataforma</a>
-      <a href="../">Meet&amp;Speak</a>
       <a href="#produtos">Produtos</a>
+      <a href="#sobmedida">Sob medida</a>
+      <a href="../hub/">Plataforma</a>
     </div>
   </div>
 </footer>
@@ -251,7 +269,9 @@ footer{border-top:1px solid var(--line);padding:34px 0 46px;font-size:.85rem;col
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
 
-/* ===== vitrine: mesma fonte da plataforma (hub/apps.json) ===== */
+/* ===== portfólio: mesma fonte da plataforma (hub/apps.json) =====
+   Aqui só apresentamos QUAIS produtos existem (nome + área);
+   as características de cada um ficam no próprio produto. */
 (async function(){
   let cat=null;
   try{
@@ -274,10 +294,10 @@ const esc=s=>String(s??"").replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&g
     el.href=/^https?:/i.test(a.url)?a.url:"../hub/"+a.url;
     if(/^https?:/i.test(a.url)){el.target="_blank";el.rel="noopener";}
     el.innerHTML=
-      '<div class="top"><div class="em">'+esc(a.emoji||"✨")+'</div><div><h3>'+esc(a.nome)+"</h3>"+
-      '<div class="src">'+esc([catNome(a.categoria),a.origem].filter(Boolean).join(" · "))+"</div></div></div>"+
-      "<p>"+esc(a.descricao||"")+"</p>"+
-      '<span class="go">Abrir agora <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>';
+      '<div class="em">'+esc(a.emoji||"✨")+"</div>"+
+      "<h3>"+esc(a.nome)+"</h3>"+
+      '<span class="area">'+esc(catNome(a.categoria)||"produto")+"</span>"+
+      '<span class="go">Conhecer <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>';
     grid.appendChild(el);
   });
   if(breve.length){
