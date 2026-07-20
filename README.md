@@ -1,5 +1,14 @@
 # Meet&Speak
 
+## inteligêncIA — a landing page do grupo (`inteligencia/`)
+
+A página de divulgação do grupo, para quem ainda não conhece os produtos:
+`https://<seu-usuario>.github.io/meet-speak/inteligencia/`. Hero com o manifesto do grupo,
+vitrine de produtos e chamadas para a plataforma. A vitrine lê o mesmo `hub/apps.json` da
+plataforma: produtos com `"status": "ativo"` viram cards com botão de abrir, e os
+`"em-breve"` aparecem na faixa "Chegando em breve" — ou seja, adicionar um produto no hub
+já atualiza a landing, sem editar mais nada.
+
 ## inteligêncIA — a central de cursos e aplicativos (`hub/`)
 
 A pasta `hub/` é a **porta de entrada da plataforma**: uma página única que reúne todos os

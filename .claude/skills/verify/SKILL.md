@@ -9,6 +9,7 @@ Site 100% estático (GitHub Pages), sem build e sem dependências. Duas superfí
 
 - `/` — Meet&Speak, o curso de inglês (aulas em `lessons/*.json`).
 - `/hub/` — inteligêncIA, a central de cursos e apps (catálogo em `hub/apps.json`).
+- `/inteligencia/` — landing page do grupo; a vitrine de produtos lê `../hub/apps.json` (ativos = cards clicáveis, em-breve = faixa "Chegando em breve"; se o fetch falhar, mostra `#prodMsg` com link para a plataforma). URLs relativas do catálogo são resolvidas contra `../hub/`.
 
 ## Servir
 
