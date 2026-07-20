@@ -1,6 +1,6 @@
 # Meet&Speak
 
-## Meet&Hub — a central de cursos e aplicativos (`hub/`)
+## inteligêncIA — a central de cursos e aplicativos (`hub/`)
 
 A pasta `hub/` é a **porta de entrada da plataforma**: uma página única que reúne todos os
 cursos de idiomas (inglês, italiano…) e aplicativos (planejador de eventos, treinos de

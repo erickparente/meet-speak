@@ -1,7 +1,7 @@
 {
   "_como_adicionar": "Para adicionar um app (Lovable, Claude, GitHub Pages…): publique o app, copie a URL e acrescente um objeto na lista 'apps' abaixo. Salve (Commit changes) e ele aparece no hub. Campos: id (único, sem espaços), nome, descricao, categoria (um id de 'categorias'), emoji, url, status ('ativo' ou 'em-breve'), origem (onde o app foi criado) e tags (opcional).",
   "plataforma": {
-    "nome": "Meet&Hub",
+    "nome": "inteligêncIA",
     "slogan": "Seus cursos de idiomas e aplicativos, todos em um só lugar."
   },
   "categorias": [

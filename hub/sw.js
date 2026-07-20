@@ -1,7 +1,7 @@
-/* Meet&Hub service worker — network-first com fallback ao cache.
+/* inteligêncIA service worker — network-first com fallback ao cache.
    Online: catálogo sempre fresco (app novo aparece na hora).
    Offline: o hub e o último catálogo carregado continuam funcionando. */
-const CACHE = "meethub-v1";
+const CACHE = "inteligencia-v1";
 const CORE = ["./", "./index.html", "./apps.json", "./manifest.json", "./icon.svg", "./icon-maskable.svg"];
 
 self.addEventListener("install", e => {

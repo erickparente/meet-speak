@@ -1,14 +1,14 @@
 ---
 name: verify
-description: How to run and verify this repo (Meet&Speak + Meet&Hub) locally — static site, no build.
+description: How to run and verify this repo (Meet&Speak + inteligêncIA hub) locally — static site, no build.
 ---
 
-# Verificando o Meet&Speak / Meet&Hub
+# Verificando o Meet&Speak / inteligêncIA
 
 Site 100% estático (GitHub Pages), sem build e sem dependências. Duas superfícies:
 
 - `/` — Meet&Speak, o curso de inglês (aulas em `lessons/*.json`).
-- `/hub/` — Meet&Hub, a central de cursos e apps (catálogo em `hub/apps.json`).
+- `/hub/` — inteligêncIA, a central de cursos e apps (catálogo em `hub/apps.json`).
 
 ## Servir
 
