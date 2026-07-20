@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>inteligêncIA — Cursos & Aplicativos</title>
+<meta name="description" content="Seus cursos de idiomas e aplicativos, todos em um só lugar.">
+<meta name="theme-color" content="#4f46e5">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
+<style>
+:root{
+  --bg:#f6f5f1; --card:#ffffff; --ink:#1c2230; --ink-2:#5b6472; --ink-3:#8a92a0;
+  --brand:#4f46e5; --brand-soft:#eef0fe; --brand-ink:#3730a3;
+  --ok:#16803c; --ok-soft:#e8f5ec; --bad:#b3261e; --bad-soft:#fdecea;
+  --warn:#92400e; --warn-soft:#fef3e2;
+  --line:#e5e3dc; --hl:#fff3c4;
+  --radius:14px; --shadow:0 1px 2px rgba(20,24,40,.05),0 8px 24px -12px rgba(20,24,40,.12);
+}
+[data-theme="dark"]{
+  --bg:#12141c; --card:#1b1e2a; --ink:#e8eaf2; --ink-2:#a5abbd; --ink-3:#767d90;
+  --brand:#8b85f7; --brand-soft:#262a45; --brand-ink:#c3c0ff;
+  --ok:#4ade80; --ok-soft:#12301d; --bad:#f87171; --bad-soft:#3a1715;
+  --warn:#fbbf24; --warn-soft:#33230a;
+  --line:#2c3040; --hl:#4a3f14;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.5);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--brand)}
+button{font:inherit;cursor:pointer}
+.wrap{max-width:960px;margin:0 auto;padding:0 16px}
+header.top{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topbar{display:flex;align-items:center;gap:10px;padding:10px 0}
+.logo{font-weight:800;font-size:1.15rem;letter-spacing:-.02em;display:flex;align-items:center;gap:8px}
+.logo .dot{color:var(--brand)}
+.logo svg{width:22px;height:22px;color:var(--brand)}
+.spacer{flex:1}
+.iconbtn{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink-2)}
+.iconbtn:hover{color:var(--ink)}
+.iconbtn svg{width:18px;height:18px}
+.hero{padding:30px 0 6px}
+.hero h1{font-size:1.75rem;line-height:1.2;margin:0 0 .25em;letter-spacing:-.02em}
+.hero h1 .dot{color:var(--brand)}
+.hero p{margin:0;color:var(--ink-2)}
+.hero .stats{margin-top:8px;font-size:.85rem;color:var(--ink-3)}
+.controls{display:flex;flex-direction:column;gap:12px;padding:18px 0 6px}
+.search{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:9px 14px;box-shadow:var(--shadow)}
+.search svg{width:17px;height:17px;color:var(--ink-3);flex:none}
+.search input{flex:1;border:none;outline:none;background:transparent;font:inherit;color:var(--ink);min-width:0}
+.cats{display:flex;flex-wrap:wrap;gap:8px}
+.catbtn{display:inline-flex;align-items:center;gap:6px;padding:6px 13px;border-radius:999px;font-size:.83rem;font-weight:600;background:var(--card);color:var(--ink-2);border:1px solid var(--line)}
+.catbtn .n{font-size:.72rem;font-weight:700;background:var(--bg);border-radius:999px;padding:1px 7px;color:var(--ink-3)}
+.catbtn.on{background:var(--brand-soft);color:var(--brand-ink);border-color:var(--brand)}
+.catbtn.on .n{background:color-mix(in srgb,var(--brand) 18%,transparent);color:var(--brand-ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:14px;padding:16px 0 8px}
+.appcard{position:relative;display:flex;flex-direction:column;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;color:inherit;text-decoration:none;transition:transform .12s ease,border-color .12s ease}
+a.appcard:hover{transform:translateY(-2px);border-color:var(--brand)}
+.appcard .head{display:flex;align-items:center;gap:12px;padding-right:30px}
+.appcard.soon .head{padding-right:76px}
+.appcard .em{width:46px;height:46px;flex:none;display:flex;align-items:center;justify-content:center;font-size:1.5rem;border-radius:12px;background:var(--brand-soft)}
+.appcard h2{font-size:1.02rem;margin:0;letter-spacing:-.01em;line-height:1.3}
+.appcard .src{font-size:.72rem;color:var(--ink-3);margin-top:1px}
+.appcard p{margin:0;font-size:.87rem;color:var(--ink-2)}
+.appcard .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
+.appcard .tag{font-size:.7rem;font-weight:600;padding:2px 9px;border-radius:999px;background:var(--bg);border:1px solid var(--line);color:var(--ink-2)}
+.badge{position:absolute;top:12px;right:12px;font-size:.68rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:3px 9px;border-radius:999px}
+.badge.soon{background:var(--warn-soft);color:var(--warn)}
+.appcard.soon{opacity:.72}
+.appcard.soon .em{filter:grayscale(.35)}
+.star{position:absolute;top:8px;right:8px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:none;background:transparent;border-radius:8px;color:var(--ink-3)}
+.star:hover{color:var(--warn)}
+.star.on{color:#eab308}
+.star svg{width:17px;height:17px}
+.appcard.fav{border-color:color-mix(in srgb,#eab308 55%,var(--line))}
+.applocal{display:flex;align-items:center;gap:8px;margin-top:2px}
+.localtag{display:inline-flex;align-items:center;font-size:.68rem;font-weight:700;color:var(--warn);background:var(--warn-soft);padding:2px 9px;border-radius:999px}
+.applocal .rm{margin-left:auto;border:none;background:none;color:var(--ink-3);font-size:.72rem;font-weight:600;padding:2px 8px;border-radius:6px}
+.applocal .rm:hover{color:var(--bad);background:var(--bad-soft)}
+.addcard{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-height:150px;border:2px dashed var(--line);border-radius:var(--radius);background:transparent;color:var(--ink-3);font:inherit;font-weight:700;cursor:pointer;transition:border-color .12s,color .12s}
+.addcard:hover{border-color:var(--brand);color:var(--brand)}
+.addcard .plus{width:42px;height:42px;border-radius:12px;background:var(--brand-soft);color:var(--brand);display:flex;align-items:center;justify-content:center;font-size:1.5rem}
+.localbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px;padding:10px 14px;border:1px solid color-mix(in srgb,var(--warn) 35%,var(--line));background:var(--warn-soft);color:var(--warn);border-radius:12px;font-size:.85rem;font-weight:600}
+.localbar .spacer{flex:1}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-weight:600;font-size:.85rem}
+.btn.primary{background:var(--brand);border-color:var(--brand);color:#fff}
+.btn.primary:hover{filter:brightness(1.07)}
+dialog{border:none;border-radius:var(--radius);background:var(--card);color:var(--ink);box-shadow:var(--shadow);padding:0;width:min(460px,calc(100vw - 32px))}
+dialog::backdrop{background:rgba(10,12,20,.45);backdrop-filter:blur(2px)}
+.dlghead{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 18px;border-bottom:1px solid var(--line);font-weight:700}
+.dlgbody{padding:16px 18px;display:flex;flex-direction:column;gap:12px}
+.dlgfoot{display:flex;gap:8px;justify-content:flex-end;padding:14px 18px;border-top:1px solid var(--line)}
+.field{display:flex;flex-direction:column;gap:5px}
+.field label{font-size:.78rem;font-weight:700;color:var(--ink-2)}
+.field input,.field select,.field textarea{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px 12px;outline:none;width:100%}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--brand)}
+.field .hint{font-size:.72rem;color:var(--ink-3)}
+.emojirow{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.emojirow button{width:34px;height:34px;border-radius:9px;border:1px solid var(--line);background:var(--bg);font-size:1.05rem;padding:0;line-height:1}
+.emojirow button:hover{border-color:var(--brand)}
+.persist p{margin:0}
+.persist ol{margin:0;padding-left:20px;font-size:.88rem;color:var(--ink-2)}
+.persist textarea{width:100%;font-family:ui-monospace,monospace;font-size:.72rem;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px}
+.empty{padding:40px 0;text-align:center;color:var(--ink-3)}
+.howto{margin:14px 0 0;background:var(--card);border:1px dashed var(--line);border-radius:var(--radius);padding:4px 16px}
+.howto summary{cursor:pointer;font-weight:600;padding:10px 0;color:var(--ink-2)}
+.howto ol{margin:4px 0 14px;padding-left:20px;color:var(--ink-2);font-size:.9rem}
+.howto code{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:1px 6px;font-size:.82em}
+footer{padding:26px 0 40px;text-align:center;font-size:.8rem;color:var(--ink-3)}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap topbar">
+    <div class="logo" id="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span id="logoName">inteligênc<span class="dot">IA</span></span></div>
+    <div class="spacer"></div>
+    <button class="iconbtn" id="themeBtn" title="Tema claro/escuro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg></button>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <h1 id="heroTitle">inteligênc<span class="dot">IA</span></h1>
+    <p id="heroTagline">Seus cursos de idiomas e aplicativos, todos em um só lugar.</p>
+    <div class="stats" id="stats"></div>
+  </section>
+
+  <section class="controls">
+    <label class="search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input id="q" type="search" placeholder="Buscar curso ou aplicativo…" autocomplete="off">
+    </label>
+    <div class="cats" id="cats"></div>
+  </section>
+
+  <div class="localbar" id="localBar" hidden><span id="localBarMsg"></span><span class="spacer"></span><button class="btn primary" id="localBarGit" type="button">Salvar no GitHub</button></div>
+
+  <section class="grid" id="grid" aria-live="polite"></section>
+  <div class="empty" id="empty" hidden>Nenhum app encontrado. Tente outra busca ou categoria.</div>
+
+  <details class="howto" id="howto">
+    <summary>Como adicionar um novo produto</summary>
+    <ol>
+      <li>Publique o produto onde ele foi criado (Lovable, Claude…) e copie a URL.</li>
+      <li>Toque no cartão <b>+ Adicionar produto</b>, preencha nome e link — ele já aparece na plataforma, salvo neste navegador.</li>
+      <li>Para valer em todos os aparelhos, toque em <b>Salvar no GitHub</b> e faça o <em>Commit changes</em>; o passo a passo aparece na tela.</li>
+    </ol>
+    <ol>
+      <li>Prefere editar na mão? O catálogo é o arquivo <code>hub/apps.json</code> do repositório.</li>
+      <li>Para tirar um produto do ar sem apagar, troque o status dele para <code>"em-breve"</code>.</li>
+      <li>Para renomear a plataforma ou mexer nas categorias, edite o mesmo arquivo.</li>
+    </ol>
+  </details>
+</main>
+
+<dialog id="addDlg">
+  <div class="dlghead"><span>Adicionar produto</span><button type="button" class="iconbtn" id="dlgClose" title="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
+  <form id="addForm">
+    <div class="dlgbody">
+      <div class="field"><label for="fNome">Nome *</label><input id="fNome" required placeholder="Ex.: Curso de Francês"></div>
+      <div class="field"><label for="fUrl">Link do produto</label><input id="fUrl" inputmode="url" placeholder="Cole a URL publicada (Lovable, Claude…)"><span class="hint">Sem link, o produto entra como “em breve”.</span></div>
+      <div class="field"><label for="fCat">Categoria</label><select id="fCat"></select><input id="fCatNova" placeholder="Nome da nova categoria" hidden></div>
+      <div class="field"><label for="fEmoji">Emoji</label><input id="fEmoji" maxlength="8" placeholder="✨"><div class="emojirow" id="emojiRow"></div></div>
+      <div class="field"><label for="fDesc">Descrição</label><textarea id="fDesc" rows="2" placeholder="Uma frase sobre o produto (opcional)"></textarea></div>
+    </div>
+    <div class="dlgfoot"><button type="button" class="btn" id="dlgCancel">Cancelar</button><button type="submit" class="btn primary">Adicionar</button></div>
+  </form>
+  <div id="doneStep" hidden>
+    <div class="dlgbody persist">
+      <p id="doneMsg" style="font-weight:600">✅ Produto adicionado! Ele já aparece na plataforma, salvo neste navegador.</p>
+      <p style="font-size:.88rem;color:var(--ink-2)">Para ficar permanente — e aparecer em todos os seus aparelhos — salve o catálogo no GitHub:</p>
+      <ol>
+        <li>Toque em <b>Salvar no GitHub</b>: o catálogo atualizado é copiado e o editor abre em outra aba.</li>
+        <li>No editor, apague tudo (<b>Ctrl/⌘&nbsp;A</b> e <b>Delete</b>) e cole (<b>Ctrl/⌘&nbsp;V</b>).</li>
+        <li>Clique em <b>Commit changes</b>. No ar em ~1 minuto.</li>
+      </ol>
+      <details><summary style="cursor:pointer;font-size:.8rem;color:var(--ink-3)">Se a cópia automática falhar, copie o catálogo daqui</summary><textarea id="catalogOut" rows="7" readonly></textarea></details>
+    </div>
+    <div class="dlgfoot"><button type="button" class="btn" id="doneLater">Depois</button><button type="button" class="btn primary" id="doneGit">Salvar no GitHub</button></div>
+  </div>
+</dialog>
+
+<footer>Feito com apps do Lovable, do Claude e além · <a href="../inteligencia/">Conheça o grupo inteligêncIA</a> · <a href="../">Meet&amp;Speak</a></footer>
+
+<script>
+"use strict";
+/* ============ storage seguro (funciona mesmo sem localStorage) ============ */
+const mem={};
+const store={
+  get(k,d){try{const v=localStorage.getItem(k);return v==null?(k in mem?mem[k]:d):JSON.parse(v)}catch(e){return k in mem?mem[k]:d}},
+  set(k,v){mem[k]=v;try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+};
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
+const norm=s=>String(s??"").toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu,"");
+
+/* ============ tema (mesma chave do Meet&Speak: preferência compartilhada) ============ */
+(function(){
+  const saved=store.get("ms_theme",null);
+  const dark=saved?saved==="dark":matchMedia("(prefers-color-scheme: dark)").matches;
+  if(dark)document.documentElement.dataset.theme="dark";
+})();
+$("#themeBtn").onclick=()=>{
+  const d=document.documentElement.dataset.theme==="dark";
+  document.documentElement.dataset.theme=d?"":"dark";
+  store.set("ms_theme",d?"light":"dark");
+};
+
+/* ============ catálogo ============ */
+let RAW=null;   // apps.json como veio do repositório
+let DATA=null;  // visão mesclada: catálogo + produtos salvos neste navegador
+let cat="todos";
+let favs=store.get("hub_favs",[]);
+let localApps=store.get("hub_local_apps",[]);
+let localCats=store.get("hub_local_cats",[]);
+
+const slug=s=>norm(s).replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"")||"app";
+
+/* mescla catálogo + locais; descarta locais que já foram commitados no apps.json */
+function sync(){
+  const nA=localApps.length,nC=localCats.length;
+  localApps=localApps.filter(l=>{
+    const c=(RAW.apps||[]).find(a=>a.id===l.id);
+    return !(c&&c.status==="ativo"&&c.url===l.url);
+  });
+  localCats=localCats.filter(lc=>!(RAW.categorias||[]).some(c=>c.id===lc.id));
+  if(localApps.length!==nA)store.set("hub_local_apps",localApps);
+  if(localCats.length!==nC)store.set("hub_local_cats",localCats);
+  const apps=[];
+  (RAW.apps||[]).forEach(a=>{
+    const ov=localApps.find(l=>l.id===a.id);
+    apps.push(ov?{...ov,_local:true}:a);
+  });
+  localApps.forEach(l=>{if(!apps.some(a=>a.id===l.id))apps.push({...l,_local:true})});
+  DATA={...RAW,categorias:(RAW.categorias||[]).concat(localCats),apps};
+}
+
+async function load(){
+  try{
+    const r=await fetch("apps.json",{cache:"no-cache"});
+    if(!r.ok)throw new Error(r.status);
+    RAW=await r.json();
+  }catch(e){
+    $("#grid").innerHTML="";
+    $("#empty").hidden=false;
+    $("#empty").textContent="Não foi possível carregar o catálogo (hub/apps.json). Verifique a conexão e recarregue.";
+    return;
+  }
+  sync();
+  const p=DATA.plataforma||{};
+  if(p.nome){
+    document.title=p.nome+" — Cursos & Aplicativos";
+    const html=brandName(p.nome);
+    $("#heroTitle").innerHTML=html;
+    $("#logoName").innerHTML=html;
+  }
+  if(p.slogan)$("#heroTagline").textContent=p.slogan;
+  renderCats();
+  render();
+  updateLocalBar();
+}
+
+/* destaque da marca: "a&b" pinta o "&"; nome terminado em "IA" maiúsculo pinta o "IA" */
+function brandName(n){
+  let m=n.match(/^(.*?)&(.*)$/);
+  if(m)return esc(m[1])+'<span class="dot">&amp;</span>'+esc(m[2]);
+  m=n.match(/^(.+)(IA)$/);
+  if(m)return esc(m[1])+'<span class="dot">IA</span>';
+  return esc(n);
+}
+
+function apps(){return (DATA.apps||[]).filter(a=>a&&a.id)}
+function catOf(id){return (DATA.categorias||[]).find(c=>c.id===id)}
+
+function renderCats(){
+  const counts={};
+  apps().forEach(a=>counts[a.categoria]=(counts[a.categoria]||0)+1);
+  const box=$("#cats");
+  box.innerHTML="";
+  const mk=(id,label,n)=>{
+    const b=document.createElement("button");
+    b.className="catbtn"+(cat===id?" on":"");
+    b.innerHTML=esc(label)+' <span class="n">'+n+"</span>";
+    b.onclick=()=>{cat=id;renderCats();render()};
+    box.appendChild(b);
+  };
+  mk("todos","Todos",apps().length);
+  (DATA.categorias||[]).forEach(c=>{if(counts[c.id])mk(c.id,(c.emoji?c.emoji+" ":"")+c.nome,counts[c.id])});
+  const live=apps().filter(a=>a.status==="ativo").length;
+  const soon=apps().length-live;
+  $("#stats").textContent=live+(live===1?" app disponível":" apps disponíveis")+(soon?" · "+soon+" em breve":"");
+}
+
+function card(a){
+  const active=a.status==="ativo"&&a.url;
+  const el=document.createElement(active?"a":"div");
+  el.className="appcard"+(active?"":" soon")+(favs.includes(a.id)?" fav":"");
+  if(active){el.href=a.url;if(/^https?:/i.test(a.url)){el.target="_blank";el.rel="noopener";}}
+  const c=catOf(a.categoria);
+  el.innerHTML=
+    '<div class="head"><div class="em">'+esc(a.emoji||"✨")+"</div><div>"+
+    "<h2>"+esc(a.nome)+"</h2>"+
+    '<div class="src">'+esc([c&&c.nome,a.origem].filter(Boolean).join(" · "))+"</div></div></div>"+
+    "<p>"+esc(a.descricao||"")+"</p>"+
+    '<div class="tags">'+(a.tags||[]).map(t=>'<span class="tag">'+esc(t)+"</span>").join("")+"</div>"+
+    (a._local?'<div class="applocal"><span class="localtag">salvo neste navegador</span><button class="rm" type="button">remover</button></div>':"")+
+    (active?"":'<span class="badge soon">Em breve</span>');
+  if(a._local){
+    el.querySelector(".rm").onclick=e=>{
+      e.preventDefault();e.stopPropagation();
+      if(!confirm('Remover "'+a.nome+'" deste navegador?'))return;
+      localApps=localApps.filter(l=>l.id!==a.id);
+      store.set("hub_local_apps",localApps);
+      sync();renderCats();render();updateLocalBar();
+    };
+  }
+  if(active){
+    const b=document.createElement("button");
+    b.className="star"+(favs.includes(a.id)?" on":"");
+    b.title=favs.includes(a.id)?"Remover dos favoritos":"Favoritar";
+    b.innerHTML='<svg viewBox="0 0 24 24" fill="'+(favs.includes(a.id)?"currentColor":"none")+'" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
+    b.onclick=e=>{
+      e.preventDefault();e.stopPropagation();
+      favs=favs.includes(a.id)?favs.filter(x=>x!==a.id):favs.concat(a.id);
+      store.set("hub_favs",favs);
+      render();
+    };
+    el.appendChild(b);
+  }
+  return el;
+}
+
+function render(){
+  const q=norm($("#q").value);
+  const list=apps()
+    .filter(a=>cat==="todos"||a.categoria===cat)
+    .filter(a=>!q||norm([a.nome,a.descricao,a.origem,(a.tags||[]).join(" ")].join(" ")).includes(q))
+    .sort((x,y)=>{
+      const fx=favs.includes(x.id)?0:1, fy=favs.includes(y.id)?0:1;
+      if(fx!==fy)return fx-fy;
+      const sx=x.status==="ativo"?0:1, sy=y.status==="ativo"?0:1;
+      return sx-sy;
+    });
+  const g=$("#grid");
+  g.innerHTML="";
+  list.forEach(a=>g.appendChild(card(a)));
+  const add=document.createElement("button");
+  add.type="button";add.className="addcard";
+  add.innerHTML='<span class="plus">+</span>Adicionar produto';
+  add.onclick=openAdd;
+  g.appendChild(add);
+  $("#empty").hidden=list.length>0;
+  if(list.length===0)$("#empty").textContent="Nenhum app encontrado. Tente outra busca ou categoria.";
+}
+
+$("#q").addEventListener("input",render);
+
+/* ============ adicionar produto ============ */
+const dlg=$("#addDlg");
+const EMOJIS=["🇮🇹","🇫🇷","🇪🇸","🇩🇪","🇯🇵","🗣️","📚","🧠","🎉","🗓️","🏃","💪","🍳","💰","✨"];
+EMOJIS.forEach(em=>{
+  const b=document.createElement("button");
+  b.type="button";b.textContent=em;b.title=em;
+  b.onclick=()=>{$("#fEmoji").value=em};
+  $("#emojiRow").appendChild(b);
+});
+
+let catTouched=false;
+function openAdd(){
+  $("#addForm").hidden=false;$("#doneStep").hidden=true;
+  $("#addForm").reset();
+  fillCatSelect();
+  $("#fCatNova").hidden=true;
+  catTouched=false;
+  dlg.showModal();
+  $("#fNome").focus();
+}
+function fillCatSelect(){
+  const s=$("#fCat");s.innerHTML="";
+  (DATA?DATA.categorias:[]).forEach(c=>{
+    const o=document.createElement("option");
+    o.value=c.id;o.textContent=(c.emoji?c.emoji+" ":"")+c.nome;
+    s.appendChild(o);
+  });
+  const o=document.createElement("option");
+  o.value="__nova__";o.textContent="➕ Nova categoria…";
+  s.appendChild(o);
+}
+$("#fCat").onchange=()=>{
+  catTouched=true;
+  const nova=$("#fCat").value==="__nova__";
+  $("#fCatNova").hidden=!nova;
+  if(nova)$("#fCatNova").focus();
+};
+
+/* id único: um "em breve" do catálogo com o mesmo nome é reaproveitado (vira ativação) */
+function newId(nome){
+  const s=slug(nome);
+  const ph=(RAW.apps||[]).find(a=>a.status!=="ativo"&&slug(a.nome)===s&&!localApps.some(l=>l.id===a.id));
+  if(ph)return ph.id;
+  const taken=id=>localApps.some(l=>l.id===id)||(RAW.apps||[]).some(a=>a.id===id&&a.status==="ativo");
+  if(!taken(s))return s;
+  let i=2;while(taken(s+"-"+i))i++;
+  return s+"-"+i;
+}
+function origemDe(u){
+  if(!u)return"";
+  if(/lovable/i.test(u))return"Lovable";
+  if(/claude/i.test(u))return"Claude";
+  if(!/^https?:/i.test(u))return"GitHub Pages";
+  try{return new URL(u).hostname.replace(/^www\./,"")}catch(e){return""}
+}
+
+$("#addForm").onsubmit=e=>{
+  e.preventDefault();
+  const nome=$("#fNome").value.trim();
+  if(!nome){$("#fNome").focus();return}
+  let url=$("#fUrl").value.trim();
+  if(url&&!/^(https?:\/\/|\.{0,2}\/)/i.test(url))url="https://"+url;
+  let catId=$("#fCat").value;
+  if(catId==="__nova__"){
+    const cn=$("#fCatNova").value.trim();
+    if(!cn){$("#fCatNova").focus();return}
+    catId=slug(cn);
+    if(!DATA.categorias.some(c=>c.id===catId)){
+      localCats.push({id:catId,nome:cn});
+      store.set("hub_local_cats",localCats);
+    }
+  }
+  const id=newId(nome);
+  /* ativando um "em breve" do catálogo: herda emoji, tags e categoria não preenchidos */
+  const base=(RAW.apps||[]).find(a=>a.id===id);
+  localApps.push({
+    id,nome,
+    descricao:$("#fDesc").value.trim(),
+    categoria:(base&&!catTouched)?base.categoria:catId,
+    emoji:$("#fEmoji").value.trim()||(base&&base.emoji)||"✨",
+    url,status:url?"ativo":"em-breve",
+    origem:origemDe(url),tags:(base&&base.tags)||[]
+  });
+  store.set("hub_local_apps",localApps);
+  sync();renderCats();render();updateLocalBar();
+  $("#doneMsg").textContent="✅ Produto adicionado! Ele já aparece na plataforma, salvo neste navegador.";
+  $("#addForm").hidden=true;$("#doneStep").hidden=false;
+};
+
+function updateLocalBar(){
+  const n=localApps.length;
+  $("#localBar").hidden=n===0;
+  if(n)$("#localBarMsg").textContent=n===1?"1 produto salvo só neste navegador.":n+" produtos salvos só neste navegador.";
+}
+
+/* ============ salvar no GitHub (copia o apps.json atualizado e abre o editor) ============ */
+function catalogoAtualizado(){
+  const semFlag=a=>{const{_local,...r}=a;return r};
+  return JSON.stringify({...RAW,categorias:DATA.categorias,apps:DATA.apps.map(semFlag)},null,2)+"\n";
+}
+function editUrl(){
+  const m=location.hostname.match(/^([\w-]+)\.github\.io$/i);
+  const seg=location.pathname.split("/").filter(Boolean);
+  const owner=m?m[1]:"erickparente";
+  const repo=(m&&seg.length)?seg[0]:"meet-speak";
+  return "https://github.com/"+owner+"/"+repo+"/edit/main/hub/apps.json";
+}
+async function salvarNoGitHub(){
+  const txt=catalogoAtualizado();
+  const out=$("#catalogOut");
+  out.value=txt;
+  try{await navigator.clipboard.writeText(txt)}
+  catch(e){out.closest("details").open=true;out.select();try{document.execCommand("copy")}catch(_){}}
+  window.open(editUrl(),"_blank","noopener");
+}
+$("#doneGit").onclick=salvarNoGitHub;
+$("#doneLater").onclick=()=>dlg.close();
+$("#dlgClose").onclick=()=>dlg.close();
+$("#dlgCancel").onclick=()=>dlg.close();
+$("#localBarGit").onclick=()=>{
+  $("#doneMsg").textContent="Você tem produtos salvos só neste navegador.";
+  $("#addForm").hidden=true;$("#doneStep").hidden=false;
+  dlg.showModal();
+};
+
+load();
+
+/* ============ PWA ============ */
+if("serviceWorker"in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});
+</script>
+</body>
+</html>

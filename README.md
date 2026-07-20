@@ -1,5 +1,37 @@
 # Meet&Speak
 
+## inteligêncIA — a landing page do grupo (`inteligencia/`)
+
+A página de divulgação do grupo, para quem ainda não conhece os produtos:
+`https://<seu-usuario>.github.io/meet-speak/inteligencia/`. Hero com o manifesto do grupo,
+vitrine de produtos e chamadas para a plataforma. A vitrine lê o mesmo `hub/apps.json` da
+plataforma: produtos com `"status": "ativo"` viram cards com botão de abrir, e os
+`"em-breve"` aparecem na faixa "Chegando em breve" — ou seja, adicionar um produto no hub
+já atualiza a landing, sem editar mais nada.
+
+## inteligêncIA — a central de cursos e aplicativos (`hub/`)
+
+A pasta `hub/` é a **porta de entrada da plataforma**: uma página única que reúne todos os
+cursos de idiomas (inglês, italiano…) e aplicativos (planejador de eventos, treinos de
+corrida…) criados no Lovable, no Claude ou em qualquer outro lugar. Abra em
+`https://<seu-usuario>.github.io/meet-speak/hub/` — também é um PWA instalável, com busca,
+filtro por categoria e favoritos.
+
+**Para adicionar um produto novo:** publique-o na plataforma onde foi criado (no Lovable:
+*Publish* → copie a URL; no Claude: publique o artifact/site e copie o link) e, na própria
+página do hub, toque no cartão **“+ Adicionar produto”**: preencha nome e link e ele aparece
+na hora, salvo no navegador. Para valer em todos os aparelhos, toque em **“Salvar no
+GitHub”** — a página copia o `hub/apps.json` já atualizado e abre o editor do GitHub; é só
+apagar o conteúdo antigo, colar e fazer *Commit changes*. O arquivo `hub/apps.json` continua
+sendo o catálogo oficial e também pode ser editado à mão (apps com `"status": "em-breve"`
+aparecem como “em breve”; categorias e o nome da plataforma se editam nele também).
+
+- `hub/index.html` — a página do hub (lê o catálogo e desenha os cards).
+- `hub/apps.json` — o catálogo: plataforma, categorias e lista de apps.
+- `hub/manifest.json`, `hub/sw.js`, `hub/icon*.svg` — PWA do hub (instalação + offline).
+
+## Meet&Speak — o curso de inglês
+
 Plataforma pessoal de estudo de inglês (nível B1–B2): todos os dias às 8h (horário de Brasília),
 uma automação busca uma notícia real recém-publicada em um grande veículo de língua inglesa
 (BBC, CNN, Reuters, Guardian, AP…) e constrói sobre ela a aula do dia com
