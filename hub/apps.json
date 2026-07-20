@@ -1,5 +1,5 @@
 {
-  "_como_adicionar": "Para adicionar um app (Lovable, Claude, GitHub Pages…): publique o app, copie a URL e acrescente um objeto na lista 'apps' abaixo. Salve (Commit changes) e ele aparece no hub. Campos: id (único, sem espaços), nome, descricao, categoria (um id de 'categorias'), emoji, url, status ('ativo' ou 'em-breve'), origem (onde o app foi criado) e tags (opcional).",
+  "_como_adicionar": "O jeito mais fácil de adicionar um produto é pela própria plataforma: botão '+ Adicionar produto' → preencha nome e link → 'Salvar no GitHub' (a página copia este arquivo já atualizado; é só colar aqui e fazer o Commit changes). Este arquivo continua sendo o catálogo oficial e pode ser editado à mão: cada item de 'apps' tem id (único, sem espaços), nome, descricao, categoria (um id de 'categorias'), emoji, url, status ('ativo' ou 'em-breve'), origem e tags (opcional).",
   "plataforma": {
     "nome": "inteligêncIA",
     "slogan": "Seus cursos de idiomas e aplicativos, todos em um só lugar."
@@ -24,7 +24,7 @@
     {
       "id": "italiano",
       "nome": "Italiano",
-      "descricao": "Curso diário de italiano no mesmo formato do Meet&Speak. Publique o app e cole a URL aqui.",
+      "descricao": "Curso diário de italiano no mesmo formato do Meet&Speak. Quando publicar, use o botão “+ Adicionar produto”.",
       "categoria": "idiomas",
       "emoji": "🇮🇹",
       "url": "",
@@ -35,7 +35,7 @@
     {
       "id": "planejador-eventos",
       "nome": "Planejador de Eventos",
-      "descricao": "Organize convidados, orçamento e cronograma dos seus eventos. Publique o app e cole a URL aqui.",
+      "descricao": "Organize convidados, orçamento e cronograma dos seus eventos. Quando publicar, use o botão “+ Adicionar produto”.",
       "categoria": "produtividade",
       "emoji": "🎉",
       "url": "",
@@ -46,7 +46,7 @@
     {
       "id": "treinos-corrida",
       "nome": "Treinos de Corrida",
-      "descricao": "Planilhas de treino, progressão semanal e registro das suas corridas. Publique o app e cole a URL aqui.",
+      "descricao": "Planilhas de treino, progressão semanal e registro das suas corridas. Quando publicar, use o botão “+ Adicionar produto”.",
       "categoria": "saude",
       "emoji": "🏃",
       "url": "",

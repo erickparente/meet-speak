@@ -74,6 +74,34 @@ a.appcard:hover{transform:translateY(-2px);border-color:var(--brand)}
 .star.on{color:#eab308}
 .star svg{width:17px;height:17px}
 .appcard.fav{border-color:color-mix(in srgb,#eab308 55%,var(--line))}
+.applocal{display:flex;align-items:center;gap:8px;margin-top:2px}
+.localtag{display:inline-flex;align-items:center;font-size:.68rem;font-weight:700;color:var(--warn);background:var(--warn-soft);padding:2px 9px;border-radius:999px}
+.applocal .rm{margin-left:auto;border:none;background:none;color:var(--ink-3);font-size:.72rem;font-weight:600;padding:2px 8px;border-radius:6px}
+.applocal .rm:hover{color:var(--bad);background:var(--bad-soft)}
+.addcard{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-height:150px;border:2px dashed var(--line);border-radius:var(--radius);background:transparent;color:var(--ink-3);font:inherit;font-weight:700;cursor:pointer;transition:border-color .12s,color .12s}
+.addcard:hover{border-color:var(--brand);color:var(--brand)}
+.addcard .plus{width:42px;height:42px;border-radius:12px;background:var(--brand-soft);color:var(--brand);display:flex;align-items:center;justify-content:center;font-size:1.5rem}
+.localbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px;padding:10px 14px;border:1px solid color-mix(in srgb,var(--warn) 35%,var(--line));background:var(--warn-soft);color:var(--warn);border-radius:12px;font-size:.85rem;font-weight:600}
+.localbar .spacer{flex:1}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-weight:600;font-size:.85rem}
+.btn.primary{background:var(--brand);border-color:var(--brand);color:#fff}
+.btn.primary:hover{filter:brightness(1.07)}
+dialog{border:none;border-radius:var(--radius);background:var(--card);color:var(--ink);box-shadow:var(--shadow);padding:0;width:min(460px,calc(100vw - 32px))}
+dialog::backdrop{background:rgba(10,12,20,.45);backdrop-filter:blur(2px)}
+.dlghead{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 18px;border-bottom:1px solid var(--line);font-weight:700}
+.dlgbody{padding:16px 18px;display:flex;flex-direction:column;gap:12px}
+.dlgfoot{display:flex;gap:8px;justify-content:flex-end;padding:14px 18px;border-top:1px solid var(--line)}
+.field{display:flex;flex-direction:column;gap:5px}
+.field label{font-size:.78rem;font-weight:700;color:var(--ink-2)}
+.field input,.field select,.field textarea{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px 12px;outline:none;width:100%}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--brand)}
+.field .hint{font-size:.72rem;color:var(--ink-3)}
+.emojirow{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.emojirow button{width:34px;height:34px;border-radius:9px;border:1px solid var(--line);background:var(--bg);font-size:1.05rem;padding:0;line-height:1}
+.emojirow button:hover{border-color:var(--brand)}
+.persist p{margin:0}
+.persist ol{margin:0;padding-left:20px;font-size:.88rem;color:var(--ink-2)}
+.persist textarea{width:100%;font-family:ui-monospace,monospace;font-size:.72rem;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px}
 .empty{padding:40px 0;text-align:center;color:var(--ink-3)}
 .howto{margin:14px 0 0;background:var(--card);border:1px dashed var(--line);border-radius:var(--radius);padding:4px 16px}
 .howto summary{cursor:pointer;font-weight:600;padding:10px 0;color:var(--ink-2)}
@@ -106,24 +134,52 @@ footer{padding:26px 0 40px;text-align:center;font-size:.8rem;color:var(--ink-3)}
     <div class="cats" id="cats"></div>
   </section>
 
+  <div class="localbar" id="localBar" hidden><span id="localBarMsg"></span><span class="spacer"></span><button class="btn primary" id="localBarGit" type="button">Salvar no GitHub</button></div>
+
   <section class="grid" id="grid" aria-live="polite"></section>
   <div class="empty" id="empty" hidden>Nenhum app encontrado. Tente outra busca ou categoria.</div>
 
   <details class="howto" id="howto">
-    <summary>Como adicionar um novo curso ou aplicativo</summary>
+    <summary>Como adicionar um novo produto</summary>
     <ol>
-      <li>Crie e publique o app onde preferir (Lovable, Claude, GitHub Pages…) e copie a URL publicada.</li>
-      <li>No GitHub, abra o arquivo <code>hub/apps.json</code> deste repositório e clique no lápis (editar).</li>
-      <li>Copie um dos blocos existentes da lista <code>"apps"</code>, cole no fim da lista e ajuste: <code>nome</code>, <code>descricao</code>, <code>emoji</code>, <code>categoria</code>, a <code>url</code> publicada e <code>"status": "ativo"</code>.</li>
-      <li>Salve (<em>Commit changes</em>). O novo app aparece aqui em instantes.</li>
+      <li>Publique o produto onde ele foi criado (Lovable, Claude…) e copie a URL.</li>
+      <li>Toque no cartão <b>+ Adicionar produto</b>, preencha nome e link — ele já aparece na plataforma, salvo neste navegador.</li>
+      <li>Para valer em todos os aparelhos, toque em <b>Salvar no GitHub</b> e faça o <em>Commit changes</em>; o passo a passo aparece na tela.</li>
     </ol>
     <ol>
-      <li>Para tirar um app do ar sem apagar, troque o status para <code>"em-breve"</code>.</li>
-      <li>Para criar uma categoria nova, acrescente-a em <code>"categorias"</code> e use o mesmo <code>id</code> no app.</li>
-      <li>Para renomear a plataforma, edite <code>"plataforma"</code> no mesmo arquivo.</li>
+      <li>Prefere editar na mão? O catálogo é o arquivo <code>hub/apps.json</code> do repositório.</li>
+      <li>Para tirar um produto do ar sem apagar, troque o status dele para <code>"em-breve"</code>.</li>
+      <li>Para renomear a plataforma ou mexer nas categorias, edite o mesmo arquivo.</li>
     </ol>
   </details>
 </main>
+
+<dialog id="addDlg">
+  <div class="dlghead"><span>Adicionar produto</span><button type="button" class="iconbtn" id="dlgClose" title="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
+  <form id="addForm">
+    <div class="dlgbody">
+      <div class="field"><label for="fNome">Nome *</label><input id="fNome" required placeholder="Ex.: Curso de Francês"></div>
+      <div class="field"><label for="fUrl">Link do produto</label><input id="fUrl" inputmode="url" placeholder="Cole a URL publicada (Lovable, Claude…)"><span class="hint">Sem link, o produto entra como “em breve”.</span></div>
+      <div class="field"><label for="fCat">Categoria</label><select id="fCat"></select><input id="fCatNova" placeholder="Nome da nova categoria" hidden></div>
+      <div class="field"><label for="fEmoji">Emoji</label><input id="fEmoji" maxlength="8" placeholder="✨"><div class="emojirow" id="emojiRow"></div></div>
+      <div class="field"><label for="fDesc">Descrição</label><textarea id="fDesc" rows="2" placeholder="Uma frase sobre o produto (opcional)"></textarea></div>
+    </div>
+    <div class="dlgfoot"><button type="button" class="btn" id="dlgCancel">Cancelar</button><button type="submit" class="btn primary">Adicionar</button></div>
+  </form>
+  <div id="doneStep" hidden>
+    <div class="dlgbody persist">
+      <p id="doneMsg" style="font-weight:600">✅ Produto adicionado! Ele já aparece na plataforma, salvo neste navegador.</p>
+      <p style="font-size:.88rem;color:var(--ink-2)">Para ficar permanente — e aparecer em todos os seus aparelhos — salve o catálogo no GitHub:</p>
+      <ol>
+        <li>Toque em <b>Salvar no GitHub</b>: o catálogo atualizado é copiado e o editor abre em outra aba.</li>
+        <li>No editor, apague tudo (<b>Ctrl/⌘&nbsp;A</b> e <b>Delete</b>) e cole (<b>Ctrl/⌘&nbsp;V</b>).</li>
+        <li>Clique em <b>Commit changes</b>. No ar em ~1 minuto.</li>
+      </ol>
+      <details><summary style="cursor:pointer;font-size:.8rem;color:var(--ink-3)">Se a cópia automática falhar, copie o catálogo daqui</summary><textarea id="catalogOut" rows="7" readonly></textarea></details>
+    </div>
+    <div class="dlgfoot"><button type="button" class="btn" id="doneLater">Depois</button><button type="button" class="btn primary" id="doneGit">Salvar no GitHub</button></div>
+  </div>
+</dialog>
 
 <footer>Feito com apps do Lovable, do Claude e além · <a href="../">Meet&amp;Speak</a></footer>
 
@@ -152,21 +208,46 @@ $("#themeBtn").onclick=()=>{
 };
 
 /* ============ catálogo ============ */
-let DATA=null;
+let RAW=null;   // apps.json como veio do repositório
+let DATA=null;  // visão mesclada: catálogo + produtos salvos neste navegador
 let cat="todos";
 let favs=store.get("hub_favs",[]);
+let localApps=store.get("hub_local_apps",[]);
+let localCats=store.get("hub_local_cats",[]);
+
+const slug=s=>norm(s).replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"")||"app";
+
+/* mescla catálogo + locais; descarta locais que já foram commitados no apps.json */
+function sync(){
+  const nA=localApps.length,nC=localCats.length;
+  localApps=localApps.filter(l=>{
+    const c=(RAW.apps||[]).find(a=>a.id===l.id);
+    return !(c&&c.status==="ativo"&&c.url===l.url);
+  });
+  localCats=localCats.filter(lc=>!(RAW.categorias||[]).some(c=>c.id===lc.id));
+  if(localApps.length!==nA)store.set("hub_local_apps",localApps);
+  if(localCats.length!==nC)store.set("hub_local_cats",localCats);
+  const apps=[];
+  (RAW.apps||[]).forEach(a=>{
+    const ov=localApps.find(l=>l.id===a.id);
+    apps.push(ov?{...ov,_local:true}:a);
+  });
+  localApps.forEach(l=>{if(!apps.some(a=>a.id===l.id))apps.push({...l,_local:true})});
+  DATA={...RAW,categorias:(RAW.categorias||[]).concat(localCats),apps};
+}
 
 async function load(){
   try{
     const r=await fetch("apps.json",{cache:"no-cache"});
     if(!r.ok)throw new Error(r.status);
-    DATA=await r.json();
+    RAW=await r.json();
   }catch(e){
     $("#grid").innerHTML="";
     $("#empty").hidden=false;
     $("#empty").textContent="Não foi possível carregar o catálogo (hub/apps.json). Verifique a conexão e recarregue.";
     return;
   }
+  sync();
   const p=DATA.plataforma||{};
   if(p.nome){
     document.title=p.nome+" — Cursos & Aplicativos";
@@ -177,6 +258,7 @@ async function load(){
   if(p.slogan)$("#heroTagline").textContent=p.slogan;
   renderCats();
   render();
+  updateLocalBar();
 }
 
 /* destaque da marca: "a&b" pinta o "&"; nome terminado em "IA" maiúsculo pinta o "IA" */
@@ -222,7 +304,17 @@ function card(a){
     '<div class="src">'+esc([c&&c.nome,a.origem].filter(Boolean).join(" · "))+"</div></div></div>"+
     "<p>"+esc(a.descricao||"")+"</p>"+
     '<div class="tags">'+(a.tags||[]).map(t=>'<span class="tag">'+esc(t)+"</span>").join("")+"</div>"+
+    (a._local?'<div class="applocal"><span class="localtag">salvo neste navegador</span><button class="rm" type="button">remover</button></div>':"")+
     (active?"":'<span class="badge soon">Em breve</span>');
+  if(a._local){
+    el.querySelector(".rm").onclick=e=>{
+      e.preventDefault();e.stopPropagation();
+      if(!confirm('Remover "'+a.nome+'" deste navegador?'))return;
+      localApps=localApps.filter(l=>l.id!==a.id);
+      store.set("hub_local_apps",localApps);
+      sync();renderCats();render();updateLocalBar();
+    };
+  }
   if(active){
     const b=document.createElement("button");
     b.className="star"+(favs.includes(a.id)?" on":"");
@@ -253,11 +345,142 @@ function render(){
   const g=$("#grid");
   g.innerHTML="";
   list.forEach(a=>g.appendChild(card(a)));
+  const add=document.createElement("button");
+  add.type="button";add.className="addcard";
+  add.innerHTML='<span class="plus">+</span>Adicionar produto';
+  add.onclick=openAdd;
+  g.appendChild(add);
   $("#empty").hidden=list.length>0;
   if(list.length===0)$("#empty").textContent="Nenhum app encontrado. Tente outra busca ou categoria.";
 }
 
 $("#q").addEventListener("input",render);
+
+/* ============ adicionar produto ============ */
+const dlg=$("#addDlg");
+const EMOJIS=["🇮🇹","🇫🇷","🇪🇸","🇩🇪","🇯🇵","🗣️","📚","🧠","🎉","🗓️","🏃","💪","🍳","💰","✨"];
+EMOJIS.forEach(em=>{
+  const b=document.createElement("button");
+  b.type="button";b.textContent=em;b.title=em;
+  b.onclick=()=>{$("#fEmoji").value=em};
+  $("#emojiRow").appendChild(b);
+});
+
+let catTouched=false;
+function openAdd(){
+  $("#addForm").hidden=false;$("#doneStep").hidden=true;
+  $("#addForm").reset();
+  fillCatSelect();
+  $("#fCatNova").hidden=true;
+  catTouched=false;
+  dlg.showModal();
+  $("#fNome").focus();
+}
+function fillCatSelect(){
+  const s=$("#fCat");s.innerHTML="";
+  (DATA?DATA.categorias:[]).forEach(c=>{
+    const o=document.createElement("option");
+    o.value=c.id;o.textContent=(c.emoji?c.emoji+" ":"")+c.nome;
+    s.appendChild(o);
+  });
+  const o=document.createElement("option");
+  o.value="__nova__";o.textContent="➕ Nova categoria…";
+  s.appendChild(o);
+}
+$("#fCat").onchange=()=>{
+  catTouched=true;
+  const nova=$("#fCat").value==="__nova__";
+  $("#fCatNova").hidden=!nova;
+  if(nova)$("#fCatNova").focus();
+};
+
+/* id único: um "em breve" do catálogo com o mesmo nome é reaproveitado (vira ativação) */
+function newId(nome){
+  const s=slug(nome);
+  const ph=(RAW.apps||[]).find(a=>a.status!=="ativo"&&slug(a.nome)===s&&!localApps.some(l=>l.id===a.id));
+  if(ph)return ph.id;
+  const taken=id=>localApps.some(l=>l.id===id)||(RAW.apps||[]).some(a=>a.id===id&&a.status==="ativo");
+  if(!taken(s))return s;
+  let i=2;while(taken(s+"-"+i))i++;
+  return s+"-"+i;
+}
+function origemDe(u){
+  if(!u)return"";
+  if(/lovable/i.test(u))return"Lovable";
+  if(/claude/i.test(u))return"Claude";
+  if(!/^https?:/i.test(u))return"GitHub Pages";
+  try{return new URL(u).hostname.replace(/^www\./,"")}catch(e){return""}
+}
+
+$("#addForm").onsubmit=e=>{
+  e.preventDefault();
+  const nome=$("#fNome").value.trim();
+  if(!nome){$("#fNome").focus();return}
+  let url=$("#fUrl").value.trim();
+  if(url&&!/^(https?:\/\/|\.{0,2}\/)/i.test(url))url="https://"+url;
+  let catId=$("#fCat").value;
+  if(catId==="__nova__"){
+    const cn=$("#fCatNova").value.trim();
+    if(!cn){$("#fCatNova").focus();return}
+    catId=slug(cn);
+    if(!DATA.categorias.some(c=>c.id===catId)){
+      localCats.push({id:catId,nome:cn});
+      store.set("hub_local_cats",localCats);
+    }
+  }
+  const id=newId(nome);
+  /* ativando um "em breve" do catálogo: herda emoji, tags e categoria não preenchidos */
+  const base=(RAW.apps||[]).find(a=>a.id===id);
+  localApps.push({
+    id,nome,
+    descricao:$("#fDesc").value.trim(),
+    categoria:(base&&!catTouched)?base.categoria:catId,
+    emoji:$("#fEmoji").value.trim()||(base&&base.emoji)||"✨",
+    url,status:url?"ativo":"em-breve",
+    origem:origemDe(url),tags:(base&&base.tags)||[]
+  });
+  store.set("hub_local_apps",localApps);
+  sync();renderCats();render();updateLocalBar();
+  $("#doneMsg").textContent="✅ Produto adicionado! Ele já aparece na plataforma, salvo neste navegador.";
+  $("#addForm").hidden=true;$("#doneStep").hidden=false;
+};
+
+function updateLocalBar(){
+  const n=localApps.length;
+  $("#localBar").hidden=n===0;
+  if(n)$("#localBarMsg").textContent=n===1?"1 produto salvo só neste navegador.":n+" produtos salvos só neste navegador.";
+}
+
+/* ============ salvar no GitHub (copia o apps.json atualizado e abre o editor) ============ */
+function catalogoAtualizado(){
+  const semFlag=a=>{const{_local,...r}=a;return r};
+  return JSON.stringify({...RAW,categorias:DATA.categorias,apps:DATA.apps.map(semFlag)},null,2)+"\n";
+}
+function editUrl(){
+  const m=location.hostname.match(/^([\w-]+)\.github\.io$/i);
+  const seg=location.pathname.split("/").filter(Boolean);
+  const owner=m?m[1]:"erickparente";
+  const repo=(m&&seg.length)?seg[0]:"meet-speak";
+  return "https://github.com/"+owner+"/"+repo+"/edit/main/hub/apps.json";
+}
+async function salvarNoGitHub(){
+  const txt=catalogoAtualizado();
+  const out=$("#catalogOut");
+  out.value=txt;
+  try{await navigator.clipboard.writeText(txt)}
+  catch(e){out.closest("details").open=true;out.select();try{document.execCommand("copy")}catch(_){}}
+  window.open(editUrl(),"_blank","noopener");
+}
+$("#doneGit").onclick=salvarNoGitHub;
+$("#doneLater").onclick=()=>dlg.close();
+$("#dlgClose").onclick=()=>dlg.close();
+$("#dlgCancel").onclick=()=>dlg.close();
+$("#localBarGit").onclick=()=>{
+  $("#doneMsg").textContent="Você tem produtos salvos só neste navegador.";
+  $("#addForm").hidden=true;$("#doneStep").hidden=false;
+  dlg.showModal();
+};
+
 load();
 
 /* ============ PWA ============ */

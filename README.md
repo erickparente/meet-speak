@@ -8,12 +8,14 @@ corrida…) criados no Lovable, no Claude ou em qualquer outro lugar. Abra em
 `https://<seu-usuario>.github.io/meet-speak/hub/` — também é um PWA instalável, com busca,
 filtro por categoria e favoritos.
 
-**Para adicionar um app novo:** publique o app na plataforma onde ele foi criado (no Lovable:
-*Publish* → copie a URL; no Claude: publique o artifact/site e copie o link), edite
-`hub/apps.json` e acrescente um bloco na lista `"apps"` com `nome`, `descricao`, `emoji`,
-`categoria`, a `url` publicada e `"status": "ativo"`. Salve (*Commit changes*) e ele aparece
-no hub. Apps ainda não publicados ficam com `"status": "em-breve"`. Categorias novas e o
-nome da plataforma também se editam nesse mesmo arquivo.
+**Para adicionar um produto novo:** publique-o na plataforma onde foi criado (no Lovable:
+*Publish* → copie a URL; no Claude: publique o artifact/site e copie o link) e, na própria
+página do hub, toque no cartão **“+ Adicionar produto”**: preencha nome e link e ele aparece
+na hora, salvo no navegador. Para valer em todos os aparelhos, toque em **“Salvar no
+GitHub”** — a página copia o `hub/apps.json` já atualizado e abre o editor do GitHub; é só
+apagar o conteúdo antigo, colar e fazer *Commit changes*. O arquivo `hub/apps.json` continua
+sendo o catálogo oficial e também pode ser editado à mão (apps com `"status": "em-breve"`
+aparecem como “em breve”; categorias e o nome da plataforma se editam nele também).
 
 - `hub/index.html` — a página do hub (lê o catálogo e desenha os cards).
 - `hub/apps.json` — o catálogo: plataforma, categorias e lista de apps.
