@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meet&Hub — Cursos & Aplicativos</title>
+<meta name="description" content="Seus cursos de idiomas e aplicativos, todos em um só lugar.">
+<meta name="theme-color" content="#4f46e5">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
+<style>
+:root{
+  --bg:#f6f5f1; --card:#ffffff; --ink:#1c2230; --ink-2:#5b6472; --ink-3:#8a92a0;
+  --brand:#4f46e5; --brand-soft:#eef0fe; --brand-ink:#3730a3;
+  --ok:#16803c; --ok-soft:#e8f5ec; --bad:#b3261e; --bad-soft:#fdecea;
+  --warn:#92400e; --warn-soft:#fef3e2;
+  --line:#e5e3dc; --hl:#fff3c4;
+  --radius:14px; --shadow:0 1px 2px rgba(20,24,40,.05),0 8px 24px -12px rgba(20,24,40,.12);
+}
+[data-theme="dark"]{
+  --bg:#12141c; --card:#1b1e2a; --ink:#e8eaf2; --ink-2:#a5abbd; --ink-3:#767d90;
+  --brand:#8b85f7; --brand-soft:#262a45; --brand-ink:#c3c0ff;
+  --ok:#4ade80; --ok-soft:#12301d; --bad:#f87171; --bad-soft:#3a1715;
+  --warn:#fbbf24; --warn-soft:#33230a;
+  --line:#2c3040; --hl:#4a3f14;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.5);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--brand)}
+button{font:inherit;cursor:pointer}
+.wrap{max-width:960px;margin:0 auto;padding:0 16px}
+header.top{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topbar{display:flex;align-items:center;gap:10px;padding:10px 0}
+.logo{font-weight:800;font-size:1.15rem;letter-spacing:-.02em;display:flex;align-items:center;gap:8px}
+.logo .dot{color:var(--brand)}
+.logo svg{width:22px;height:22px;color:var(--brand)}
+.spacer{flex:1}
+.iconbtn{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink-2)}
+.iconbtn:hover{color:var(--ink)}
+.iconbtn svg{width:18px;height:18px}
+.hero{padding:30px 0 6px}
+.hero h1{font-size:1.75rem;line-height:1.2;margin:0 0 .25em;letter-spacing:-.02em}
+.hero p{margin:0;color:var(--ink-2)}
+.hero .stats{margin-top:8px;font-size:.85rem;color:var(--ink-3)}
+.controls{display:flex;flex-direction:column;gap:12px;padding:18px 0 6px}
+.search{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:9px 14px;box-shadow:var(--shadow)}
+.search svg{width:17px;height:17px;color:var(--ink-3);flex:none}
+.search input{flex:1;border:none;outline:none;background:transparent;font:inherit;color:var(--ink);min-width:0}
+.cats{display:flex;flex-wrap:wrap;gap:8px}
+.catbtn{display:inline-flex;align-items:center;gap:6px;padding:6px 13px;border-radius:999px;font-size:.83rem;font-weight:600;background:var(--card);color:var(--ink-2);border:1px solid var(--line)}
+.catbtn .n{font-size:.72rem;font-weight:700;background:var(--bg);border-radius:999px;padding:1px 7px;color:var(--ink-3)}
+.catbtn.on{background:var(--brand-soft);color:var(--brand-ink);border-color:var(--brand)}
+.catbtn.on .n{background:color-mix(in srgb,var(--brand) 18%,transparent);color:var(--brand-ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:14px;padding:16px 0 8px}
+.appcard{position:relative;display:flex;flex-direction:column;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;color:inherit;text-decoration:none;transition:transform .12s ease,border-color .12s ease}
+a.appcard:hover{transform:translateY(-2px);border-color:var(--brand)}
+.appcard .head{display:flex;align-items:center;gap:12px;padding-right:30px}
+.appcard.soon .head{padding-right:76px}
+.appcard .em{width:46px;height:46px;flex:none;display:flex;align-items:center;justify-content:center;font-size:1.5rem;border-radius:12px;background:var(--brand-soft)}
+.appcard h2{font-size:1.02rem;margin:0;letter-spacing:-.01em;line-height:1.3}
+.appcard .src{font-size:.72rem;color:var(--ink-3);margin-top:1px}
+.appcard p{margin:0;font-size:.87rem;color:var(--ink-2)}
+.appcard .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
+.appcard .tag{font-size:.7rem;font-weight:600;padding:2px 9px;border-radius:999px;background:var(--bg);border:1px solid var(--line);color:var(--ink-2)}
+.badge{position:absolute;top:12px;right:12px;font-size:.68rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:3px 9px;border-radius:999px}
+.badge.soon{background:var(--warn-soft);color:var(--warn)}
+.appcard.soon{opacity:.72}
+.appcard.soon .em{filter:grayscale(.35)}
+.star{position:absolute;top:8px;right:8px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:none;background:transparent;border-radius:8px;color:var(--ink-3)}
+.star:hover{color:var(--warn)}
+.star.on{color:#eab308}
+.star svg{width:17px;height:17px}
+.appcard.fav{border-color:color-mix(in srgb,#eab308 55%,var(--line))}
+.empty{padding:40px 0;text-align:center;color:var(--ink-3)}
+.howto{margin:14px 0 0;background:var(--card);border:1px dashed var(--line);border-radius:var(--radius);padding:4px 16px}
+.howto summary{cursor:pointer;font-weight:600;padding:10px 0;color:var(--ink-2)}
+.howto ol{margin:4px 0 14px;padding-left:20px;color:var(--ink-2);font-size:.9rem}
+.howto code{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:1px 6px;font-size:.82em}
+footer{padding:26px 0 40px;text-align:center;font-size:.8rem;color:var(--ink-3)}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap topbar">
+    <div class="logo" id="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span id="logoName">Meet<span class="dot">&amp;</span>Hub</span></div>
+    <div class="spacer"></div>
+    <button class="iconbtn" id="themeBtn" title="Tema claro/escuro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg></button>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <h1 id="heroTitle">Meet&amp;Hub</h1>
+    <p id="heroTagline">Seus cursos de idiomas e aplicativos, todos em um só lugar.</p>
+    <div class="stats" id="stats"></div>
+  </section>
+
+  <section class="controls">
+    <label class="search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input id="q" type="search" placeholder="Buscar curso ou aplicativo…" autocomplete="off">
+    </label>
+    <div class="cats" id="cats"></div>
+  </section>
+
+  <section class="grid" id="grid" aria-live="polite"></section>
+  <div class="empty" id="empty" hidden>Nenhum app encontrado. Tente outra busca ou categoria.</div>
+
+  <details class="howto" id="howto">
+    <summary>Como adicionar um novo curso ou aplicativo</summary>
+    <ol>
+      <li>Crie e publique o app onde preferir (Lovable, Claude, GitHub Pages…) e copie a URL publicada.</li>
+      <li>No GitHub, abra o arquivo <code>hub/apps.json</code> deste repositório e clique no lápis (editar).</li>
+      <li>Copie um dos blocos existentes da lista <code>"apps"</code>, cole no fim da lista e ajuste: <code>nome</code>, <code>descricao</code>, <code>emoji</code>, <code>categoria</code>, a <code>url</code> publicada e <code>"status": "ativo"</code>.</li>
+      <li>Salve (<em>Commit changes</em>). O novo app aparece aqui em instantes.</li>
+    </ol>
+    <ol>
+      <li>Para tirar um app do ar sem apagar, troque o status para <code>"em-breve"</code>.</li>
+      <li>Para criar uma categoria nova, acrescente-a em <code>"categorias"</code> e use o mesmo <code>id</code> no app.</li>
+      <li>Para renomear a plataforma, edite <code>"plataforma"</code> no mesmo arquivo.</li>
+    </ol>
+  </details>
+</main>
+
+<footer>Feito com apps do Lovable, do Claude e além · <a href="../">Meet&amp;Speak</a></footer>
+
+<script>
+"use strict";
+/* ============ storage seguro (funciona mesmo sem localStorage) ============ */
+const mem={};
+const store={
+  get(k,d){try{const v=localStorage.getItem(k);return v==null?(k in mem?mem[k]:d):JSON.parse(v)}catch(e){return k in mem?mem[k]:d}},
+  set(k,v){mem[k]=v;try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+};
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
+const norm=s=>String(s??"").toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu,"");
+
+/* ============ tema (mesma chave do Meet&Speak: preferência compartilhada) ============ */
+(function(){
+  const saved=store.get("ms_theme",null);
+  const dark=saved?saved==="dark":matchMedia("(prefers-color-scheme: dark)").matches;
+  if(dark)document.documentElement.dataset.theme="dark";
+})();
+$("#themeBtn").onclick=()=>{
+  const d=document.documentElement.dataset.theme==="dark";
+  document.documentElement.dataset.theme=d?"":"dark";
+  store.set("ms_theme",d?"light":"dark");
+};
+
+/* ============ catálogo ============ */
+let DATA=null;
+let cat="todos";
+let favs=store.get("hub_favs",[]);
+
+async function load(){
+  try{
+    const r=await fetch("apps.json",{cache:"no-cache"});
+    if(!r.ok)throw new Error(r.status);
+    DATA=await r.json();
+  }catch(e){
+    $("#grid").innerHTML="";
+    $("#empty").hidden=false;
+    $("#empty").textContent="Não foi possível carregar o catálogo (hub/apps.json). Verifique a conexão e recarregue.";
+    return;
+  }
+  const p=DATA.plataforma||{};
+  if(p.nome){
+    document.title=p.nome+" — Cursos & Aplicativos";
+    $("#heroTitle").textContent=p.nome;
+    const m=p.nome.match(/^(.*?)&(.*)$/);
+    $("#logoName").innerHTML=m?esc(m[1])+'<span class="dot">&amp;</span>'+esc(m[2]):esc(p.nome);
+  }
+  if(p.slogan)$("#heroTagline").textContent=p.slogan;
+  renderCats();
+  render();
+}
+
+function apps(){return (DATA.apps||[]).filter(a=>a&&a.id)}
+function catOf(id){return (DATA.categorias||[]).find(c=>c.id===id)}
+
+function renderCats(){
+  const counts={};
+  apps().forEach(a=>counts[a.categoria]=(counts[a.categoria]||0)+1);
+  const box=$("#cats");
+  box.innerHTML="";
+  const mk=(id,label,n)=>{
+    const b=document.createElement("button");
+    b.className="catbtn"+(cat===id?" on":"");
+    b.innerHTML=esc(label)+' <span class="n">'+n+"</span>";
+    b.onclick=()=>{cat=id;renderCats();render()};
+    box.appendChild(b);
+  };
+  mk("todos","Todos",apps().length);
+  (DATA.categorias||[]).forEach(c=>{if(counts[c.id])mk(c.id,(c.emoji?c.emoji+" ":"")+c.nome,counts[c.id])});
+  const live=apps().filter(a=>a.status==="ativo").length;
+  const soon=apps().length-live;
+  $("#stats").textContent=live+(live===1?" app disponível":" apps disponíveis")+(soon?" · "+soon+" em breve":"");
+}
+
+function card(a){
+  const active=a.status==="ativo"&&a.url;
+  const el=document.createElement(active?"a":"div");
+  el.className="appcard"+(active?"":" soon")+(favs.includes(a.id)?" fav":"");
+  if(active){el.href=a.url;if(/^https?:/i.test(a.url)){el.target="_blank";el.rel="noopener";}}
+  const c=catOf(a.categoria);
+  el.innerHTML=
+    '<div class="head"><div class="em">'+esc(a.emoji||"✨")+"</div><div>"+
+    "<h2>"+esc(a.nome)+"</h2>"+
+    '<div class="src">'+esc([c&&c.nome,a.origem].filter(Boolean).join(" · "))+"</div></div></div>"+
+    "<p>"+esc(a.descricao||"")+"</p>"+
+    '<div class="tags">'+(a.tags||[]).map(t=>'<span class="tag">'+esc(t)+"</span>").join("")+"</div>"+
+    (active?"":'<span class="badge soon">Em breve</span>');
+  if(active){
+    const b=document.createElement("button");
+    b.className="star"+(favs.includes(a.id)?" on":"");
+    b.title=favs.includes(a.id)?"Remover dos favoritos":"Favoritar";
+    b.innerHTML='<svg viewBox="0 0 24 24" fill="'+(favs.includes(a.id)?"currentColor":"none")+'" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
+    b.onclick=e=>{
+      e.preventDefault();e.stopPropagation();
+      favs=favs.includes(a.id)?favs.filter(x=>x!==a.id):favs.concat(a.id);
+      store.set("hub_favs",favs);
+      render();
+    };
+    el.appendChild(b);
+  }
+  return el;
+}
+
+function render(){
+  const q=norm($("#q").value);
+  const list=apps()
+    .filter(a=>cat==="todos"||a.categoria===cat)
+    .filter(a=>!q||norm([a.nome,a.descricao,a.origem,(a.tags||[]).join(" ")].join(" ")).includes(q))
+    .sort((x,y)=>{
+      const fx=favs.includes(x.id)?0:1, fy=favs.includes(y.id)?0:1;
+      if(fx!==fy)return fx-fy;
+      const sx=x.status==="ativo"?0:1, sy=y.status==="ativo"?0:1;
+      return sx-sy;
+    });
+  const g=$("#grid");
+  g.innerHTML="";
+  list.forEach(a=>g.appendChild(card(a)));
+  $("#empty").hidden=list.length>0;
+  if(list.length===0)$("#empty").textContent="Nenhum app encontrado. Tente outra busca ou categoria.";
+}
+
+$("#q").addEventListener("input",render);
+load();
+
+/* ============ PWA ============ */
+if("serviceWorker"in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});
+</script>
+</body>
+</html>

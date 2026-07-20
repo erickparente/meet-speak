@@ -1,0 +1,58 @@
+{
+  "_como_adicionar": "Para adicionar um app (Lovable, Claude, GitHub Pages…): publique o app, copie a URL e acrescente um objeto na lista 'apps' abaixo. Salve (Commit changes) e ele aparece no hub. Campos: id (único, sem espaços), nome, descricao, categoria (um id de 'categorias'), emoji, url, status ('ativo' ou 'em-breve'), origem (onde o app foi criado) e tags (opcional).",
+  "plataforma": {
+    "nome": "Meet&Hub",
+    "slogan": "Seus cursos de idiomas e aplicativos, todos em um só lugar."
+  },
+  "categorias": [
+    { "id": "idiomas", "nome": "Idiomas", "emoji": "🌍" },
+    { "id": "produtividade", "nome": "Produtividade", "emoji": "🗂️" },
+    { "id": "saude", "nome": "Saúde & Esporte", "emoji": "🏃" }
+  ],
+  "apps": [
+    {
+      "id": "meet-speak-ingles",
+      "nome": "Meet&Speak — Inglês",
+      "descricao": "Uma aula por dia a partir de uma notícia real: Reading, Listening, Writing, Speaking e Grammar (~20 min).",
+      "categoria": "idiomas",
+      "emoji": "🇬🇧",
+      "url": "../",
+      "status": "ativo",
+      "origem": "GitHub Pages",
+      "tags": ["inglês", "B1–B2", "notícia do dia"]
+    },
+    {
+      "id": "italiano",
+      "nome": "Italiano",
+      "descricao": "Curso diário de italiano no mesmo formato do Meet&Speak. Publique o app e cole a URL aqui.",
+      "categoria": "idiomas",
+      "emoji": "🇮🇹",
+      "url": "",
+      "status": "em-breve",
+      "origem": "",
+      "tags": ["italiano"]
+    },
+    {
+      "id": "planejador-eventos",
+      "nome": "Planejador de Eventos",
+      "descricao": "Organize convidados, orçamento e cronograma dos seus eventos. Publique o app e cole a URL aqui.",
+      "categoria": "produtividade",
+      "emoji": "🎉",
+      "url": "",
+      "status": "em-breve",
+      "origem": "",
+      "tags": ["eventos", "planejamento"]
+    },
+    {
+      "id": "treinos-corrida",
+      "nome": "Treinos de Corrida",
+      "descricao": "Planilhas de treino, progressão semanal e registro das suas corridas. Publique o app e cole a URL aqui.",
+      "categoria": "saude",
+      "emoji": "🏃",
+      "url": "",
+      "status": "em-breve",
+      "origem": "",
+      "tags": ["corrida", "treino"]
+    }
+  ]
+}

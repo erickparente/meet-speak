@@ -1,5 +1,26 @@
 # Meet&Speak
 
+## Meet&Hub — a central de cursos e aplicativos (`hub/`)
+
+A pasta `hub/` é a **porta de entrada da plataforma**: uma página única que reúne todos os
+cursos de idiomas (inglês, italiano…) e aplicativos (planejador de eventos, treinos de
+corrida…) criados no Lovable, no Claude ou em qualquer outro lugar. Abra em
+`https://<seu-usuario>.github.io/meet-speak/hub/` — também é um PWA instalável, com busca,
+filtro por categoria e favoritos.
+
+**Para adicionar um app novo:** publique o app na plataforma onde ele foi criado (no Lovable:
+*Publish* → copie a URL; no Claude: publique o artifact/site e copie o link), edite
+`hub/apps.json` e acrescente um bloco na lista `"apps"` com `nome`, `descricao`, `emoji`,
+`categoria`, a `url` publicada e `"status": "ativo"`. Salve (*Commit changes*) e ele aparece
+no hub. Apps ainda não publicados ficam com `"status": "em-breve"`. Categorias novas e o
+nome da plataforma também se editam nesse mesmo arquivo.
+
+- `hub/index.html` — a página do hub (lê o catálogo e desenha os cards).
+- `hub/apps.json` — o catálogo: plataforma, categorias e lista de apps.
+- `hub/manifest.json`, `hub/sw.js`, `hub/icon*.svg` — PWA do hub (instalação + offline).
+
+## Meet&Speak — o curso de inglês
+
 Plataforma pessoal de estudo de inglês (nível B1–B2): todos os dias às 8h (horário de Brasília),
 uma automação busca uma notícia real recém-publicada em um grande veículo de língua inglesa
 (BBC, CNN, Reuters, Guardian, AP…) e constrói sobre ela a aula do dia com
