@@ -1,0 +1,314 @@
+{
+  "schema": 1,
+  "date": "2026-07-22",
+  "level": "B1",
+  "estimated_minutes": 20,
+  "topic": "World",
+  "topic_pt": "Mundo",
+  "article": {
+    "headline": "Japan records its first ‘cruelly hot day’ as cities swelter in 40-degree heat",
+    "source": "The Guardian",
+    "agency": "",
+    "published": "22 Jul 2026",
+    "url": "https://www.theguardian.com/world/2026/jul/22/japan-heat-kokushobi-cruelly-hot-40c-weather",
+    "excerpt_note_pt": "Este é o trecho inicial da matéria, reproduzido palavra por palavra, sem modificações. A matéria completa está no link da fonte.",
+    "paragraphs": [
+      "Japan logged its first official kokushobi or “cruelly hot day” on Tuesday since the new term for when temperatures top 40 degrees Celsius was introduced in April. The Japan Meteorological Agency coined the new designation to warn the public of the heat dangers of days that were once freak weather events but have now become more common.",
+      "The central Japan cities of Gujo and Tajimi in Gifu prefecture, along with Toyota in Aichi prefecture, all hit 40C. Gujo’s 40C and Toyota’s 40.1C were all-time highs recorded at their respective weather stations.",
+      "Across 914 weather stations nationwide, 278 registered temperatures exceeding 35C or moshobi – “extremely hot days,” the highest level of warning until the recent introduction of the new terminology. Days over 25C are called natsubi or “summer days”, while those exceeding 30C are known as manatsubi – “true summer days.”",
+      "On Monday, a man in his 40s was found dead on a street in Sanjo, Niigata prefecture, while another in his 70s died in Kanagawa, southwest of Tokyo. Both are believed to have succumbed to the heat.",
+      "Heatstroke deaths topped 2,000 for the first time in 2024, while more than 100,000 people were taken to hospital last year between the beginning of May and late September, according to the fire and disaster management agency.",
+      "The rising heat is affecting many aspects of Japanese life – including yields and the quality of rice, a staple. In response, farmers are planting more heat-tolerant varieties, while some are switching to crops such as avocado that have not traditionally been grown at scale in Japan."
+    ]
+  },
+  "vocabulary": [
+    {
+      "term": "logged",
+      "ipa": "/lɒgd/",
+      "pos": "verb",
+      "meaning_en": "officially recorded (a measurement/event)",
+      "meaning_pt": "registrou",
+      "example": "Japan logged its first official kokushobi or “cruelly hot day” on Tuesday"
+    },
+    {
+      "term": "warn",
+      "ipa": "/wɔːn/",
+      "pos": "verb",
+      "meaning_en": "to tell people about a possible danger",
+      "meaning_pt": "alertar, avisar",
+      "example": "The Japan Meteorological Agency coined the new designation to warn the public of the heat dangers of days that were once freak weather events but have now become more common."
+    },
+    {
+      "term": "freak",
+      "ipa": "/friːk/",
+      "pos": "adj",
+      "meaning_en": "very unusual and unexpected",
+      "meaning_pt": "anormal, extremo (evento raro)",
+      "example": "days that were once freak weather events but have now become more common."
+    },
+    {
+      "term": "all-time highs",
+      "ipa": "/ˌɔːl taɪm ˈhaɪz/",
+      "pos": "noun",
+      "meaning_en": "the highest levels ever recorded",
+      "meaning_pt": "recordes históricos (máximas de todos os tempos)",
+      "example": "were all-time highs recorded at their respective weather stations."
+    },
+    {
+      "term": "exceeding",
+      "ipa": "/ɪkˈsiːdɪŋ/",
+      "pos": "verb",
+      "meaning_en": "going above a limit or number",
+      "meaning_pt": "ultrapassando",
+      "example": "278 registered temperatures exceeding 35C or moshobi – “extremely hot days,” the highest level of warning"
+    },
+    {
+      "term": "heatstroke",
+      "ipa": "/ˈhiːtstrəʊk/",
+      "pos": "noun",
+      "meaning_en": "a dangerous illness caused by too much heat",
+      "meaning_pt": "insolação",
+      "example": "Heatstroke deaths topped 2,000 for the first time in 2024, while more than 100,000 people were taken to hospital"
+    },
+    {
+      "term": "yields",
+      "ipa": "/jiːldz/",
+      "pos": "noun",
+      "meaning_en": "the amount of a crop produced",
+      "meaning_pt": "colheita, produção (agrícola)",
+      "example": "including yields and the quality of rice, a staple."
+    },
+    {
+      "term": "staple",
+      "ipa": "/ˈsteɪpl/",
+      "pos": "noun",
+      "meaning_en": "a basic, essential food",
+      "meaning_pt": "alimento básico",
+      "example": "the quality of rice, a staple."
+    },
+    {
+      "term": "heat-tolerant",
+      "ipa": "/hiːt ˈtɒlərənt/",
+      "pos": "adj",
+      "meaning_en": "able to survive high temperatures",
+      "meaning_pt": "resistente ao calor",
+      "example": "farmers are planting more heat-tolerant varieties, while some are switching to crops"
+    }
+  ],
+  "reading": {
+    "warmup_pt": "Antes de ler: como está o calor onde você mora? Enquanto lê, repare nas temperaturas recordes e nos efeitos do calor no dia a dia do Japão.",
+    "questions": [
+      {
+        "type": "mc",
+        "q": "What is a “kokushobi”?",
+        "options": [
+          "A rainy day",
+          "A “cruelly hot day”, when temperatures top 40C",
+          "A public holiday",
+          "A cold winter day"
+        ],
+        "answer": 1,
+        "explain_pt": "O 1º parágrafo: “kokushobi or ‘cruelly hot day’ … when temperatures top 40 degrees Celsius”."
+      },
+      {
+        "type": "tf",
+        "q": "The word “kokushobi” has been used in Japan for many years.",
+        "answer": false,
+        "explain_pt": "Falso: é um termo novo — “the new term … was introduced in April”."
+      },
+      {
+        "type": "mc",
+        "q": "How hot did the cities of Gujo and Toyota get?",
+        "options": [
+          "25C",
+          "30C",
+          "35C",
+          "40C"
+        ],
+        "answer": 3,
+        "explain_pt": "“…all hit 40C. Gujo’s 40C and Toyota’s 40.1C were all-time highs”."
+      },
+      {
+        "type": "mc",
+        "q": "According to the text, what happened on Monday?",
+        "options": [
+          "A festival was cancelled",
+          "Two men died, believed because of the heat",
+          "It rained heavily",
+          "Schools reopened"
+        ],
+        "answer": 1,
+        "explain_pt": "Um homem na casa dos 40 e outro na dos 70 foram achados mortos; “Both are believed to have succumbed to the heat.”"
+      },
+      {
+        "type": "tf",
+        "q": "Because of the heat, some farmers are switching to crops such as avocado.",
+        "answer": true,
+        "explain_pt": "Verdadeiro: “some are switching to crops such as avocado that have not traditionally been grown … in Japan.”"
+      }
+    ]
+  },
+  "listening": {
+    "intro_pt": "Ouça a notícia inteira SEM ler o texto (use 0.75x se precisar). Depois responda às perguntas e faça o ditado.",
+    "questions": [
+      {
+        "type": "mc",
+        "q": "When was the new term introduced?",
+        "options": [
+          "In April",
+          "In July",
+          "In 2024",
+          "100 years ago"
+        ],
+        "answer": 0,
+        "explain_pt": "“…the new term … was introduced in April.”"
+      },
+      {
+        "type": "mc",
+        "q": "How many heatstroke deaths were there in 2024?",
+        "options": [
+          "Over 2,000",
+          "278",
+          "914",
+          "100"
+        ],
+        "answer": 0,
+        "explain_pt": "“Heatstroke deaths topped 2,000 for the first time in 2024.”"
+      },
+      {
+        "type": "mc",
+        "q": "Which crop are some Japanese farmers switching to?",
+        "options": [
+          "Rice",
+          "Avocado",
+          "Wheat",
+          "Corn"
+        ],
+        "answer": 1,
+        "explain_pt": "“some are switching to crops such as avocado”."
+      }
+    ],
+    "dictation": [
+      {
+        "before": "Both are believed to have succumbed to the",
+        "answer": "heat",
+        "after": ".",
+        "hint_pt": "substantivo: calor"
+      },
+      {
+        "before": "Gujo’s 40C and Toyota’s 40.1C were all-time highs recorded at their respective weather",
+        "answer": "stations",
+        "after": ".",
+        "hint_pt": "substantivo (plural): estações (aqui, meteorológicas)"
+      },
+      {
+        "before": "The rising heat is affecting many aspects of Japanese life – including yields and the quality of",
+        "answer": "rice",
+        "after": ", a staple.",
+        "hint_pt": "substantivo: arroz"
+      }
+    ]
+  },
+  "writing": {
+    "title": "Contando sobre o calor recorde",
+    "task_pt": "Você leu esta notícia sobre o calor recorde no Japão (um “dia cruelmente quente” de 40°C). Escreva uma mensagem em inglês para um amigo contando a notícia e o que você acha do aumento do calor. Use pelo menos DUAS informações reais e tente usar um comparativo ou superlativo (ex.: “hotter”, “the hottest”).",
+    "prompt_en": "You read this news about a record “cruelly hot day” in Japan, with temperatures of 40C. Write a short message to a friend: tell them the news and what you think about the rising heat. Use at least two facts from the article.",
+    "min_words": 50,
+    "max_words": 80,
+    "checklist_pt": [
+      "Usei pelo menos duas informações reais (as temperaturas, as cidades, as mortes ou os efeitos no arroz).",
+      "Dei minha opinião sobre o aumento do calor.",
+      "Usei um comparativo ou superlativo (ex.: “hotter”, “the hottest”, “more dangerous”).",
+      "Revisei os verbos e a pontuação antes de enviar."
+    ],
+    "model_answer": "Hey! Did you see the news from Japan? They had their first “cruelly hot day”, when the temperature reached 40C in some cities. It’s the hottest weather they have recorded there. Sadly, two men died because of the heat, and heatstroke deaths are getting higher every year. I think summers are becoming more dangerous. Stay cool out there!",
+    "model_note_pt": "Resposta-modelo escrita por nós (NÃO faz parte da notícia). Use como referência; não copie."
+  },
+  "speaking": {
+    "shadow_sentences": [
+      "the new term for when temperatures top 40 degrees Celsius",
+      "Both are believed to have succumbed to the heat",
+      "Heatstroke deaths topped 2,000 for the first time in 2024",
+      "The rising heat is affecting many aspects of Japanese life"
+    ],
+    "questions": [
+      {
+        "q_en": "What is the news about the heat in Japan? Summarize it in your own words.",
+        "support_pt": "Estruture: What happened? → How hot was it? → What are the effects? Fale por 40–60 segundos."
+      },
+      {
+        "q_en": "How does extreme heat affect daily life where you live?",
+        "support_pt": "Use “When it is very hot, I…” e cite exemplos."
+      },
+      {
+        "q_en": "Do you think summers are getting hotter? What should people do about it?",
+        "support_pt": "Dê sua opinião e tente usar um comparativo (ex.: “Summers are getting hotter…”)."
+      }
+    ],
+    "tip_pt": "Grave suas respostas no celular e ouça depois. Tente usar um comparativo ou superlativo ao menos uma vez."
+  },
+  "grammar": {
+    "title": "Comparativos e superlativos",
+    "point_pt": "<p>Para <b>comparar</b> duas coisas, usamos o <b>comparativo</b> + <i>than</i>. Adjetivo <b>curto</b>: adicione <b>-er</b> (<i>hot → hot<b>ter</b></i>, <i>high → high<b>er</b></i>). Adjetivo <b>longo</b>: use <b>more</b> + adjetivo (<i><b>more</b> dangerous</i>, <i><b>more</b> common</i>).</p><p>Para dizer que algo é o <b>máximo</b> de um grupo, usamos o <b>superlativo</b> com <i>the</i>: adjetivo curto <i>the hot<b>test</b></i>; adjetivo longo <i><b>the most</b> dangerous</i>. Irregulares: <i>good → better → the best</i>; <i>bad → worse → the worst</i>; <i>many → more → the most</i>.</p>",
+    "examples": [
+      "but have now become <mark>more common</mark>.",
+      "the <mark>highest</mark> level of warning",
+      "<mark>more than</mark> 100,000 people were taken to hospital",
+      "farmers are planting <mark>more heat-tolerant</mark> varieties"
+    ],
+    "exercises": [
+      {
+        "type": "mc",
+        "q": "What is the comparative of the short adjective “hot”?",
+        "options": [
+          "more hot",
+          "hotter",
+          "hottest",
+          "hoter"
+        ],
+        "answer": 1,
+        "explain_pt": "Adjetivo curto → +er, dobrando o “t”: hot → hotter (than)."
+      },
+      {
+        "type": "mc",
+        "q": "Complete: “Tuesday was ___ day of the year.” (superlative of “hot”)",
+        "options": [
+          "the hotter",
+          "the hottest",
+          "more hot",
+          "hotter than"
+        ],
+        "answer": 1,
+        "explain_pt": "Superlativo de adjetivo curto: the + adj + est → “the hottest”."
+      },
+      {
+        "type": "mc",
+        "q": "Which is correct with the long adjective “dangerous”?",
+        "options": [
+          "Heatwaves are dangerouser",
+          "Heatwaves are more dangerous than before",
+          "Heatwaves are the dangerousest",
+          "Heatwaves are most dangerous than before"
+        ],
+        "answer": 1,
+        "explain_pt": "Adjetivo longo → “more … than”: “more dangerous than”."
+      },
+      {
+        "type": "gap",
+        "q": "Complete (comparativo de “high”): “These temperatures are ___ than last year’s.”",
+        "before": "These temperatures are",
+        "answer": "higher",
+        "after": "than last year’s.",
+        "hint_pt": "adjetivo curto → +er: high → higher."
+      },
+      {
+        "type": "gap",
+        "q": "Complete (superlativo de “many” → irregular): “2024 had ___ heatstroke deaths ever recorded.”",
+        "before": "2024 had",
+        "answer": "the most",
+        "after": "heatstroke deaths ever recorded.",
+        "hint_pt": "“many” é irregular: many → more → the most."
+      }
+    ]
+  }
+}
